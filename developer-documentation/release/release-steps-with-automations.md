@@ -1,18 +1,15 @@
 # Project release sequence
 
-Actions listed below are to be done by the release manager.
+This article provides the details on performing a release by the release manager.
 
 ## Release All Projects
 
-The [Publish: Release All](/.github/workflows/pass-complete-release.yml) is a GitHub workflow that will release all the PASS projects in the correct order, build and push docker images, and create GitHub Releases.
-The `Publish: Release All` requires GitHub PAT configuration.  See [GitHub Personal Access Token Setup](#github-personal-access-token-setup).
+The [Publish: Release All](https://github.com/eclipse-pass/main/actions/workflows/pass-complete-release.yml) is a GitHub workflow that will release all the PASS projects in the correct order, build and push docker images, and create GitHub Releases.
+The `Publish: Release All` requires [GitHub PAT configuration](#github-personal-access-token-setup).
 
-The `Publish: Release All` workflow is the preferred method of doing a PASS release.  If for some reason, a PASS release needs to be done one project at a time, follow the steps in [Release Projects One At a Time](#release-projects-one-at-a-time) section.
-
+The `Publish: Release All` workflow is the preferred method of doing a PASS release. If for some reason, a PASS release needs to be done one project at a time, follow the steps in [Release Projects One At a Time](#release-projects-one-at-a-time) section.
 
 ## Release Projects One At a Time
-
-
 
 ### Java projects
 The [Publish: release all Java modules](https://github.com/eclipse-pass/main/actions/workflows/pass-java-release.yml) combines all the Java projects together and then releases them in one single workflow.
@@ -41,6 +38,7 @@ workflows should wait for you, but is good to check anyway.
 
 
 ### Non-Java projects
+
 These can be released in any order. You should release these between releasing Java components, while waiting for artifacts to become available in Maven Central.
 
 * [`pass-ui`](https://github.com/eclipse-pass/pass-ui)
@@ -50,6 +48,7 @@ These can be released in any order. You should release these between releasing J
   * [Release workflow](https://github.com/eclipse-pass/pass-acceptance-testing/actions/workflows/release.yml)
 
 ### Other projects
+
 This must be released last because it relies on some Docker images that will be published during the release process of some of the above projects.
 
 1. [`pass-docker`](https://github.com/eclipse-pass/pass-docker)
@@ -62,7 +61,7 @@ This must be released last because it relies on some Docker images that will be 
 
 You will have to manually create a GitHub release through the GitHub web interface to complete the release of each of these components. This can generally be done any time after the release automation completes successfully, since the release will be made against a tag created by the automation.
 
-![Code release section](/docs/assets/github/releases/code-release-section.png)
+![Code release section](../../.gitbook/assets/code-release-section.png)
 
 * Navigate to the Releases section of the repository
 * Click the "Draft new release" button near the top of the page
@@ -83,7 +82,7 @@ Take [`eclipse-pass/main`](https://github.com/eclipse-pass/main) as an example.
 
 It is recommended that you monitor the automation after triggering it to make sure it completes successfully before moving on to release the next component.
 
-![Release page screenshot](/docs/assets/github/releases/main-release-page.png)
+![Release page screenshot](../../.gitbook/assets/main-release-page.png)
 
 ## GitHub Personal Access Token Setup
 
