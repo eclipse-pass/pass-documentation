@@ -1,6 +1,6 @@
 # PASS Release
 
-This section outlines the overall process and steps to perform the community release of PASS. It provides in-depth details of each step and the procedures to perform the release manually.
+This release section outlines the overall process and steps to perform the community release of PASS. It provides in-depth details of each step and the procedures to perform the release manually. There are workflows available that [automate the release process](release-steps-with-automations.md), which can release all projects at once or release them individually.
 
 ## Summary
 
