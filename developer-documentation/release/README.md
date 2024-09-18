@@ -1,13 +1,10 @@
 # PASS Release
 
-This section outlines the overall process and steps to perform the community release of PASS. It provides in depth details of each step and the procedures to perform the release manually.
+This section outlines the overall process and steps to perform the community release of PASS. It provides in-depth details of each step and the procedures to perform the release manually.
 
 ## Summary
 
-A PASS release produces a set of Java artifacts, and Docker images.
-Java artifacts are pushed to Sonatype Nexus and Maven Central repositories. Docker images are pushed to GitHub Container Registry.
-The PASS Docker environment is updated with references to the released images.
-Source code is tagged and release notes made available.
+A PASS release produces a set of Java artifacts, and Docker images. Java artifacts are pushed to Sonatype Nexus and Maven Central repositories. Docker images are pushed to GitHub Container Registry. The PASS Docker environment is updated with references to the released images. Source code is tagged and release notes made available.
 
 Each release of PASS has its own version which is used by every component. PASS uses `MAJOR.MINOR.PATCH` [semantic versioning](https://semver.org/) approach.
 The version should be chosen based on those guidelines.
@@ -21,13 +18,13 @@ The version should be chosen based on those guidelines.
 ## Process
 
 * Choose a release version that communicates the magnitude of the change.
-* Create a release checklist from the [Release Manager Actions Checklist Template](../release/release-actions-template.md). Version the release as `release-actions-X.X.X.md`. Update the template with any new steps made during the release process.
-* Do the release.
-* Test the release
-* Publish release notes
-* Post a message about the release to the [PASS Google Group](https://groups.google.com/g/pass-general)
-  * Release manager will draft the message, allowing the [technical lead](https://github.com/markpatton) and [community manager](https://github.com/kineticsquid) to provide feedback before posting
-  * Message should include at least: an overview of the high level changes in the release, plans for the next release, and a link to the changelog for the release
+* Create a release checklist issue from the [main repository create new issue page](https://github.com/eclipse-pass/main/issues/new/choose).
+* Perform the release.
+* Test the release.
+* Publish release notes.
+* Post a message about the release to the [PASS Google Group](https://groups.google.com/g/pass-general).
+  * Release manager will draft the message, allowing the [technical lead](https://github.com/markpatton) and [community manager](https://github.com/kineticsquid) to provide feedback before posting.
+  * Message should include at least: an overview of the high level changes in the release, plans for the next release, and a link to the changelog for the release.
 
 A new release for each relevant project should be created in the GitHub user interface until automation is put in place.
 
@@ -49,11 +46,10 @@ Most of the PASS release process is automated new, but if we need to do parts of
 The Sonatype deployment is handled by the automations. This information is provided for doing a Java release manually.
 
 Developers will need a Sonatype account to release Java projects.
-Maven must be configured to use the account by modifying your ~/.m2/settings.xml. Documentation for Sonatype publishing
-is available here: https://central.sonatype.org/publish/publish-guide/
+Maven must be configured to use the account by modifying your ~/.m2/settings.xml. To learn more about Sonatype, documentation is available on their [website](https://central.sonatype.org/publish/publish-guide/).
 
 Example pom setup:
-```
+```xml
 <settings>
   <servers>
     <server>
@@ -83,7 +79,7 @@ Developers will need a GitHub account which is a member of the [eclipse-pass](ht
 
 ## Release Sequence
 
-**The [Publish: Release All](/.github/workflows/pass-complete-release.yml) GitHub workflow will release all projects in the correct order.**  
+**The [Publish: Release All](https://github.com/eclipse-pass/main/actions/workflows/pass-complete-release.yml) GitHub workflow will release all projects in the correct order.**  
 
 However, if for some reason, a manual release is required, an order must be followed.
 
@@ -98,7 +94,7 @@ The Java projects must follow a strict sequence, following its dependency hierar
    * [`pass-acceptance-testing`](https://github.com/eclipse-pass/pass-acceptance-testing)
 4. [`pass-docker`](https://github.com/eclipse-pass/pass-docker)
 
-These projects have GitHub workflow automations in place to perform releases that need to be triggered manually. See more detailed [release steps with automations](release-steps-with-automations.md)
+These projects have GitHub workflow automations in place to perform releases that need to be triggered manually. See more detailed [release steps with automations](release-steps-with-automations.md).
 
 ## Java Release
 The release automations will follow these steps. **You will only need to follow this process if the automations fail.**
@@ -107,7 +103,7 @@ Maven is used to perform many of the release tasks:
 
 * Sets versions and builds 
 * Tests
-* Pushes release artifacts. 
+* Pushes release artifacts 
 * May also build Docker images
 
 The versions of all the Java artifacts are the same for a release. The parent pom in `main` sets the version to be inherited by all its children. This project therefore needs to be released first, as all other projects need to reference it. After this is released, other projects are released in an order which guarantees that all PASS dependencies for them have already been released. You will need to wait for artifacts to show up in Maven Central before building a module which depends on them.
@@ -128,7 +124,7 @@ git commit -am "Update version to $RELEASE"
 git tag $RELEASE
 ```
 
-Push any created images to GHCR after logging in. See [https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry] for information.
+Push any created images to GHCR after logging in. Visit the GitHub docs [Working with the Container registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) for more information.
 ```
 docker push IMAGE_NAME:$RELEASE
 ```
@@ -188,9 +184,9 @@ docker build --no-cache -t ghcr.io/eclipse-pass/pass-auth:<your-version-tag>
 Push that image to ghcr. For example: `docker push ghcr.io/eclipse-pass/pass-auth:<your-version-tag-here>`
 
 ### `pass-acceptance-testing`
-All that's required is to tag a new release in the Github UI.
+All that's required is to tag a new release in the GitHub UI.
 
-After pushing the images to ghcr, update the appropriate image lines in `docker-compose.yml` in `pass-docker` with the new sha's returned by the pushes to ghcr. Open a pull request against `pass-docker` with these updates.
+After pushing the images to GHCR, update the appropriate image lines in `docker-compose.yml` in `pass-docker` with the new sha's returned by the pushes to ghcr. Open a pull request against `pass-docker` with these updates.
 
 Once acceptance-tests successfully run in CI in your `pass-docker` PR, and preferrably once you've done some additional manual spot checking while running `pass-docker` locally, go ahead and tag a new release in the Github UI for each of `pass-ui`, `pass-ui-public`, `pass-auth` and `pass-acceptance-testing`. 
 
@@ -204,18 +200,18 @@ In `.env`, by default, `EMBER_GIT_BRANCH` should have a value of `main`. If you 
 
 ## Testing
 
-Manual testing can be done using the newly updated pass-docker to run the release locally. Acceptance testing is run automatically on GitHub against pass-docker/main
+Manual testing can be done using the newly updated pass-docker to run the release locally. Acceptance testing is run automatically on GitHub against pass-docker/main.
 
 ## Post Release
 
-  * [Update release notes](#update-release-notes)
+  * Update release notes
   * Update project documentation
   * Deploying the release
 
 ### Update Release Notes
 
-1. Ensure that there is a milestone for the release
-2. Get a list of all issues that are closed and in the eclipse-pass project by going to: https://github.com/eclipse-pass/main/issues?page=1&q=is%3Aissue+is%3Aclosed+project%3Aeclipse-pass%2F4
-3. Check that the correct tickets are in the release milestone
-4. Archive the release tickets in the Project by going to the Kanban Board https://github.com/orgs/eclipse-pass/projects/4/views/2, scrolling to the Done column, verifying that all tickets in the list have the new version tag, then selecting the ellipsis button and "Archive all cards"
-5. Include in the Release Notes a link to the issues resolved by the release, e.g. https://github.com/eclipse-pass/main/milestone/11
+1. Ensure that there is a milestone for the release.
+2. Get a list of all issues that are closed and in the eclipse-pass project by going to the [main repository issue list](https://github.com/eclipse-pass/main/issues?page=1&q=is%3Aissue+is%3Aclosed+project%3Aeclipse-pass%2F4).
+3. Check that the correct tickets are in the release milestone.
+4. Archive the release tickets in the Project by going to the [Kanban Board](https://github.com/orgs/eclipse-pass/projects/4/views/2), scrolling to the Done column, verifying that all tickets in the list have the new version tag, then selecting the ellipsis button and "Archive all cards".
+5. Include in the Release Notes a link to the issues resolved by the release, for example [this milestone](https://github.com/eclipse-pass/main/milestone/11).
