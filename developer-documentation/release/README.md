@@ -11,9 +11,9 @@ The version should be chosen based on those guidelines.
 
 ## Community Preparation
 
-* Assign a Release Manager, the person who will be responsible for the release process. The Release Manager must be a PASS committer.
+* Assign a Release Manager, the person who will be responsible for the release process. The Release Manager must be a [PASS committer](https://www.eclipse.org/projects/handbook/#roles-cm).
 * Ensure all code commits and PRs intended for the release have been merged.
-* Issue a code freeze statement on the Eclipse PASS slack #pass-dev channel to notify all developers that a release is imminent and that no further changes will be considered.
+* Issue a code freeze statement on the [Eclipse PASS slack #pass-dev channel](https://eclipse-pass.slack.com/archives/C035MNLRD44) to notify all developers that a release is imminent and that no further changes will be considered.
 
 ## Process
 
@@ -34,19 +34,19 @@ The release notes are generated automatically by GitHub, but references to the r
 
 Most of the PASS release process is automated new, but if we need to do parts of the process manually, make sure the following software is installed:
 
-|Name | Version |
-| --- |----|
-| Java | 17 |
-| Maven | 3.8.x |
-| Docker | 20.10.x |
-| Docker Compose | 2.x | 
+| Name           | Version |
+|----------------|---------|
+| Java           | 17      |
+| Maven          | 3.8.x   |
+| Docker         | 20.10.x |
+| Docker Compose | 2.x     | 
 
 ### Sonatype
 
 The Sonatype deployment is handled by the automations. This information is provided for doing a Java release manually.
 
 Developers will need a Sonatype account to release Java projects.
-Maven must be configured to use the account by modifying your ~/.m2/settings.xml. To learn more about Sonatype, documentation is available on their [website](https://central.sonatype.org/publish/publish-guide/).
+Maven must be configured to use the account by modifying your `~/.m2/settings.xml`. To learn more about Sonatype, documentation is available on their [website](https://central.sonatype.org/publish/publish-guide/).
 
 Example pom setup:
 ```xml
@@ -81,9 +81,7 @@ Developers will need a GitHub account which is a member of the [eclipse-pass](ht
 
 **The [Publish: Release All](https://github.com/eclipse-pass/main/actions/workflows/pass-complete-release.yml) GitHub workflow will release all projects in the correct order.**  
 
-However, if for some reason, a manual release is required, an order must be followed.
-
-The Java projects must follow a strict sequence, following its dependency hierarchy. Other Javascript based projects can be released in any order. Both the Java and non-Java releases can be done in parallel, as there are no direct code dependencies between them.
+If a manual release is required, an order must be followed. The Java projects must follow a strict sequence, following its dependency hierarchy. Other Javascript based projects can be released in any order. Both the Java and non-Java releases can be done in parallel, as there are no direct code dependencies between them.
 
 1. [`main`](https://github.com/eclipse-pass/main)
 2. Java projects
@@ -97,6 +95,7 @@ The Java projects must follow a strict sequence, following its dependency hierar
 These projects have GitHub workflow automations in place to perform releases that need to be triggered manually. See more detailed [release steps with automations](release-steps-with-automations.md).
 
 ## Java Release
+
 The release automations will follow these steps. **You will only need to follow this process if the automations fail.**
 
 Maven is used to perform many of the release tasks:
@@ -141,9 +140,9 @@ At this point, we should have deployed the release to Sonatype (and eventually t
 
 In addition, the project may be released on GitHub. This provides a way to add release notes for a particular project. A GitHub release is done manually by uploading artifacts through the UI. The release version and tag should be the same used for Maven Central. Release notes can be automatically generated from commit messages and then customized.
 
-See the [/.github/workflows/release.yml] for the details on the exact commands that are run.
+See the GitHub [Java Release Workflow](https://github.com/eclipse-pass/main/blob/main/.github/workflows/release.yml) for the details on the exact commands that are run.
 
-### Manual Release Steps for `main`, `pass-core`, `pass-support`
+### Manual Release Steps for Main, Pass-Core, Pass-Support
 
 * Update POM to release version
 * Commit release version update
@@ -162,7 +161,7 @@ See the [/.github/workflows/release.yml] for the details on the exact commands t
 
 The following projects can be released by performing the following steps when the release needs to be performed manually.
 
-### `pass-ui`
+### PASS-UI
 
 Update the version in `package.json` and in `build.sh`, and commit those changes via a PR to the `pass-ui` repo.
 
@@ -172,24 +171,25 @@ sh build.sh ~/pass-docker/.env
 ```
 Note, you might want to ensure `node_modules` are removed first to ensure a clean build.
 
-Push that image to ghcr. For example: `docker push ghcr.io/eclipse-pass/pass-ui:<your-version-tag-here>`
+Push that image to GHCR. For example: `docker push ghcr.io/eclipse-pass/pass-ui:<your-version-tag-here>`
 
-### `pass-auth`
+### PASS-Auth
+
 Update the version in `package.json`, and commit that change via a PR to the `pass-auth` repo.
 
 Build a new docker image from within the `pass-auth`, for example by running:
 ```
 docker build --no-cache -t ghcr.io/eclipse-pass/pass-auth:<your-version-tag>
 ```
-Push that image to ghcr. For example: `docker push ghcr.io/eclipse-pass/pass-auth:<your-version-tag-here>`
+Push that image to GHCR. For example: `docker push ghcr.io/eclipse-pass/pass-auth:<your-version-tag-here>`
 
-### `pass-acceptance-testing`
+### PASS-Acceptance Testing
+
 All that's required is to tag a new release in the GitHub UI.
 
-After pushing the images to GHCR, update the appropriate image lines in `docker-compose.yml` in `pass-docker` with the new sha's returned by the pushes to ghcr. Open a pull request against `pass-docker` with these updates.
+After pushing the images to GHCR, update the appropriate image lines in `docker-compose.yml` in `pass-docker` with the new sha returned by the pushes to GHCR. Open a pull request against `pass-docker` with these updates.
 
 Once acceptance-tests successfully run in CI in your `pass-docker` PR, and preferrably once you've done some additional manual spot checking while running `pass-docker` locally, go ahead and tag a new release in the Github UI for each of `pass-ui`, `pass-ui-public`, `pass-auth` and `pass-acceptance-testing`. 
-
 
 ## Image Customization
 
@@ -214,4 +214,4 @@ Manual testing can be done using the newly updated pass-docker to run the releas
 2. Get a list of all issues that are closed and in the eclipse-pass project by going to the [main repository issue list](https://github.com/eclipse-pass/main/issues?page=1&q=is%3Aissue+is%3Aclosed+project%3Aeclipse-pass%2F4).
 3. Check that the correct tickets are in the release milestone.
 4. Archive the release tickets in the Project by going to the [Kanban Board](https://github.com/orgs/eclipse-pass/projects/4/views/2), scrolling to the Done column, verifying that all tickets in the list have the new version tag, then selecting the ellipsis button and "Archive all cards".
-5. Include in the Release Notes a link to the issues resolved by the release, for example [this milestone](https://github.com/eclipse-pass/main/milestone/11).
+5. Include in the Release Notes a link to the issues resolved by the release, for example [this milestone](https://github.com/eclipse-pass/main/milestone/11?closed=1).
