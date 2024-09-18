@@ -12,7 +12,7 @@ Source code is tagged and release notes made available.
 Each release of PASS has its own version which is used by every component. PASS uses `MAJOR.MINOR.PATCH` [semantic versioning](https://semver.org/) approach.
 The version should be chosen based on those guidelines.
 
-## Community preparation
+## Community Preparation
 
 * Assign a Release Manager, the person who will be responsible for the release process. The Release Manager must be a PASS committer.
 * Ensure all code commits and PRs intended for the release have been merged.
@@ -33,7 +33,7 @@ A new release for each relevant project should be created in the GitHub user int
 
 The release notes are generated automatically by GitHub, but references to the release artifacts should be added manually.
 
-## Release requirements
+## Release Requirements
 
 Most of the PASS release process is automated new, but if we need to do parts of the process manually, make sure the following software is installed:
 
@@ -81,7 +81,7 @@ Example pom setup:
 
 Developers will need a GitHub account which is a member of the [eclipse-pass](https://github.com/eclipse-pass) organization. 
 
-## Release sequence
+## Release Sequence
 
 **The [Publish: Release All](/.github/workflows/pass-complete-release.yml) GitHub workflow will release all projects in the correct order.**  
 
@@ -100,15 +100,15 @@ The Java projects must follow a strict sequence, following its dependency hierar
 
 These projects have GitHub workflow automations in place to perform releases that need to be triggered manually. See more detailed [release steps with automations](release-steps-with-automations.md)
 
-## Java release
+## Java Release
 The release automations will follow these steps. **You will only need to follow this process if the automations fail.**
 
 Maven is used to perform many of the release tasks:
 
-* It sets versions and builds 
+* Sets versions and builds 
 * Tests
 * Pushes release artifacts. 
-* Maven may also build Docker images.
+* May also build Docker images
 
 The versions of all the Java artifacts are the same for a release. The parent pom in `main` sets the version to be inherited by all its children. This project therefore needs to be released first, as all other projects need to reference it. After this is released, other projects are released in an order which guarantees that all PASS dependencies for them have already been released. You will need to wait for artifacts to show up in Maven Central before building a module which depends on them.
 
@@ -147,7 +147,7 @@ In addition, the project may be released on GitHub. This provides a way to add r
 
 See the [/.github/workflows/release.yml] for the details on the exact commands that are run.
 
-### Running: `main`, `pass-core`, `pass-support`
+### Manual Release Steps for `main`, `pass-core`, `pass-support`
 
 * Update POM to release version
 * Commit release version update
@@ -162,7 +162,7 @@ See the [/.github/workflows/release.yml] for the details on the exact commands t
 * Push commits to GitHub
 
 
-## JavaScript projects
+## JavaScript Projects
 
 The following projects can be released by performing the following steps when the release needs to be performed manually.
 
@@ -194,26 +194,25 @@ After pushing the images to ghcr, update the appropriate image lines in `docker-
 
 Once acceptance-tests successfully run in CI in your `pass-docker` PR, and preferrably once you've done some additional manual spot checking while running `pass-docker` locally, go ahead and tag a new release in the Github UI for each of `pass-ui`, `pass-ui-public`, `pass-auth` and `pass-acceptance-testing`. 
 
----
 
-## Per-image customization
+## Image Customization
 
 Here's what you need to change manually before building a new image version in order to bring in code changes. If the docker compose service is not mentioned here, you do not need to make any manual changes. All images must be built manually using docker compose, following the [docker compose rebuilding / updating](#docker compose-rebuilding--updating) steps except `pass-core` which is built by Maven.
 
-#### `pass-ui`
+### Building `pass-ui` Image
 In `.env`, by default, `EMBER_GIT_BRANCH` should have a value of `main`. If you need to point to a specific branch update the value of `EMBER_GIT_BRANCH`. You can use the name of a tag or a specific commit hash.
 
-# Testing
+## Testing
 
 Manual testing can be done using the newly updated pass-docker to run the release locally. Acceptance testing is run automatically on GitHub against pass-docker/main
 
-# Post Release
+## Post Release
 
   * [Update release notes](#update-release-notes)
   * Update project documentation
   * Deploying the release
 
-### Update release notes
+### Update Release Notes
 
 1. Ensure that there is a milestone for the release
 2. Get a list of all issues that are closed and in the eclipse-pass project by going to: https://github.com/eclipse-pass/main/issues?page=1&q=is%3Aissue+is%3Aclosed+project%3Aeclipse-pass%2F4
