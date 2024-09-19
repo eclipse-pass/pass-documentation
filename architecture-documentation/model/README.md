@@ -1,36 +1,31 @@
 # PASS Data Model
 
-The PASS data model is represented using (JSON API)[https://jsonapi.org/].
-
-In this project you will find
-* [Model Objects](#model-objects) - a description of the fields for each object in the model
-* [Model Diagram](#model-diagram) - a diagram showing the relationships between each object
+The PASS data model is represented using [JSON API](https://jsonapi.org/).
 
 ## Model Objects
-The data model consists of the following components. Each is documented in full on its own page, you can see all of these pages in the [model](/docs/dev/model/) folder.
 
-* [Deposit](Deposit.md)
-* [File](File.md)
-* [Funder](Funder.md)
-* [Grant](Grant.md)
-* [Journal](Journal.md)
-* [Policy](Policy.md)
-* [Publication](Publication.md)
-* [Repository](Repository.md)
-* [RepositoryCopy](RepositoryCopy.md)
-* [Submission](Submission.md)
-* [SubmissionEvent](SubmissionEvent.md)
-* [User](User.md)
+* [Deposit](./model/Deposit.md): An attempt to push a publication to a repository.
+* [File](./model/File.md): File being sent to a repository.
+* [Funder](./model/Funder.md): The sponsor of a grant.
+* [Grant](./model/Grant.md): Associates an award at the insitution with funders and principal investigators.
+* [Journal](./model/Journal.md): The journal of a publication
+* [Policy](./model/Policy.md): The institutional requirements to publish to certain repositories.
+* [Publication](./model/Publication.md): The publication being sent to a repository
+* [Repository](./model/Repository.md): The destination of a deposit
+* [RepositoryCopy](./model/RepositoryCopy.md): A publication in a repository.
+* [Submission](./model/Submission.md): The submission of a publication to a set of repositories.
+* [SubmissionEvent](./model/SubmissionEvent.md): An event performed by a user on a submission.
+* [User](./model/User.md): A PASS user.
 
 ## Model Diagram
  
-![data model](pass_data_model.png)
+![data model](/.gitbook/assets/pass_data_model.png)
 
 ## Notes
 
 ### Identifiers
 
-An object is uniquely identified by a tuple consiting of its id attribute and its type.
+An object is uniquely identified by a tuple consisting of its id attribute and its type.
 
 ### DateTime attributes
 
