@@ -26,7 +26,7 @@ The version should be chosen based on those guidelines.
   * Release manager will draft the message, allowing the [technical lead](https://github.com/markpatton) and [community manager](https://github.com/kineticsquid) to provide feedback before posting.
   * Message should include at least: an overview of the high level changes in the release, plans for the next release, and a link to the changelog for the release.
 
-## Release Requirements
+## Manual Release Requirements
 
 Most of the PASS release process is automated, but if we need to do parts of the process manually, make sure the following software is installed:
 
