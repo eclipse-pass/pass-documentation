@@ -28,9 +28,10 @@ The PASS project utilizes GitHub Actions in order to build a CI/CD pipeline. The
 ### Pull Request Submission Trigger: 
 When a pull request is opened multiple GitHub Actions are triggered automatically. One of the GitHub Actions focuses on continuous integration concepts. The continuous integration GitHub Action runs several forms of tests. The following tests are run: Acceptance Tests, Unit Tests, and Integration Tests. Another GitHub Action is triggered during the opening of a pull request, the Git ECA Validation Status actioon. The Git ECA Validation Status action verifies that the author of the pull request is covered by necessary legal agreements to contribute to an Eclipse Foundation Project. Once the actions have completed the GitHub user interface shows if the tests passed or failed. 
 
-Currently the team is in the process of implementing the following proposal:
-<figure><img src="../.gitbook/assets/CI_CD_Workflow_Proposal.png" alt=""><figcaption><p>CI/CD Workflow Proposal</p></figcaption></figure>
+### CI/CD Workflow Proposal
+The team is in the process of implementing the following proposal workflow:
+<figure><img src="../.gitbook/assets/CI_CD_Workflow_Proposal.png" alt=""><figcaption></figcaption></figure>
 
 ## Related Documentation:
-Release Process 
+Release Process \
 Testing 
