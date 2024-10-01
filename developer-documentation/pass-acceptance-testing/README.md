@@ -22,4 +22,4 @@ There are two methods for running acceptance tests for the PASS project. One met
 
 `yarn run test` - runs the acceptance tests against a locally running pass-docker
 
-`yarn run testDeployment` - runs the acceptance tests against a deployed PASS system such as stage or prod.  Please see the `rundeploymenttest.sh` file for required environment variables.
+`yarn run testDeployment` - runs the acceptance tests against a deployed PASS system such as stage or prod. Please see the `rundeploymenttest.sh` file for required environment variables.
