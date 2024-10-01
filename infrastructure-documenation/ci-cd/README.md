@@ -30,11 +30,11 @@ When a pull request is opened multiple GitHub Actions are triggered automaticall
 
 ### CI/CD Workflow Proposal
 The team is in the process of implementing the following proposal workflow:
-<figure><img src="../.gitbook/assets/CI_CD_Workflow_Proposal.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CI_CD_Workflow_Proposal.png" alt=""><figcaption></figcaption></figure>
 
 ## Related Documentation:
-[Release Process](../../developer-documentation/release/README.md)
-[Acceptance Testing](../../developer-documentation/pass-acceptance-testing/README.md)
+* [Release Process](../../developer-documentation/release/README.md)
+* [Acceptance Testing](../../developer-documentation/pass-acceptance-testing/README.md)
 
 
 
