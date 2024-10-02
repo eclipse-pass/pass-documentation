@@ -8,7 +8,7 @@ Developer-focused PASS runtime, which provides the PASS project and all of its d
 
 
 ## Demo Environment
-The "demo" yml file describes an early system meant to demonstrate new technologies and services that are available in PASS.
+The `demo` yml file describes an early system meant to demonstrate new technologies and services that are available in PASS.
 
 ### Running A Demo Instance of PASS
 In order to run a demo instance of the PASS project using Docker Compose you need to specify the correct `yml` file and the correct `env` file.
@@ -64,9 +64,9 @@ Note the `-v` to remove the volumes, **this is critical** so on subsequent start
 
 ## Services
 
-### `idp`
+### idp
 
-This service runs a Shibboleth Identity Provider using an image from [https://spaces.at.internet2.edu/display/ITAP/InCommon+Trusted+Access+Platform+Release].
+This service runs a Shibboleth Identity Provider using an image from [InCommon Trusted Access Platform Library](https://spaces.at.internet2.edu/display/ITAP/InCommon+Trusted+Access+Platform+Release).
 Configuration files in the image are overridden on startup by using files in `idp/`. This service is intended for testing only.
 
 #### Environment variables
@@ -78,18 +78,18 @@ The default is 8080. This can be used to make 9080 support https by setting it t
 `IDP_INTERNAL_PORT=4443` to the docker compose command. Note that `-e` should not be used because it is for container environment variables.
 
 
-### `ldap`
+### ldap
 
 This service runs the 389 Directory Server which is a LDAP server. It is used by the IDP as a source of information on users.
 The users in ` ldap/pass.ldif` are loaded on startup.This service is intended for testing only.
 
 
-### [`pass-core`](https://github.com/eclipse-pass/pass-core)
+### pass-core
 
-Repository: https://github.com/eclipse-pass/pass-core
+Repository: [`pass-core`](https://github.com/eclipse-pass/pass-core)
 Package: https://github.com/orgs/eclipse-pass/packages/container/package/pass-core-main
 
-Presents a JSON:API window to the backend from behind the authentication layer. Swagger is not currently implemented and as a result it is currently unreachable. This service provides data and web APIs to the application. This service supports SAML and HTTP basic authentication.
+Presents a JSON:API window to the backend from behind the authentication layer. Swagger is not currently implemented and as a result it is unreachable. This service provides data and web APIs to the application. This service supports SAML and HTTP basic authentication.
 
 #### Environment variables
 
@@ -112,17 +112,17 @@ Presents a JSON:API window to the backend from behind the authentication layer. 
 * `JDBC_DATABASE_PASSWORD=moo`
 
 
-### `postgres`
+### postgres
 
 A standard PostgreSQL database server with minimum modifications. This service's only interaction is with the [`pass-core`](https://github.com/eclipse-pass/pass-core) service.
 
 
-### [`pass-ui`](https://github.com/eclipse-pass/pass-ui)
+### pass-ui
 
-Repository: https://github.com/eclipse-pass/pass-ui
+Repository: [`pass-ui`](https://github.com/eclipse-pass/pass-ui)
 Package: https://github.com/orgs/eclipse-pass/packages/container/package/pass-ui
 
-User interface for the PASS application. Currently does not handle environment variables nicely, currently environmental variables are baked into images at build time. The environment variables in the demo environment should not need to be adjusted between different deployment environments.
+User interface for the PASS application. PASS-UI currently does not handle environment variables nicely, as a result environmental variables are baked into images at build time. The environment variables in the demo environment should not need to be adjusted between different deployment environments.
 
 #### Environment variables
 * `PASS_UI_PORT=81`
@@ -138,14 +138,14 @@ User interface for the PASS application. Currently does not handle environment v
 * `USER_SERVICE_URL=/pass-user-service/whoami`
 
 
-### `loader`
+### loader
 
 A lightweight Docker image that performs a `curl` command in order to bootstrap the environment with data from `demo_data.json`
 
 
 ## Running Acceptance Tests
 
-Repository: https://github.com/eclipse-pass/pass-acceptance-testing
+Repository: [`pass-acceptance-testing`](https://github.com/eclipse-pass/pass-acceptance-testing)
 
 There is a small set of end-to-end smoke tests that can run against this environment for some validation of changes. These tests run automatically for new PRs that are opened against `main`, but they can also be run locally. In order to do this, first clone the repository with the tests.
 
