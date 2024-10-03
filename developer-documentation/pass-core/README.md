@@ -20,11 +20,10 @@ PASS Core covers a lot of technological and research domains. Basic understandin
   * [Java 17+](https://www.oracle.com/java/technologies/downloads/)
 * **Frameworks**
   * Knowledge of Spring Boot framework
-  * Familiarity with [Elide](https://elide.io/) for data model management and JSON
-    services
-* Backend & API Development
+  * Familiarity with [Elide](https://elide.io/) for data model management and JSON services
+* **API Development**
   * Creating and managing RESTful APIs
-  * JSON Specification
+  * JSON specification
 
 ## Technologies Utilized
 
@@ -44,7 +43,7 @@ The [data model](./model/) holds all the information needed to associate users w
 
 Java 17, Maven 3.8, and Docker are required.
 
-```
+```shell
 mvn clean install
 ```
 
@@ -52,14 +51,15 @@ This will produce an executabler jar `pass-core-main/target/pass-core-main.jar` 
 
 #### Running the local build
 
-```
+```shell
 java -jar pass-core-main/target/pass-core-main.jar
 ```
 
 By default, an in memory database is used.
 
 You can verify it is running by making a request like:
-```
+
+```shell
 curl -u backend:moo localhost:8080/data/grant
 ```
 
@@ -68,7 +68,8 @@ curl -u backend:moo localhost:8080/data/grant
 To run pass-core in a full local environment use pass-docker. But for testing focused on pass-core, there is a docker environment which just runs pass-core and Postgres. See the pass-core-main/docker-compose.yml. You will have to set the pass-core image version manually. You may also need to adjust environment variables in `pass-core-main/.env`.
 
 In pass-core-main run:
-```
+
+```shell
 docker compose up -d
 ```
 
@@ -136,7 +137,7 @@ There is a single `BACKEND` user specified who logs in using HTTP basic.
 The `BACKEND` role can do everything. The `SUBMITTER` role is restricted to creating and modifying certain objects in the data model.
 The `SUBMITTER` has full access to all other services. 
 
-Details are available [here](authentication-authorization.md).
+Details are available in the [Authentication and Authorization section](authentication-authorization.md).
 
 ### SAML configuration
 
@@ -148,9 +149,11 @@ Note that `PASS_CORE_SP_ACS` is a URL which must match the path specified in `PA
 The defaults are set such that the integration tests can run against a [SimpleSAMLphp based IDP](https://github.com/kenchan0130/docker-simplesamlphp/) using resources included in `saml2/`. These defaults should not be used in production.
 
 The image can be run with:
-```
+
+```shell
 docker run --name=idp -p 8090:8080 -e SIMPLESAMLPHP_SP_ENTITY_ID=https://sp.pass/shibboleth -e SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost:8080/login/saml2/sso/pass -e SIMPLESAMLPHP_IDP_BASE_URL=http://localhost:8090/   -v ./pass-core/pass-core/main/src/main/resources/saml2/authsources.php:/var/www/simplesamlphp/config/authsources.php -d kenchan0130/simplesamlphp
 ```
+
 Note the volume mount which is set the user information appropriately for PASS.
 
 ### CSRF protection
@@ -185,10 +188,10 @@ The [metadata schema API](api/metadata-schema.md) provides JSON schemas to descr
 
 #### JSON API
 
-JSON API is deployed at `/data/`. All of our data model is available, just divided into attributes and relationships. Note that identifiers are now integers, not URIs.
-See https://elide.io/pages/guide/v6/10-jsonapi.html for information on how Elide provides support for filtering and sorting.
+JSON API is deployed at the `/data/` endpoint. All of our data model is available, just divided into attributes and relationships. Note that identifiers are now integers, not URIs.
+See the [Elide docs](https://elide.io/pages/guide/v6/10-jsonapi.html) for information on how Elide provides support for filtering and sorting.
 
-See `/swagger/` for auto-generated documentation.
+See the `/swagger/` endpoint for auto-generated documentation.
 
 You can directly make request with the UI and see what happens. Note when doing a POST to create an object, be sure to edit the type field to have the correct object type and delete the id field to have the id auto-generated.
 
@@ -196,12 +199,12 @@ You can directly make request with the UI and see what happens. Note when doing 
 
 #### Creating a RepositoryCopy
 
-```
+```shell
 curl -v -u backend:moo -H "X-XSRF-TOKEN:token" -H "Cookie:XSRF-TOKEN=token" -X POST "http://localhost:8080/data/repositoryCopy" -H "accept: application/vnd.api+json" -H "Content-Type: application/vnd.api+json" -d @rc1.json
 ```
 
 *rc1.json:*
-```
+```JSON
 {
   "data": {
     "type": "repositoryCopy",
@@ -217,12 +220,12 @@ curl -v -u backend:moo -H "X-XSRF-TOKEN:token" -H "Cookie:XSRF-TOKEN=token" -X P
 
 Add a publisher object to the publisher relationship in a journal. Note that both the journal and publisher objects must already exist.
 
-```
+```shell
 curl -u backend:moo -H "X-XSRF-TOKEN:token" -H "Cookie:XSRF-TOKEN=token" -X PATCH "http://localhost:8080/data/journal/1" -H "accept: application/vnd.api+json" -H "Content-Type: application/vnd.api+json" -d @patch.json
 ```
 
 *patch.json:*
- ```
+ ```JSON
  {
   "data": {
     "type": "journal",
@@ -254,18 +257,21 @@ then an `approval-link` field will be set in the field of the message with a lin
 When a Deposit is created or modified, then a DepositStatus event is emitted.
 The id of the Deposit will be set in the `deposit` field of the message.
 
-Example messages:
-```
+**Example messages:**
+
+```JSON
 {
     "type": "SubmissionReady",
     "submission": "1"
 }
-
+```
+```JSON
 {
     "type": "DepositStatus",
     "deposit": "1"
 }
-
+```
+```JSON
 {
     "type": "SubmissionEvent",
     "submission-event": "1",
@@ -280,4 +286,66 @@ You might also try setting properties like `-Dlogging.level.org.eclipse.pass=DEB
 
 The [Elide Docs](https://elide.io/pages/guide/v6/12-audit.html) provide more information on logging and debugging.
 
-## Next Step / Institution Configuration
+## Next Steps / Institution Configuration
+
+### Environmental Variable Setup
+PASS is designed to be flexible and can be easily configured using the environment variables in this section and the environment variables mentioned in the [API section](./api) as well.
+
+Key variables to consider include:
+
+* PASS Admin and URLs:
+
+```text
+PASS_CORE_BASE_URL=[your-base-url]
+PASS_CORE_BACKEND_USER=[your-username]
+PASS_CORE_BACKEND_PASSWORD=[your-password]
+PASS_CORE_APP_LOCATION=[url-of-front-end]
+```
+
+* Database Configuration: Set up the database connection details for PostgreSQL:
+
+```text
+PASS_CORE_DATABASE_URL=jdbc:postgresql://[your-database-host]:5432/[database-name]
+PASS_CORE_DATABASE_USERNAME=[your-username]
+PASS_CORE_DATABASE_PASSWORD=[your-password]
+```
+
+* SAML Authentication: Provide the institution-specific values for SAML configurations:
+
+```text
+PASS_CORE_IDP_METADATA=classpath:saml2/[institution-idp-metadata].xml
+PASS_CORE_SP_ID=https://[your-domain]/shibboleth
+PASS_CORE_SP_CERT=classpath:saml2/[institution-sp-cert].pem
+PASS_CORE_SP_KEY=classpath:saml2/[institution-sp-key].pem
+PASS_CORE_SP_ACS=http://[your-domain]:8080/login/saml2/sso/pass
+```
+
+* AWS Configuration (if using SQS or S3):
+
+```text
+AWS_REGION=[aws-region]
+AWS_ACCESS_KEY_ID=[aws-access-key]
+AWS_SECRET_ACCESS_KEY=[aws-secret-key]
+PASS_CORE_USE_SQS=true
+
+# If using S3 bucket for the file service
+PASS_CORE_FILE_SERVICE_TYPE=S3
+PASS_CORE_S3_BUCKET_NAME=[your-bucket-name]
+PASS_CORE_S3_REPO_PREFIX=[your-prefix-name]
+```
+
+Review and adjust the other environment variables (e.g., queues, ports, CSP policies) as necessary to suit the institution's security and operational policies.
+
+## Database Setup
+
+If using a new PostgreSQL instance, ensure the schema is correctly initialized. The liquibase changelog `(src/main/resources/db/changelog/changelog.yaml)` will handle the schema setup automatically. Verify that:
+
+* The schema is created correctly.
+* Any institution-specific schema changes or extensions are applied.
+
+## Custom Policy Configuration
+
+Institutions may have specific deposit and submission policies. Configure these by following the instructions in the [Policy API section](./api/policy.md). This will ensure that the appropriate rules and repositories are applied based on your institutional guidelines.
+
+## Institution-Specific Metadata Schema
+If your institution has specific metadata requirements for submissions, you may need to customize the metadata schema using the instructions in the [Metadata Schema API section](./api/policy.md). This section will introduce you to the metadata schema and will assist in creating a metadata schema to match your institutional standards.
