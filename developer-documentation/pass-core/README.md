@@ -1,4 +1,6 @@
-# Introduction
+# Pass Core
+
+## Summary
 
 This module is a Spring Boot and Elide application which provides HTTP APIs.
 
@@ -6,15 +8,39 @@ PASS has a single page JavaScript user interface based on Ember. The UI interact
 
 The HTTP APIs are JSON:API for CRUD and search on the PASS data model, a custom file API to handle binaries, a custom DOI API, a custom metadata schema API, a custom user service API, and a custom policy service API. The pass-core component runs these APIs, handles authentication, sends messages to queues, and mediates access to static HTTP resources.
 
-Several additional services run on the backend. Data loaders periodically update PASS with the latest information about institutional grants, journal metadata, and PubMed central publications. A deposit service turns submissions to PASS into deposits to repositories like DSpace and PubMed Central. A notification service sends email to users about events. The deposit and notification services monitory message queues. The deposit service also polls PASS for objects it needs to update.
+Several additional services run on the backend. [Data loaders](../data-loaders) periodically update PASS with the latest information about institutional grants, journal metadata, and PubMed central publications. A deposit service turns submissions to PASS into deposits to repositories like DSpace and PubMed Central. A notification service sends email to users about events. The deposit and notification services monitory message queues. The deposit service also polls PASS for objects it needs to update.
 
 Elide provides a JSON:API based interface to the data model and persists the data model to a database. Both the UI and backend services interact with the data model using JSON:API.
 
-# Data Model
+## Knowledge Needed / Skills Inventory
+
+PASS Core covers a lot of technological and research domains. Basic understanding of grants, manuscript submission workflows, and the understanding of the technologies below will be beneficial to the development of Pass Core.
+
+* **Programming Languages**
+  * [Java 17+](https://www.oracle.com/java/technologies/downloads/)
+* **Frameworks**
+  * Knowledge of Spring Boot framework
+  * Familiarity with [Elide](https://elide.io/) for data model management and JSON
+    services
+* Backend & API Development
+  * Creating and managing RESTful APIs
+  * JSON Specification
+
+## Technologies Utilized
+
+* [Java 17+](https://www.oracle.com/java/technologies/downloads/)
+* [Spring Boot](https://spring.io/projects/spring-boot)
+* [Elide](https://elide.io/)
+* [Docker](https://www.docker.com/products/docker-desktop/)
+* [Amazon SQS](https://aws.amazon.com/sqs/)
+
+## Technical Deep Dive
+
+### Data Model
 
 The [data model](./model/) holds all the information needed to associate users with grants and manage deposits to repositories.
 
-# Building
+### Building
 
 Java 17, Maven 3.8, and Docker are required.
 
@@ -24,20 +50,20 @@ mvn clean install
 
 This will produce an executabler jar `pass-core-main/target/pass-core-main.jar` and a docker image `ghcr.io/eclipse-pass/pass-core-main`.
 
-## Running the local build
+#### Running the local build
 
 ```
 java -jar pass-core-main/target/pass-core-main.jar
 ```
 
-By default an in memory database is used.
+By default, an in memory database is used.
 
 You can verify it is running by making a request like:
 ```
 curl -u backend:moo localhost:8080/data/grant
 ```
 
-### Running with Docker
+#### Running with Docker
 
 To run pass-core in a full local environment use pass-docker. But for testing focused on pass-core, there is a docker environment which just runs pass-core and Postgres. See the pass-core-main/docker-compose.yml. You will have to set the pass-core image version manually. You may also need to adjust environment variables in `pass-core-main/.env`.
 
@@ -46,7 +72,7 @@ In pass-core-main run:
 docker compose up -d
 ```
 
-# Configuration
+### Configuration
 
 The application is configured by its `pass-core-main/src/main/resources/application.yaml` which in turn references a number of environment variables.
 
@@ -55,9 +81,10 @@ The liquibase changelog located `pass-core-main/src/main/resources/db/changelog/
 
 If `PASS_CORE_USE_SQS` is `true`, then pass-core will attempt to connect to Amazon SQS. The connection must be configured with `AWS_REGION`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY`. The AWS credentials are also needed if the file service S3 backend is used.
 
-Otherwise a connection to an ActiveMQ broker can be configured by setting `SPRING_ACTIVEMQ_BROKER_URL`. If 'PASS_CORE_EMBED_JMS_BROKER` is true, then an embedded ActiveMQ broker will be started using that url. This can be useful to set tcp transport for connecting containers in a docker environment. The default is an embedded broker using vm transport.
+Otherwise, a connection to an ActiveMQ broker can be configured by setting `SPRING_ACTIVEMQ_BROKER_URL`. If `PASS_CORE_EMBED_JMS_BROKER` is true, then an embedded ActiveMQ broker will be started using that url. This can be useful to set tcp transport for connecting containers in a docker environment. The default is an embedded broker using vm transport.
 
-Environment variables:
+**Environment Variables:**
+
 * spring_profiles_active=production
 * AWS_REGION=us-east-1
 * AWS_ACCESS_KEY_ID=xxx
@@ -97,7 +124,7 @@ Environment variables:
 
 The environment variables in `pass-core-main/.env` are intended to be used for local testing of pass-core in isolation.
 
-# Access control
+### Access control
 
 SAML 2.0 and HTTP basic authentication are supported. An authenticated user is either authorized with a `BACKEND` or `SUBMITTER` role.
 
@@ -111,7 +138,7 @@ The `SUBMITTER` has full access to all other services.
 
 Details are available [here](authentication-authorization.md).
 
-# SAML configuration
+### SAML configuration
 
 The `PASS_CORE_SP_KEY` and `PASS_CORE_SP_CERT` environment variables set the location of the keys used by pass-core to encrypt SAML communication.
 Use `PASS_CORE_SP_ID` to set the identifier of the pass-core SP, `PASS_CORE_IDP_METADATA` to set the location where IDP metadata can be retrieved,
@@ -126,37 +153,37 @@ docker run --name=idp -p 8090:8080 -e SIMPLESAMLPHP_SP_ENTITY_ID=https://sp.pass
 ```
 Note the volume mount which is set the user information appropriately for PASS.
 
-# CSRF protection
+### CSRF protection
 
 Requests which have side effects (not a GET, HEAD, or OPTIONS and any request to /doi) are protected from CSRF through the use of a token. The client must provide a cookie XSRF-TOKEN and set a header X-XSRF-TOKEN to the same value. Clients can use any value they want. Browser clients will have the cookie value set by responses and so must first make a non-protected request.
 
-# APIs 
+### APIs 
 
-## App `/app/`
+#### App `/app/`
 
 The PASS application is available at `/app/` and `/` is redirected to `/app/`. Requests are resolved against the location given by the environment variable `PASS_CORE_APP_LOCATION`. If a request cannot be resolved, then `/app/index.html` will be returned.  This allows the user interface to handle paths which may not resolve to files.
 
-## User `/user/`
+#### User `/user/`
 
 The [user API](api/user.md) provides information about the logged in user.
 
-## DOI `/doi/`
+#### DOI `/doi/`
 
 The [DOI API](api/doi.md) provides the ability to interact with DOIs.
 
-# File `/file/`
+#### File `/file/`
 
 The [file API](api/file.md) provides a mechanism to persist files.
 
-# Policy `/policy/`
+#### Policy `/policy/`
 
 The [policy API](api/policy.md) indicates what repositories are publication should be pushed to.
 
-# Metadata Schema
+#### Metadata Schema
 
 The [metadata schema API](api/metadata-schema.md) provides JSON schemas to describe PASS submission metadata.
 
-# JSON API
+#### JSON API
 
 JSON API is deployed at `/data/`. All of our data model is available, just divided into attributes and relationships. Note that identifiers are now integers, not URIs.
 See https://elide.io/pages/guide/v6/10-jsonapi.html for information on how Elide provides support for filtering and sorting.
@@ -165,9 +192,9 @@ See `/swagger/` for auto-generated documentation.
 
 You can directly make request with the UI and see what happens. Note when doing a POST to create an object, be sure to edit the type field to have the correct object type and delete the id field to have the id auto-generated.
 
-## Examples
+### Examples
 
-### Creating a RepositoryCopy
+#### Creating a RepositoryCopy
 
 ```
 curl -v -u backend:moo -H "X-XSRF-TOKEN:token" -H "Cookie:XSRF-TOKEN=token" -X POST "http://localhost:8080/data/repositoryCopy" -H "accept: application/vnd.api+json" -H "Content-Type: application/vnd.api+json" -d @rc1.json
@@ -186,7 +213,7 @@ curl -v -u backend:moo -H "X-XSRF-TOKEN:token" -H "Cookie:XSRF-TOKEN=token" -X P
 }
 ```
 
-### Patch a Journal
+#### Patch a Journal
 
 Add a publisher object to the publisher relationship in a journal. Note that both the journal and publisher objects must already exist.
 
@@ -212,7 +239,7 @@ curl -u backend:moo -H "X-XSRF-TOKEN:token" -H "Cookie:XSRF-TOKEN=token" -X PATC
 }
 ```
 
-# Messages
+### Messages
 
 Messages are JSON objects emitted to a JMS broker as text messages. The different types of messages are sent to different queues specified
 by the indicated by the environment variables `PASS_CORE_SUBMISSION_QUEUE`, `PASS_CORE_SUBMISSION_EVENT_QUEUE`, and `PASS_CORE_DEPOSIT_QUEUE`.
@@ -246,9 +273,11 @@ Example messages:
 }
 ```
 
-# Debugging problems
+### Debugging problems
 
 To get more information, try changing the logging levels set in `pass-core-main/src/main/resources/logback-spring.xml`.
 You might also try setting properties like `-Dlogging.level.org.eclipse.pass=DEBUG`.
 
-See https://elide.io/pages/guide/v6/12-audit.html for informat
+The [Elide Docs](https://elide.io/pages/guide/v6/12-audit.html) provide more information on logging and debugging.
+
+## Next Step / Institution Configuration
