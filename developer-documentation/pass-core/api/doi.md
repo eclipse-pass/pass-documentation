@@ -1,6 +1,5 @@
 # DOI API
 
-
 The DOI API has two services. One service returns the corresponding PASS journal for the article identified by a DOI as well as the article's CrossRef metadata. The other service returns information about a manuscript from Unpaywall.
 
 Both services accept the DOI of a journal article as a query parameter with a name of `doi`. The DOI should be formatted like `10.1234/ ...`. If a DOI is of a longer URL form containing the string `doi.org/`, then we truncate the DOI to take everything after this substring. If the DOI is not valid, a 400 status code is returned. On success a 200 is returned. If there is an error the response will be a JSON object with an error key containing a message.
@@ -33,18 +32,18 @@ This service uses Unpaywall API to get information about the corresponding locat
 
 Ultimately, we want a user of PASS to be informed of open access manuscripts that already exist on the web and be able to use those copies in their PASS submission, instead of having to manually upload the manuscript file(s).
 
-The external service URLs are configured by the XREF_BASEURI and UNPAYWALL_BASEURI environment variables which default to `https://api.crossref.org/v1/works/` and `https://api.unpaywall.org/v2/` respectively.
+The external service URLs are configured by the `XREF_BASEURI` and `UNPAYWALL_BASEURI` environment variables which default to `https://api.crossref.org/v1/works/` and `https://api.unpaywall.org/v2/` respectively.
 
 
 On success a JSON object is returned with a key of manuscripts containing an array of manuscripts available to download. Each entry in the array is a JSON object.
 
 Manuscript entry:
-  * url: The url to download the manuscript.
-  * repositoryLabel: The repository containing the manuscript, PubMed Central.
-  * type: The mime type of the manuscript, application/pdf.
-  * source: The source used to find the manuscript, Unpaywall.
-  * name: The file name of the manuscript.
-  * isBest: A boolean indicating whether or not this is the best entry to use
+  * `url`: The url to download the manuscript.
+  * `repositoryLabel`: The repository containing the manuscript, PubMed Central.
+  * `type`: The mime type of the manuscript, application/pdf.
+  * `source`: The source used to find the manuscript, Unpaywall.
+  * `name`: The file name of the manuscript.
+  * `isBest`: A boolean indicating whether this is the best entry to use
 
 ## Example
 

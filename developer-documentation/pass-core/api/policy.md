@@ -11,7 +11,7 @@ Configuration is achieved via the following environment variables:
 * `PASS_POLICT_INSTITUTIONAL_REPOSITORY_NAME`: The value of Repository.name on the intstitution's IR Repository object
 
 
-## Policy service
+## Policy Service
 
 The `/policy/policies` endpoint determines the set of policies that are applicable to
 a given submission.  Note:  The results may be dependent on _who_ submits the request.  For example, if
@@ -25,7 +25,7 @@ somebody from JHU invokes the policies endpoint, a general "policy for JHU emplo
 
 The response is a list of IDs to Policy resources, decorated with a `type` property. A type of `institution` indicates that this is a institutional policy, a type of `funder` indicates that the policy is describes the requirements of a funder.
 
-```json
+```JSON
 [
  {
    "id": "3",
@@ -39,7 +39,7 @@ The response is a list of IDs to Policy resources, decorated with a `type` prope
 ```
 
 
-## Repositories service
+## Repositories Service
 
 The `/policy/repositories` endpoint, for a given submission, calculates the repositories that may be
 deposited into in order to satisfy any applicable policies for that submission.
@@ -54,7 +54,7 @@ or, with urlencoded (with encoded submission=${SUBMISSION_ID}) as the body:
 The response is an application/json document that lists repositories sorted into required and optional buckets. Required repositories must be deposited to while optional repositories may be deposited to.
 
 
-```json
+```JSON
 {
   "required": [
     {
@@ -86,7 +86,6 @@ The response is an application/json document that lists repositories sorted into
   ]
 }
 ```
-
 
 Repositories contained in the above list are JSON objects containing the following fields:
 
