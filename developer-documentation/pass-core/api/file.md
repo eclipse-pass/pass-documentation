@@ -1,7 +1,5 @@
 # File API
 
-## Description
-
 The file is a RESTful service that provides the ability to upload, download, and delete files to a configured 
 persistence store. The service is currently designed to persist to a filesystem or S3 compatible storage.
 
@@ -10,7 +8,7 @@ persistence store. The service is currently designed to persist to a filesystem 
 The service is configured via environment variables. The service by default will use a filesystem based persistence 
 store and does not require any additional configuration. If the variable `PASS_CORE_FILE_SERVICE_ROOT_DIR` does not have 
 any value, the File Service will default to the system temp folder and create a temporary root folder of a random value 
-in the system temp. The variable `PASS_CORE_FILE_SERVICE_ROOT_DIR` is used by both the FILE_SYSTEM and S3 service types. 
+in the system temp. The variable `PASS_CORE_FILE_SERVICE_ROOT_DIR` is used by both the `FILE_SYSTEM` and `S3` service types. 
 It is the root directory where temporary files are stored before being persisted to the configured persistence store as 
 specified by `PASS_CORE_FILE_SERVICE_TYPE`. If using `FILE_SYSTEM` as the persistence store, `PASS_CORE_FILE_SERVICE_ROOT_DIR`
 is also the root directory for file persistence. The value for the `PASS_CORE_FILE_SERVICE_ROOT_DIR` cannot be a S3 bucket,

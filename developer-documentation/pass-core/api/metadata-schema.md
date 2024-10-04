@@ -1,7 +1,5 @@
 # Metadata Schema API
 
-## Description
-
 The metadata schema service is a RESTful service that provides JSON schemas intended to describe PASS submission metadata that will retrieve,
 dereference, and place in the correct order all schemas relevant to a given set of pass Repositories.
 
@@ -52,8 +50,7 @@ In terms of expressing a desired user interface experience, one may observe a ge
 and additionally pointing to a "repository-specific" schema containing any additional fields that are unique to a given repository. There is also a "global"
 schema which lists all the properties that may be present. All of these JSON schema properties become values in the metadata field of a submission.
 
-As a concrete example, the NIHMS repository may point to the `common.json` schema, as well as the `nihms.json`schema. 
-The schemas are stored as pass-core resources.
+As a concrete example, the NIHMS repository may point to the `common.json` schema, as well as the `nihms.json`schema. The schemas are stored as pass-core resources.
 
 ## Schema service
 
@@ -146,7 +143,7 @@ The global schema defines all properties allowed to be present in the metadata b
 }
 ```
 
-#### required, additionalProperties:false
+#### Required, additionalProperties:false
 
 These properties are used for the purpose of schema validation.  
 
@@ -154,11 +151,11 @@ If the metadata blob is validated against the global schema, the required field 
 
 The additionalProperties: false field means that if the metadata blob is validated against the global schema, all properties in the blob must correspond to properties defined in the properties section of the global schema. Any unknown properties in the metadata blob (say, "foo" : "bar") will result in a schema validation error.   
 
-#### properties
+#### Properties
 
 The properties section defines the global set of properties allowable in the metadata blob. It is straightforward JSON schema.
 
-#### options
+#### Options
 
 The options section of the global schema defines Alpaca options for each field. These values influence the display characteristics of each form field. Individual schemas that reference the global options will display form fields in a consistent manner.
 
