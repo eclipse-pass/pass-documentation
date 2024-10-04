@@ -1,5 +1,7 @@
 # Authentication and Authorization in Eclipse PASS
 
+PASS handles authentication through `pass-core`, which initiates SAML exchanges with a Shibboleth-supporting identity provider to authenticate users and establish sessions based on specific attributes. Authorization is role-based, assigning users either a `SUBMITTER` or `BACKEND` role, which dictates their permissions for accessing and modifying resources within the system.
+
 ## Authentication
 
 ### User Interface Authentication
@@ -23,13 +25,13 @@ These Shibboleth attributes are used to locate a user in `pass-core` and set up 
 
 This series of interactions is depicted as follows:
 
-![authentication interactions diagram](/.gitbook/assets/pass_authn.png)
+<figure><img src="/.gitbook/assets/pass_authn.png" alt="Authentication Interactions Diagram"><figcaption><p>Authentication Interactions Diagram</p></figcaption></figure>
 
 ### REST API Authentication
 
 Every request to the [REST API](https://github.com/eclipse-pass/pass-core) must be authenticated. If it is not authenticated, it is denied.
 
-Requests to the API come from two types of clients, backend services and users. Requests from users must have already been authenticated with Shibboleth and have the headers specified above. If a request contains Shibboleth headers, it is considered trusted, authentication succeeds, it is associated with a user, and given the SUBMITTER role. If the user does not exist, it is created. If the user does exist, it is updated to reflect the information in the headers. If the request does not contain the Shibboleth headers, it undergoes HTTP basic authentication. There is one HTTP basic user defined with the BACKEND role for the backend services.
+Requests to the API come from two types of clients, backend services and users. Requests from users must have already been authenticated with Shibboleth and have the headers specified above. If a request contains Shibboleth headers, it is considered trusted, authentication succeeds, it is associated with a user, and given the SUBMITTER role. If the user does not exist, it is created. If the user does exist, it is updated to reflect the information in the headers. If the request does not contain the Shibboleth headers, it undergoes HTTP basic authentication. There is one HTTP basic user defined with the `BACKEND` role for the backend services.
 
 Mapping from Shibboleth attributes to PASS users:
   * displayName: Display name 
@@ -41,49 +43,49 @@ Mapping from Shibboleth attributes to PASS users:
   * locatorIds: UNIQUE ID, INSTITUTIONAL_ID, EMPLOYEE_ID
   * role: SUBMITTER
 
-The DOMAIN is the value of the Eppn attribute after `@`.
-The UNIQUE_ID is `DOMAIN:unique-id:` joined to the value of the unique id attribute before `@`.
-The INSTITUTIONAL_ID is `DOMAIN:eppn` joined to the value of the Eppn attribute before the `@`.
-The EMOLOYEE_ID is `DOMAIN:employeeid` joined to the value of the Employe id value.
+The `DOMAIN` is the value of the Eppn attribute after `@`.
+The `UNIQUE_ID` is `DOMAIN:unique-id:` joined to the value of the unique id attribute before `@`.
+The `INSTITUTIONAL_ID` is `DOMAIN:eppn` joined to the value of the Eppn attribute before the `@`.
+The `EMPLOYEE_ID` is `DOMAIN:employeeid` joined to the value of the Employee id value.
 
-The locatorIds are used to find an existing user in the system. If any of the locatorIds match an existing user, the user is considered to match.
+The `locatorIds` are used to find an existing user in the system. If any of the `locatorIds` match an existing user, the user is considered to match.
 
 ### Example mapping
 
 Shibboleth attributes:
-  * Eppn: sallysubmitter@johnshopkins.edu
-  * Display name: Sally M. Submitter
-  * Mail: sally232@jhu.edu
-  * Given name: Sally
-  * Surnamen: Submitter
-  * Affiliation: FACULTY@johnshopkins.edu
-  * Employee id: 02342342
-  * Unique id: sms2323@johnshopkins.edu
+  * `Eppn`: sallysubmitter@johnshopkins.edu
+  * `Display name`: Sally M. Submitter
+  * `Mail`: sally232@jhu.edu
+  * `Given name`: Sally
+  * `Surnamen`: Submitter
+  * `Affiliation`: FACULTY@johnshopkins.edu
+  * `Employee id`: 02342342
+  * `Unique id`: sms2323@johnshopkins.edu
 
 Resulting User:
-  * affiliation: FACULTY@johnshopkins.edu, johnshopkins.edu
-  * displayName: Sally M. Submitter
-  * email: sally232@jhu.edu
-  * firstName: Sally
-  * lastName: Submitter
-  * locatorIds: johnshopkins.edu:unique-id:sms2323, johnshopkins.edu:eppn:sallysubmitter, johnshopkins.edu:employeeid:02342342
-  * roles: SUBMITTER
-  * username: sallysubmitter@johnshopkins.edu
+  * `affiliation`: FACULTY@johnshopkins.edu, johnshopkins.edu
+  * `displayName`: Sally M. Submitter
+  * `email`: sally232@jhu.edu
+  * `firstName`: Sally
+  * `lastName`: Submitter
+  * `locatorIds`: johnshopkins.edu:unique-id:sms2323, johnshopkins.edu:eppn:sallysubmitter, johnshopkins.edu:employeeid:02342342
+  * `roles`: SUBMITTER
+  * `username`: sallysubmitter@johnshopkins.edu
 
 ## Authorization
 
-Requests either have a SUBMITTER or BACKEND role. The BACKEND can do everything.
-The SUBMITTER is restricted to creating and modifying certain objects in the data model.
-The SUBMITTER has full access to all other services.
+Requests either have a `SUBMITTER` or `BACKEND` role. The `BACKEND` can do everything.
+The `SUBMITTER` is restricted to creating and modifying certain objects in the data model.
+The `SUBMITTER` has full access to all other services.
 
 Object permissions:
 
-| Type    | Create  | Read | Update  | Delete  |
-| ------- | ------- | ---- | ------- | ------- |
-| Submission | BACKEND or SUBMITTER | any | BACKEND or owns submission | BACKEND or owns submission|
-| SubmissionEvent | BACKEND or owns submission | any | BACKEND | BACKEND |
-| File | BACKEND or owns submission | any | BACKEND  or owns submission | BACKEND or owns submission|
-| Publication | BACKEND or owns submission | any | BACKEND or owns submission | BACKEND or owns submission|
-| *       | BACKEND | any  | BACKEND | BACKEND |
+| Type            | Create                     | Read | Update                      | Delete                     |
+|-----------------|----------------------------|------|-----------------------------|----------------------------|
+| Submission      | BACKEND or SUBMITTER       | any  | BACKEND or owns submission  | BACKEND or owns submission |
+| SubmissionEvent | BACKEND or owns submission | any  | BACKEND                     | BACKEND                    |
+| File            | BACKEND or owns submission | any  | BACKEND  or owns submission | BACKEND or owns submission |
+| Publication     | BACKEND or owns submission | any  | BACKEND or owns submission  | BACKEND or owns submission |
+| *               | BACKEND                    | any  | BACKEND                     | BACKEND                    |
 
-The permissions are all role based with the exception of "owns submission". By "owns submission" what is meant is that the user is the submitter or a preparer on a submission associated with the object. A submitter is the target of the submitter relationship on a Submission. A preparer is the target of the preparers relationship on a Submission. SubmissionEvent and File are associated with a submission through a submission relationship. The intent is to make sure submitters can only modify submissions which they have created or are explicitly allowed to help on.
+The permissions are all role based, except "owns submission". By "owns submission" means that the user is the submitter or a preparer on a submission associated with the object. A submitter is the target of the submitter relationship on a Submission. A preparer is the target of the preparers relationship on a `Submission`. `SubmissionEvent` and `File` are associated with a submission through a submission relationship. The intent is to make sure submitters can only modify submissions which they have created or are explicitly allowed to help on.

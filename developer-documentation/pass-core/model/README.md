@@ -18,8 +18,8 @@ The PASS data model is represented using [JSON API](https://jsonapi.org/).
 * [User](./model/User.md): A PASS user.
 
 ## Model Diagram
- 
-![data model](/.gitbook/assets/pass_data_model.png)
+
+<figure><img src="/.gitbook/assets/pass_data_model.png" alt="Data Model Diagram"><figcaption><p>Data Model Diagram</p></figcaption></figure>
 
 ## Notes
 
