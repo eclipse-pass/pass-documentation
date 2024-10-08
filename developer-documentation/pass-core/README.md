@@ -98,8 +98,8 @@ Otherwise, a connection to an ActiveMQ broker can be configured by setting `SPRI
 * PASS_CORE_DATABASE_PASSWORD=moo
 * PASS_CORE_PORT=8080
 * PASS_CORE_LOG_DIR=${java.io.tmpdir}/pass-core
-* PASS_CORE_BACKEND_USER=backend
-* PASS_CORE_BACKEND_PASSWORD=moo
+* PASS_CORE_USER=backend
+* PASS_CORE_PASSWORD=moo
 * PASS_CORE_USE_SQS=false
 * PASS_CORE_EMBED_JMS_BROKER=true
 * PASS_CORE_SUBMISSION_QUEUE=pass-submission
@@ -297,8 +297,8 @@ Key variables to consider include:
 
 ```text
 PASS_CORE_BASE_URL=[your-base-url]
-PASS_CORE_BACKEND_USER=[your-username]
-PASS_CORE_BACKEND_PASSWORD=[your-password]
+PASS_CORE_USER=[your-username]
+PASS_CORE_PASSWORD=[your-password]
 PASS_CORE_APP_LOCATION=[url-of-front-end]
 ```
 
