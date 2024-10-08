@@ -32,4 +32,5 @@ enhancing repository deposit capabilities across academic and research instituti
 5. [Deposit Services](deposit-service)
 6. [Notification Services](notification-service)
 7. [Pass Acceptance Testing]()
-8. [Release](release)
+8. [PASS Docker]()
+9. [Release](release)
