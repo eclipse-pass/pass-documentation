@@ -13,9 +13,9 @@ Kubernetes, ArgoCD/Flux, Prometheus/Grafana.
 
 In the operations and production section, the documentation details the architecture and infrastructure management 
 strategies implemented by JHU to monitor, maintain, and optimize the platform. This assists the JHU team in their own
-documentation of their production environment, but serves as one example of a production environment for other adopters
-of PASS. This includes AWS-based deployment models, monitoring, data management, and ensuring consistent operations 
-across environments.
+documentation of their production environment, but also serves as one example of a production environment for other 
+adopters of PASS. This includes AWS-based deployment models, monitoring, data management, and ensuring consistent 
+operations across environments.
 
 **Table of Contents:**
 
