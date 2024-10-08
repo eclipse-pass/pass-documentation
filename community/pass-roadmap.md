@@ -4,7 +4,8 @@
 
 This roadmap defines the primary initiatives of the Eclipse PASS Project, organized by anticipated release.
 
-If you are interested in helping to define and/or contribute to this roadmap, please [reach out to us](mailto:PASS-help@jhu.edu). We're always happy to welcome new contributors!
+If you are interested in helping to define and/or contribute to this roadmap, please reach out to us on our [Google Group](https://groups.google.com/g/pass-general).
+We're always happy to welcome new contributors!
 
 ### Priorities and goals
 
