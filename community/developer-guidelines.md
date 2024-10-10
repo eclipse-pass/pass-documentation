@@ -1,10 +1,12 @@
 # PASS Developer Guidelines
 
+The PASS Developer Guidelines provide detailed instructions for contributing to the PASS project, covering areas such as communication channels, testing procedures, pull request workflows, and documentation standards. It outlines expectations for contributors, the process for reporting issues, and best practices for maintaining code quality and project integrity.
+
 ## Getting Involved
 
 * Welcome to the PASS community! There are many ways to participate: trying out the PASS software, letting us know about bugs, suggesting documentation updates, or contributing code. After you’ve read this guide, if you have questions, please send us a message on our [Google Group](https://groups.google.com/g/pass-general), and we will be in touch shortly!
-* We primarily use Slack to communicate about PASS development. To be invited to our Slack workspace please send us a message on our [Google Group](https://groups.google.com/g/pass-general).
-* Contributing to the project begins as a [contributor](https://www.eclipse.org/projects/handbook/#contributing-contributors) and may lead to being a [committer](https://www.eclipse.org/projects/handbook/#roles-cm). Whether you are a `contributor` or `committer` you will need to sign up for an [Eclipse account](https://accounts.eclipse.org/user/login).
+* We primarily use Slack to communicate about PASS development. To be invited to our Slack workspace, please send us a message on our [Google Group](https://groups.google.com/g/pass-general).
+* Contributing to the project begins as a [contributor](https://www.eclipse.org/projects/handbook/#contributing-contributors) and may lead to being a [committer](https://www.eclipse.org/projects/handbook/#roles-cm). Whether you are a `contributor` or `committer`, you will need to sign up for an [Eclipse account](https://accounts.eclipse.org/user/login).
     * A `contributor` can add to and improve PASS by creating issues and submitting pull requests. You’ll find more information about both of these tasks below.
     * A `committer` is an individual who once was a `contributor`, but made significant contributions and was elected by the core team to become a `committer`. They can work directly in the repositories, create and close issues, and merge pull requests.
 
@@ -14,15 +16,15 @@ Would you like to suggest a change to PASS or report a bug? This is done by subm
 
 * When creating an issue to report a bug or suggest a new feature, use the [eclipse-pass/main repository](https://github.com/eclipse-pass/main/issues).
 * If available for your particular issue use one of the available [issue templates in the main repository](https://github.com/eclipse-pass/main/issues/new/choose).
-* If a template doesn’t exist, use the `Standard Issue` template.
+* If a suitable template doesn’t exist, use the default `Standard Issue` template.
 * Add a label if possible, if the label doesn’t exist, or you’re unsure of which one to use, send a message to the  team on the Slack `#pass-dev` channel.
-* If possible, suggest a priority. If unsure of the priority, leave it blank and the team will decide what is the priority for the issue.
+* If possible, suggest a priority. If you’re unsure, leave it blank, and the team will determine the appropriate priority.
 
 ## Testing
 
 In general, we recommend the following procedures for testing: 
 
-* If you're planning to submit a code through a Pull Request (PR), please run tests locally first. For Java code, this can be done using `mvn verify` or `mvn clean install`. To test the complete project, [run pass docker](../welcome-guide/setup-run-pass.md) to test.
+* If you're planning to submit code through a Pull Request (PR), please run tests locally first. For Java code, this can be done using `mvn verify` or `mvn clean install`. To test the complete project, [run pass docker](../welcome-guide/setup-run-pass.md) to test.
 * If you're planning to submit code which includes new tests, Martin Fowler’s [The Practical Testing Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html) is a great resource for understanding how to structure tests. Additionally, we use this [definition for ITs](https://www.geeksforgeeks.org/software-engineering-integration-testing/) along with [Martin Fowler's definition](https://martinfowler.com/bliki/IntegrationTest.html).
 
 PASS has three different types of tests that are run against the application, and they are defined as:
@@ -51,10 +53,10 @@ PASS has three different types of tests that are run against the application, an
 ### UI
 
 * When testing the UI it is helpful to run [Ember locally for faster iteration](https://github.com/eclipse-pass/main/blob/main/docs/dev/running-pass-ui-on-your-host-machine.md).
-* Include unit test when you can, such as when functions don't interact with rendering. Otherwise, utilize component integration or ember application/acceptance tests where rendering is involved - this is what ember is best at.
+* Include a unit test when you can, such as when functions don't interact with rendering. Otherwise, utilize component integration or ember application/acceptance tests where rendering is involved - this is what ember is best at.
 * [Pass-ui](https://github.com/eclipse-pass/pass-ui) is heavy on integration/application tests because it's rendering heavy and much of the business logic is in the back end.
 * If you write an encapsulated piece of UI like a component, that component should have at least 1 integration test.
-* Application level testing is done with mocked data using Mirage. This needs to be updated diligently, so it doesn't fall out of sync with the real back end. If you are updating the API in a way that changes the contract with pass-ui, please at least create an issue for updating the UI mocking to accommodate these changes.
+* Application level testing is done with mocked data using Mirage. This needs to be updated diligently, so it doesn't fall out of sync with the real back end. If you are updating the API in a way that changes the contract with pass-ui, please create an issue for updating the UI mocking to accommodate these changes.
 * At least one test should be added for bug fixes to prevent regression.
 * The [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing) acceptance tests are run frequently and can aid in making sure the UI application testing mocked responses are appropriate.
 * Ember provides a set of very helpful libraries to assist in testing UI components. It is best practice to use these helpers rather than inventing your own where possible:
@@ -90,7 +92,7 @@ PASS has three different types of tests that are run against the application, an
 * Pull requests should be reviewed by at least one `committer` that is not the PR author before merging.
     * For pull requests created by `committers`, the pull request author is expected to perform the pull request merge after another committer has approved the pull request.
     * For pull requests created by contributors, the committer reviewing the pull request is responsible for merging the pull request after approval.
-* Make sure that the latest version of main is branched for the pull request.
+* Ensure your branch is created from the latest version of `main`.
 * Branch names should include a ticket number and short description.
     * Example: `978-fix-nihms-loader-etl`
 * The description in your pull request should include the following:
@@ -112,7 +114,7 @@ PASS has three different types of tests that are run against the application, an
   * Ensure code is adequately commented where necessary.
   * Verify that sensitive configurations are externalized and not hard-coded.
   * Ensure REST endpoints follow standard conventions (e.g., proper use of [HTTP methods](https://developer.mozilla.org/en-US/docs/Web/HTTP)).
-* Review any unit/integration tests and ensure they provide proper coverage.
+* Review any unit/integration tests and ensure that they provide proper coverage.
   * Ensure proper use of mocks and stubs to isolate components during testing.
 * Identify and suggest refactoring for any [code smells](https://linearb.io/blog/what-is-a-code-smell).
   * Look for areas that could benefit from improved [design patterns or structures](https://www.baeldung.com/design-patterns-series).
@@ -123,7 +125,7 @@ PASS has three different types of tests that are run against the application, an
 
 ## Closing Issues
 
-* If an issue is linked to a pull request it will auto-close; however for issues that are not linked to a pull request, the  committer performing the merge should close the completed issues.
+* If an issue is linked to a pull request it will auto-close, however for issues that are not linked to a pull request, the  committer performing the merge should close the completed issues.
 * Write up the final outcome in the issue and include this as a comment when closing the ticket.
 * Link any collaboration or design documents in the issue before closing.
 * Ensure all related PRs are linked and closed.
@@ -133,5 +135,5 @@ PASS has three different types of tests that are run against the application, an
 
 * Take precaution to ensure that you’re not committing any credentials/keys/secrets.
 * If any sensitive information is accidentally committed, immediately notify the team on the `#pass-dev` Slack channel.
-* The core team will triage the severity of the leak and take the appropriate actions, such as removing it from the GitHub and GitBook commit history and rotating the compromised credentials.
+* The core team will triage the severity of the leak and take appropriate actions. This may include removing it from the GitHub and GitBook commit history and rotating the compromised credentials.
 * Update GitHub secret scanning to catch any sensitive information that bypassed the original scan.
