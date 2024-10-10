@@ -11,30 +11,30 @@ We're always happy to welcome new contributors!
 
 #### User Engagement
 
-* Engage with users or potential users of PASS to better understand their needs and the ways in which PASS can be improved to solve the challenges they face
+* Engage with current and potential PASS users to understand their needs and how PASS can better address their challenges.
 
 #### Community Engagement
 
-* Engage with and build out the broader community of institutions that have interest in utilizing PASS
-* Provide a baseline method for other institutions to import the necessary data into PASS
-* Prepare PASS to be deployed, used, and implemented at other institutions
-* Add at least one additional IR deposit target
+* Engage with and build out the broader community of institutions that have interest in utilizing PASS.
+* Provide a baseline method for other institutions to import the necessary data into PASS.
+* Prepare PASS to be deployed, used, and implemented at other institutions.
+* Add at least one additional IR deposit target.
 
 #### System Administration
 
-* Provide improved tooling and support for administering the PASS system
-* Deployment infrastructure
-* System monitoring and alerting
-* Design and mockup a administrative dashboard that visualizes submissions and provides keys statistics of the PASS application.
+* Provide improved tooling and support for administering the PASS system.
+* Improve deployment infrastructure.
+* System monitoring and alerting.
+* Design and mock up an administrative dashboard that visualizes submissions and provides key statistics of the PASS application.
 
 #### Application Improvements
 
-* Integrate with at least one additional funder repository
-* Improve code workflow using Continuous Integration and Continuous Delivery / Deployment
-* Ensure the NIH integration is solid
-* Work on tech debt and ensure system components are kept up-to-date
-* Security and testing
+* Integrate with at least one additional funder repository.
+* Improve code workflow using Continuous Integration and Continuous Delivery / Deployment.
+* Ensure the NIH integration is solid.
+* Work on technical debt and ensure system components are kept up-to-date.
+* Security and testing.
 
 #### Documentation
 
-* Improve documentation to prepare for collaboration
+* Improve documentation to prepare for collaboration with external institutions.
