@@ -1,34 +1,34 @@
 # NIHMS Loader
 
-The NIH Manuscript Submission Loader (NIHMS Loader) contains the components required to download, transform and load Submission information from NIHMS to PASS. 
+The NIH Manuscript Submission Loader (NIHMS Loader) contains the components required to download, transform, and load Submission information from NIHMS to PASS. 
 
 ## Summary
 
-The NIHMS Loader is a module contained in [Pass-Support](https://github.com/eclipse-pass/pass-support) and is composed of two Java command line tools. The first uses the NIH API to download the CSV(s) containing compliant, non-compliant, and in-process publication information. The second tool reads those files, transforms the data to the PASS data model and then loads them to PASS.
+The NIHMS Loader is a module contained in [Pass-Support](https://github.com/eclipse-pass/pass-support), and is composed of two Java command line tools. The first uses the NIH API to download the CSV(s) containing compliant, non-compliant, and in-process publication information. The second tool reads those files, transforms the data to the PASS data model, and then loads them to PASS.
 
 For background information on the NIH Public Access Compliance Monitor (PACM), see the [user guide](https://www.ncbi.nlm.nih.gov/pmc/utils/pacm/static/pacm-user-guide.pdf). Limited information on the API is provided by the [NLM Technical Bulletin](https://www.nlm.nih.gov/pubs/techbull/mj19/brief/mj19_api_public_access_compliance.html)
 
 The NIHMS Loader operates in two stages:
 
-- Harvests data from the NLM’s Public Access Compliance Monitor (PACM) website about the compliance status of publications written by researcher PIs
-- It compares PACM data with Submission data in PASS, then adds or updates Submissions, Publications, and RepositoryCopies.
+* Harvests data from the NLM’s Public Access Compliance Monitor (PACM) website about the compliance status of publications written by researcher PIs
+* It compares PACM data with `Submission` data in PASS and then adds or updates `Submission`, `Publication`, and `RepositoryCopy`.
 
-These two processes are separate Java command line interface (CLI) applications: NIHMS Data Harvest CLI and NIHMS Transform and Load CLI.
+These two processes are separate Java command line interface (CLI) applications: the NIHMS Data Harvest CLI and the NIHMS Transform and Load CLI.
 
 ## Knowledge Needed / Skills Inventory
 
-- Development of the NIHMS Loader
-  - Programming in Java
-  - Basic understanding of PMC data
-  - REST/HTTP
-- Running the NIHMS Loader
-  - CLI commands
+* Development of the NIHMS Loader
+  * Programming in Java
+  * Basic understanding of PMC data
+  * REST/HTTP
+* Running the NIHMS Loader
+  * CLI commands
   
 ## Technologies Utilized
 
-- [Docker](https://www.docker.com/products/docker-desktop/)
-- [Java 17+](https://www.oracle.com/java/technologies/downloads/)
-- [Spring Boot](https://spring.io/projects/spring-boot)
+* [Docker](https://www.docker.com/products/docker-desktop/)
+* [Java 17+](https://www.oracle.com/java/technologies/downloads/)
+* [Spring Boot](https://spring.io/projects/spring-boot)
 
 ## Technical Deep Dive
 
@@ -38,9 +38,9 @@ The NIHMS Data Harvest CLI uses the NIH API to download the PACM data.
 
 The following are required to run this tool:
 
-- Java 17+
-- Download the latest [docker image](https://github.com/eclipse-pass/pass-support/pkgs/container/pass-nihms-loader) or download the latest [pass-support release](https://github.com/eclipse-pass/pass-support/releases) and compile the `pass-nihms-loader` module
-- Account for the NIH PACM website, and obtain an API key. The API key is only valid for 3 months, so it will need to be updated periodically. There are a couple of ways of obtaining an account and it is institution specific.
+* Java 17+
+* Download the latest [docker image](https://github.com/eclipse-pass/pass-support/pkgs/container/pass-nihms-loader) or download the latest [pass-support release](https://github.com/eclipse-pass/pass-support/releases) and compile the `pass-nihms-loader` module
+* An account for the NIH PACM website, and obtain an API key. The API key is only valid for 3 months, so it will need to be updated periodically. There are a couple of ways to obtain an account, and the process is institution-specific.
 
 ### Data Harvest Configuration
 
@@ -51,7 +51,7 @@ You will need to set values for the following properties:
 - `nihmsetl.api.url.param.ipf`
 - `nihmsetl.api.url.param.api-token`
 
-Below is the full set of properties for the NIHMS Harvester. These properties are set in the `resources/application.properties` file in the `nihms-data-harvest` module.
+The full set of properties for the NIHMS Harvester is listed below. These properties are set in the `resources/application.properties` file in the `nihms-data-harvest` module.
 
 | Property                           | Default Value          | Notes                                                                                                                                                                                      |
 |:-----------------------------------|:-----------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -78,15 +78,19 @@ java -Dnihmsetl.api.url.param.inst=my-inst -Dnihmsetl.api.url.param.ipf=my-ipf -
 
 Once the Data Harvest CLI has been configured, there are a few additional options you can add when running from the command line.
 
-By default all 3 publication statuses - compliant, non-compliant, and in-process CSVs will be downloaded. To download one or two of them, you can add them individually at the command line:
+By default, all 3 publication statuses - compliant, non-compliant, and in-process CSVs will be downloaded. To download one or two of them, you can add them individually at the command line:
 
-    -c, -compliant, --compliant - Download compliant publication CSV.
-    -p, -inprocess, --inprocess - Download in-process publication CSV.
-    -n, -noncompliant, --noncompliant - Download non-compliant publication CSV.
+```text
+-c, -compliant, --compliant - Download compliant publication CSV.
+-p, -inprocess, --inprocess - Download in-process publication CSV.
+-n, -noncompliant, --noncompliant - Download non-compliant publication CSV.
+```
 
 You can also specify a start date, by default the PACM system sets the start date to 1 year prior to the date of the download. You can change this by adding a start date parameter. This will return all records published since the date provided. The syntax for this parameter is mm-yyyy .
 
-    -s, -startDate --startDate 
+```text
+-s, -startDate --startDate
+```
 
 So, for example, to download the compliant publications published since December 2012, you would do the following:
 
@@ -103,14 +107,14 @@ Pre-requisites
 
 The following is required to run this tool:
 
-- Java 17+
-- Download the latest [docker image](https://github.com/eclipse-pass/pass-support/pkgs/container/pass-nihms-loader) or download the latest [pass-support release](https://github.com/eclipse-pass/pass-support/releases) and compile the `pass-nihms-loader` module. The jar to run for this process is `nihms-data-transform-load-exec.jar` found in the `nihms-data-transform-load` module.
+* Java 17+
+* Download the latest [docker image](https://github.com/eclipse-pass/pass-support/pkgs/container/pass-nihms-loader) or download the latest [pass-support release](https://github.com/eclipse-pass/pass-support/releases) and compile the `pass-nihms-loader` module. The jar to run for this process is `nihms-data-transform-load-exec.jar` found in the `nihms-data-transform-load` module.
 
 ### Data Transform-Load Configuration
 
 There are several ways to configure the Data Transform-Load CLI. Data Transform-Load CLI is a Spring Boot Application, so it can be configured as described here: Spring Boot Configuration
 
-You will need to set values for the following props: nihmsetl.repository.id, pass.client.url, pass.client.user and pass.client.password. There are a number of ways to do this with a spring boot app that are described in the link above.
+You will need to set values for the following props: nihmsetl.repository.id, pass.client.url, pass.client.user and pass.client.password. There are a number of ways to do this with a Spring Boot app, which are described in the link above.
 
 Here is an example using Java system properties -D.
 
@@ -154,45 +158,45 @@ docker run -eNIHMS_API_INST=YOUR_INST -eNIHMS_API_IPF=YOUR_IPF -eNIHMS_API_TOKEN
 
 #### Data Flow Overview
 
-- **Initialization**:
-    - `NihmsHarvesterCLIRunner` starts and processes command-line arguments.
-    - `NihmsHarvesterCLI` configures and initializes `NihmsHarvester` using `NihmsHarvesterConfig`.
-- **URL Construction**:
-    - `NihmsHarvester` uses `UrlBuilder` and `UrlType` to create URLs needed to access NIHMS data.
-- **Data Download**:
-  - `NihmsHarvesterDownloader` retrieves data from the constructed URLs.
-  - Downloaded data is passed back to `NihmsHarvester`.
-- **Data Processing**:
-    - `NihmsHarvester` processes the downloaded data.
+* **Initialization**:
+    * `NihmsHarvesterCLIRunner` starts and processes command-line arguments.
+    * `NihmsHarvesterCLI` configures and initializes `NihmsHarvester` using `NihmsHarvesterConfig`.
+* **URL Construction**:
+    * `NihmsHarvester` uses `UrlBuilder` and `UrlType` to create URLs needed to access NIHMS data.
+* **Data Download**:
+  * `NihmsHarvesterDownloader` retrieves data from the constructed URLs.
+  * Downloaded data is passed back to `NihmsHarvester`.
+* **Data Processing**:
+    * `NihmsHarvester` processes the downloaded data.
 
 #### Interactions and Dependencies
 
-- `NihmsHarvester` is the central class, relying on configurations from `NihmsHarvesterConfig`, URL construction from `UrlBuilder` and `UrlType`, and data downloading from `NihmsHarvesterDownloader`.
-- `NihmsHarvesterCLI` and `NihmsHarvesterCLIRunner` are entry points for the application, primarily handling user interaction and delegation to the core `NihmsHarvester`.
-- `UrlBuilder` and `UrlType` ensure that the URLs used for data retrieval are correctly constructed and categorized.
+* `NihmsHarvester` is the central class, relying on configurations from `NihmsHarvesterConfig`, URL construction from `UrlBuilder` and `UrlType`, and data downloading from `NihmsHarvesterDownloader`.
+* `NihmsHarvesterCLI` and `NihmsHarvesterCLIRunner` are entry points for the application, primarily handling user interaction and delegation to the core `NihmsHarvester`.
+* `UrlBuilder` and `UrlType` ensure that the URLs used for data retrieval are correctly constructed and categorized.
 
 ### NIHMS Data Transform-Load Classes and Relationships
 
 #### Data Flow Overview
 
-- **Data Transformation and Loading**:
-  - `NihmsTransformLoadCLIRunner` and `NihmsTransformLoadCLI` handle command-line interactions for data transformation and loading.
-  - `NihmsTransformLoadService` transforms publication data and loads it using `SubmissionLoader`.
-  - `PmidLookup` service to retrieve a PMID record from the [NBCI Entrez API](https://www.ncbi.nlm.nih.gov/books/NBK25497/). 
-- **Data Transfer**:
-  - `SubmissionDTO` encapsulates transformed submission data for transfer between components.
-  - `NihmsPassClientService` service to provide interactions with the data via the PASS client.
-  - `SubmissionLoader` loads the final submission data into PASS and accomplishes this by interfacing with the `NihmsPassClientService`.
+* **Data Transformation and Loading**:
+  * `NihmsTransformLoadCLIRunner` and `NihmsTransformLoadCLI` handle command-line interactions for data transformation and loading.
+  * `NihmsTransformLoadService` transforms publication data and loads it using `SubmissionLoader`.
+  * `PmidLookup` service to retrieve a PMID record from the [NBCI Entrez API](https://www.ncbi.nlm.nih.gov/books/NBK25497/). 
+* **Data Transfer**:
+  * `SubmissionDTO` encapsulates transformed submission data for transfer between components.
+  * `NihmsPassClientService` service to provide interactions with the data via the PASS client.
+  * `SubmissionLoader` loads the final submission data into PASS and accomplishes this by interfacing with the `NihmsPassClientService`.
 
 #### Interactions and Dependencies
 
-- `NihmsTransformLoadCLI` is the entry point and passes control to `NihmsTransformLoadCLIRunner`.
-- `NihmsTransformLoadCLIRunner` initializes the process using configurations from `NihmsTransformLoadConfig` and performs the transformation and loading by invoking `NihmsTransformLoadService`.
-- `NihmsTransformLoadConfig` provides necessary configuration settings to `NihmsTransformLoadService`.
-- `NihmsTransformLoadService` orchestrates the transformation of data using `NihmsPublicationToSubmission` and the loading of data using `SubmissionLoader`.
-- `NihmsPublicationToSubmission` is responsible for transforming PMC publication data and associated data to a `SubmissionDTO`, which is composed of `Grant`, `Publication`, `RepositoryCopy`, and `Submission` objects.
-- `SubmissionDTO` acts as a container for the transformed data.
-- `SubmissionLoader` is responsible for the final step of loading the data into PASS.
+* `NihmsTransformLoadCLI` is the entry point and passes control to `NihmsTransformLoadCLIRunner`.
+* `NihmsTransformLoadCLIRunner` initializes the process using configurations from `NihmsTransformLoadConfig` and performs the transformation and loading by invoking `NihmsTransformLoadService`.
+* `NihmsTransformLoadConfig` provides necessary configuration settings to `NihmsTransformLoadService`.
+* `NihmsTransformLoadService` orchestrates the transformation of data using `NihmsPublicationToSubmission` and the loading of data using `SubmissionLoader`.
+* `NihmsPublicationToSubmission` is responsible for transforming PMC publication data and associated data to a `SubmissionDTO`, which is composed of `Grant`, `Publication`, `RepositoryCopy`, and `Submission` objects.
+* `SubmissionDTO` acts as a container for the transformed data.
+* `SubmissionLoader` is responsible for the final step of loading the data into PASS.
 
 ## Next Step / Institution Configuration
 
@@ -200,7 +204,7 @@ Configuring the NIHMS loader to run at an institution requires several NIH/NLM a
 
 Once access to PACM has been established, configuring the infrastructure where the Data Harvester and the Data Transform-Load applications is the next step. Since they are Java applications they can be scheduled as cron jobs on a server or run in the cloud. At Johns Hopkins University these applications are run by using [AWS Batch and ECS](../../welcome-guide/deployment-architecture.md#pass-deployment-architecture).
 
-Optionally as a last step, setting up the [NIH Manuscript Submission](https://www.nihms.nih.gov) account would enable seeing which submissions have been made and how far along they are in the process. Once a submission makes its way through this process it appears in the PubMed Central data. This can be useful when troubleshooting records that you might expect to be in the PubMed Central data.
+Optionally as a last step, setting up the [NIH Manuscript Submission](https://www.nihms.nih.gov) account would enable seeing which submissions have been made and how far along they are in the process. Once a submission makes its way through this process it appears in the PubMed Central data. This can be useful for troubleshooting records expected to be in the PubMed Central data.
 
 ### Manual NIHMS Token Generation
 
@@ -208,7 +212,7 @@ Once a PACM account is established, generating the token can be done via the [PA
 
 ### NIHMS Token Refresh
 
-The NIHMS harvester process requires an Authentication token. This token is available from the PACM utils page and is valid for three months. There is currently no API available to refresh the token.
+The NIHMS harvester process requires an Authentication token. This token is available from the PACM Utils page and is valid for three months. There is currently no API available to refresh the token.
 
 In order to provide an automatic token refresh, there is a module within the NIHMS loader called `nihms-token-refresh` that performs an automatic refresh of the token and updates the AWS Parameter Store. More information about how this module works in a production environment can be found in the [Operation/Production Data Loaders section](../../infrastructure-documenation/operations-production/ops-loaders.md#nihms-api-token-refresh-automation).
 
@@ -216,9 +220,9 @@ In order to provide an automatic token refresh, there is a module within the NIH
 
 The resources below will assist in setting up the accounts required to run the NIHMS Loader and understanding the submission process.
 
-- PubMed Central Resources
-  - [PACM Guide](https://www.ncbi.nlm.nih.gov/pmc/utils/pacm/static/pacm-user-guide.pdf)
-  - [PMC APIs](https://www.ncbi.nlm.nih.gov/pmc/tools/developers/#pmc-apis)
-- NIHMS Resources
-  - [NIH Manuscript Submission](https://www.nihms.nih.gov)
-  - [NIH Manuscript Submission Process](https://www.nihms.nih.gov/about/overview/)
+* PubMed Central Resources
+  * [PACM Guide](https://www.ncbi.nlm.nih.gov/pmc/utils/pacm/static/pacm-user-guide.pdf)
+  * [PMC APIs](https://www.ncbi.nlm.nih.gov/pmc/tools/developers/#pmc-apis)
+* NIHMS Resources
+  * [NIH Manuscript Submission](https://www.nihms.nih.gov)
+  * [NIH Manuscript Submission Process](https://www.nihms.nih.gov/about/overview/)
