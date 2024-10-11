@@ -156,7 +156,7 @@ until after the stream has been read.
 #### ResourceBuilder and PackageStream.Resource
 
 `PackageStream.Resource` is an interface that provides metadata describing a resource within the
-package.  `ResourceBuilder` is a fluent API for creating physical metadata describing each resource (i.e. file) within
+package. `ResourceBuilder` is a fluent API for creating physical metadata describing each resource (i.e. file) within
 the package:
 
 * File size (bytes)
