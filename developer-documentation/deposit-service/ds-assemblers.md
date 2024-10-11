@@ -1,24 +1,24 @@
 # Deposit Services - Assemblers
 
 Developing a package provider primarily deals with extending or re-using `Assembler`-related abstract classes and
-implementations, but it helps to understand the context in which `Assembler`s operate. Assemblers are responsible for 
-gathering custodial and supplemental resources associated with a submission and returning a stream of those resources, 
-`PackageStream`, according to a packaging specification. Deposit Services will then stream the package to a downstream 
+implementations, but it is helpful to understand the context in which `Assembler`s operate. Assemblers are responsible for 
+gathering custodial and supplemental resources associated with a submission and returning a `PackageStream` of those 
+resources according to a packaging specification. Deposit Services will then stream the package to a downstream 
 repository via a `Transport`.
 
 ## Use Case
 
 An `Assembler` implementation is required for every packaging specification you wish to support. For example, if you 
-want to produce [BagIt packages](https://tools.ietf.org/html/rfc8493) and 
-[DSpace METS packages](https://wiki.duraspace.org/display/DSPACE/DSpaceMETSSIPProfile), you would need two `Assembler` 
-implementations, each one responsible for producing packages that align with their respective specifications.
+want to produce [BagIt packages](https://tools.ietf.org/html/rfc8493) and [DSpace METS packages](https://wiki.duraspace.org/display/DSPACE/DSpaceMETSSIPProfile),
+you would need two `Assembler` implementations, each responsible for producing packages that align with their respective
+specifications.
 
 Another reason to develop an `Assembler` is to control how the metadata of a submission is mapped into your package. For
 example, if your DSpace installation requires custom metadata elements, you would need to develop or extend an
 existing `Assembler` to include the custom metadata as appropriate to your environment, by way of implementing a custom 
 Package Provider.
 
-One easy approach would be extending a base `Assembler` class without having to write something entirely new.
+One easy approach would be by extending a base `Assembler` class without having to write something entirely new.
 
 ## Quick Start
 
@@ -182,7 +182,7 @@ To use `ThreadedAssemblyIT`, extend it, and implement the required methods:
 * `packageVerifier()`: answers a `PackageVerifier` which inspects a package stored on the filesystem and verifies its
   content. You must implement a `PackageVerifier` for each `Assembler` being tested.
 
-The test logic will execute automatically in `ThreadedAssemblyIT.testMultiplePackageStreams()`. The `PackageVerifier` is
+The test logic automatically executes in `ThreadedAssemblyIT.testMultiplePackageStreams()`. The `PackageVerifier` is
 very important: it does most of the heavy lifting with respect to passing or failing the integration test, so it must be
 well written and test all aspects of a generated package.
 
@@ -210,7 +210,7 @@ The verifier is responsible for:
 
 Essentially all aspects of a generated package must be verified through a `PackageVerifier`.
 
-The `PackageVerifier` interface does come with a helper method `verifyCustodialFiles` for ensuring that there is a 
+The `PackageVerifier` interface includes a helper method `verifyCustodialFiles` for ensuring that there is a 
 custodial file in the package for each submitted file, and that there are no unexplained custodial files present in the 
 package.`void verifyCustodialFiles(DepositSubmission, File, FileFilter, BiFunction<File, File, DepositFile>)`
 where `DepositSubmission` is the original submission, the `File` is the directory on the filesystem that contains the
