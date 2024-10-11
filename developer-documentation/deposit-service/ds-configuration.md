@@ -3,8 +3,8 @@
 The primary mechanism for configuring Deposit Services is through environment variables. This aligns with the patterns
 used in development and production infrastructure which rely on Docker and its approach to runtime configuration.
 
-Secondary configuration is provided by Spring Boot application.properties. This configuration includes lower-level
-parameters such as message queues, the base url of Pass-Core, etc.
+Secondary configuration is provided by Spring Boot `application.properties`. This configuration includes lower-level
+parameters such as message queues, the base URL of Pass Core, etc.
 
 ## Production Configuration Variables
 
@@ -18,7 +18,7 @@ parameters such as message queues, the base url of Pass-Core, etc.
 | `DSPACE_API_PROTOCOL`                   | https                        | Dspace API protocol                                                                                                                                         |
 | `DSPACE_API_PATH`                       | /server/api                  | Dspace API path                                                                                                                                             |
 | `INVENIORDM_API_BASE_URL`               |                              | Base URL for InvenioRDM API                                                                                                                                 |
-| `INVENIORDM_VERIFY_SSL_CERT`            | true                         | Required since the localhost InvenioRDM runs with self-signed certificate                                                                                   |
+| `INVENIORDM_VERIFY_SSL_CERT`            | true                         | Required since the localhost InvenioRDM runs with a self-signed certificate                                                                                 |
 | `INVENIORDM_API_TOKEN`                  |                              | InvenioRDM API token                                                                                                                                        |
 | `PMC_FTP_HOST`                          | localhost                    | IP address or host name of the NIH FTP server                                                                                                               |
 | `PMC_FTP_PORT`                          | 21                           | TCP control port of the NIH FTP server                                                                                                                      |
@@ -46,16 +46,17 @@ parameters such as message queues, the base url of Pass-Core, etc.
 
 ## Repositories Configuration
 
-The Repository configuration contains the parameters used for connecting and depositing custodial material to downstream
-repositories. The format of the configuration file is JSON, defining multiple downstream repositories in a single file.
+The Repository configuration contains the parameters used for connecting and depositing custodial material into 
+downstream repositories. The format of the configuration file is JSON, defining multiple downstream repositories in a 
+single file.
 
 Each repository configuration has a top-level key that is used to identify a particular configuration. Importantly, each
-top-level key _must_ map to a `Repository` resource within the PASS repository. This implies that the top-level
+top-level key _must_ map to a `Repository` resource within the PASS repository. This means that the top-level
 keys in `repositories.json` are not arbitrary. In fact, the top level key must be:
 
 * the value of a `Repository.repositoryKey` field, which is a `Repository` resource in the PASS repository.
 
-Deposit Services comes with a default repository configuration, but a production environment will want to override the
+Deposit Services comes with a default repository configuration, but a production environment should override the
 default. Defaults are overridden by creating a copy of the default configuration, editing it to suit, and
 setting `PASS_DEPOSIT_REPOSITORY_CONFIGURATION` to point to the new location.
 
@@ -161,8 +162,8 @@ Currently, NIHMS only communicates its deposit status via email. Setting up an e
 from NIHMS is a prerequisite. The email account that is set up should be represented by the value of 
 `NIHMS_MAIL_USERNAME`. 
 
-There are two authentication protocols supported by this service. A regular smtp login credentials and Microsoft 
-Exchange oAuth2. By providing a value of `LOGIN` or `MS_EXCHANGE_OAUTH2` for the environmental value, it will determine
+There are two authentication protocols supported by this service. A regular SMTP login credentials and Microsoft 
+Exchange OAuth2. By providing a value of `LOGIN` or `MS_EXCHANGE_OAUTH2` for the environmental value, it will determine
 which type of authentication to use. If using the `MS_EXCHANGE_OAUTH2` authentication type, then `NIHMS_MAIL_TENANT_ID`,
 `NIHMS_MAIL_CLIENT_ID`, and `NIHMS_MAIL_CLIENT_SECRET` are required as well.
 
@@ -175,7 +176,7 @@ as well.
 
 By default, Submissions created by Deployment Tests that are received by Deposit Services are fully processed; however,
 the Deposit is not actually sent to the remote repository. This can be changed by setting `TEST_DATA_SKIP_DEPOSITS` to 
-`false`, which will cause the Deposit to be sent to the remote repository. Additionally, when `TEST_DATA_SKIP_DEPOSITS`
+`false`, which will then send the Deposit to the remote repository. Additionally, when `TEST_DATA_SKIP_DEPOSITS`
 is `false`, if the remote repository is a DSpace repository, the Deposit Item in DSpace will be deleted by the 
 Deployment Test Data Service.
 
