@@ -1,7 +1,7 @@
 # Deposit Services - Model
 
 The Deposit Services data model describes the interaction between Deposit Services and the PASS data model, detailing 
-how various resources such as `Submission`, `Repository`, `Deposit`, and `RepositoryCopy` are managed. Additionally, it 
+how various resources, such as `Submission`, `Repository`, `Deposit`, and `RepositoryCopy` are managed. Additionally, it 
 outlines the internal data model, configuration, packaging, and transport mechanisms used by Deposit Services to 
 facilitate the transfer and validation of submissions to downstream repositories.
 
@@ -14,74 +14,86 @@ Services.
 
 PASS objects used by Deposit Services are:
 
-* **`Submission`**: Read by Deposit Services, updates `Submission.AggregatedDepositStatus`.
-* **`Repository`**: Only ever read by Deposit Services, never modified.
-* **`Deposit`**: Created and modified by Deposit Services.
-* **`RepositoryCopy`**: Created and modified by Deposit Services. Note that the NIHMS loader also creates
+* `Submission`: Read by Deposit Services, updates `Submission.AggregatedDepositStatus`.
+* `Repository`: Only ever read by Deposit Services, never modified.
+* `Deposit`: Created and modified by Deposit Services.
+* `RepositoryCopy`: Created and modified by Deposit Services. Note that the NIHMS loader also creates
   `RepositoryCopy` resources.
 
-<figure><img src="../../.gitbook/assets/pass-model.png" alt=""><figcaption><p>Deposit Services PASS Model</p>
-</figcaption></figure>
+<figure>
+  <img src="../../.gitbook/assets/pass-model.png" alt="Deposit Services PASS Model">
+  <figcaption>
+    <p>Deposit Services PASS Model</p>
+  </figcaption>
+</figure>
 
 Each `Submission` resource links to one or more `Repository` resources. Deposit Services will create a `Deposit`
-and `RepositoryCopy` resource for each `Repository` linked to the `Submission`. A deposit attempt will be made by
-Deposit Services to the downstream system represented by the `Repository`. The status of a deposit to a downstream
-repository will be recorded on the `Deposit` resource. That is to say, the `Deposit` records the transaction and its
-success or failure with a `Repository`, and the `RepositoryCopy` records where the Repository stored the content of
-the `Deposit`.
+and `RepositoryCopy` resource for each `Repository` linked to the `Submission`. Deposit Services will attempt to deposit
+to the downstream system represented by the `Repository`. The status of a deposit to a downstream repository will be 
+recorded on the `Deposit` resource. That is to say, the `Deposit` records the transaction and its success or failure 
+with a `Repository`, and the `RepositoryCopy` records where the Repository stored the content of the `Deposit`.
 
 ## Deposit Services Internal Model
 
-Deposit Services has an internal object model, distinct from the PASS data model. Instances of the internal object model
-are not persisted in the PASS repository, or anywhere else. Upon receipt of a `Submission` (i.e. the external PASS
-model), Deposit Services immediately converts it to an instance of the internal model using a Model Builder.
+Deposit Services has an internal object model that is distinct from the PASS data model. Instances of the internal 
+object model are not persisted in the PASS repository, or anywhere else. Upon receipt of a `Submission` (i.e. the 
+external PASS model), Deposit Services immediately converts it to an instance of the internal model using a Model
+Builder.
 
-<figure><img src="../../.gitbook/assets/ds-model.png" alt=""><figcaption><p>Deposit Services Internal Model</p>
-</figcaption></figure>
+<figure>
+  <img src="../../.gitbook/assets/ds-model.png" alt="Deposit Services Internal Model">
+  <figcaption>
+    <p>Deposit Services Internal Model</p>
+  </figcaption>
+</figure>
 
 ### Deposit Model
 
-* **`DepositSubmission`**: internal representation of a PASS Submission.
-* **`DepositMetadata`**: metadata describing the submission, parsed from the "metadata blob" (**`Submission.metadata`**)
+* `DepositSubmission`: internal representation of a PASS Submission.
+* `DepositMetadata`: metadata describing the submission, parsed from the "metadata blob" (**`Submission.metadata`**)
   and other `Submission` properties.
 * `DepositSubmission` is the central entity in the internal DS model. It brings entities and properties of the public PASS
   model into a model specific to producing a package. Many of the fields or classes are bibliographic in nature, with the
   `DepositFile` linking to the binary content of the submission (the files uploaded by the end user in the submission
-  process). It is fair to say that a second motivation of the internal DS model is to surface bibliographic metadata
-  explicitly, since a primary responsibility of DS is to map bibliographic metadata to package metadata. Hard-coding
-  bibliographic metadata in the internal model could be considered an anti-pattern.
+  process). A secondary purpose of the internal DS model is to surface bibliographic metadata explicitly, since a 
+  primary responsibility of DS is to map bibliographic metadata to package metadata. Hard-coding bibliographic metadata
+  in the internal model could be considered an anti-pattern.
 
 ### Configuration Model
 
-* **`Packager`**: encapsulates configuration of the `Assembler`, `Transport`, and `DepositStatusProcessor` for every
-  downstream repository in `repositories.json`. Each repository configured in `repositories.json` ought to reference
+* `Packager`: encapsulates configuration of the `Assembler`, `Transport`, and `DepositStatusProcessor` for every
+  downstream repository in `repositories.json`. Each repository configured in `repositories.json` should to reference
   a `Repository` resource in the PASS repository.
-* **`RepositoryConfig`**: Java representation of a single repository configuration in `repositories.json`. The
+* `RepositoryConfig`: Java representation of a single repository configuration in `repositories.json`. The
   configuration for a repository includes directives for the transport protocol used for deposit (including
   authentication credentials), packaging specification used for deposit, and packaging options.
 
-<figure><img src="../../.gitbook/assets/config-model.png" alt=""><figcaption><p>Deposit Service Configuration Model</p>
-</figcaption></figure>
+<figure>
+  <img src="../../.gitbook/assets/config-model.png" alt="Deposit Service Configuration Model">
+  <figcaption>
+    <p>Deposit Service Configuration Model</p>
+  </figcaption>
+</figure>
 
 * Each downstream repository is represented in the public PASS model as a `Repository`; each `Repository` carries a unique
-  key, which is a short, human-readable string (e.g. "jscholarship", "dash", "pmc"). Each `Repository.key` is represented in
+  key, which is a short, human-readable string (e.g. `jscholarship`, `dash`, `pmc`). Each `Repository.key` is represented in
   the DS configuration model as `RepositoryConfig.repositoryKey`. When a Submission is processed, the configuration for the
   Repository is resolved by its key.
 
 ### Packaging Model
 
-* **`Assembler`**: responsible for creating and streaming the content (i.e. the files uploaded by the end-user and any
+* `Assembler`: responsible for creating and streaming the content (i.e. the files uploaded by the end-user and any
   metadata required by the packaging specification) of a Submission according to a packaging specification.
-* **`PackageStream`**: content of a `Submission` to be deposited to a downstream repository as a stream, as opposed to
-  bytes held in a buffer or stored on a file system.
-* **`Transport`**: an abstraction representing the physical protocol used to transfer the package stream from the PASS
+* `PackageStream`: the content of a `Submission` to be deposited to a downstream repository as a stream, as opposed 
+  to bytes held in a buffer or stored on a file system.
+* `Transport`: an abstraction representing the physical protocol used to transfer the package stream from the PASS
   repository to the downstream repository.
 
 ### Messaging Model
 
-* **`DepositStatusProcessor`**: responsible for updating the `Deposit.depositStatus` property of a `Deposit` resource,
+* `DepositStatusProcessor`: responsible for updating the `Deposit.depositStatus` property of a `Deposit` resource,
   typically by resolving the URL in the `Deposit.depositStatusRef` property and parsing its content.
-* **`CriticalRepositoryInteraction`**: CRI for short. Performs an optimistic locking (`If-Match` using an Etag) "critical"
+* `CriticalRepositoryInteraction`: CRI for short. Performs an optimistic locking (`If-Match` using an Etag) "critical"
   modification on a PASS resource, with a built-in retry mechanism when a modification fails. Each CRI has a
   pre-condition, critical section, and post-condition. The pre-condition must be met before the critical section is
   executed. The post-condition determines whether the application of the critical section was successful. The built-in
@@ -103,8 +115,8 @@ a `PackageStream` instance). This includes:
 * Generating any metadata required by the downstream repository.
 * Encapsulating all of the above into a stream of bytes that meets a packaging specification.
 
-The work to implement the Configurable Metadata Framework focuses on the support of pluggable Assemblers within Deposit
-Services: different `Assembler` implementations can include metadata required for their repository.
+Implementing the Configurable Metadata Framework focuses on the support of pluggable Assemblers within Deposit
+Services; different `Assembler` implementations can include metadata required for their repository.
 
 ### Custodial and supplemental resources
 
@@ -188,7 +200,7 @@ Supports the transport of the package stream using S/FTP.
 
 #### SWORDv2
 
-Supports the transport of the package stream using [SWORD protocol version 2](http://swordapp.github.io/SWORDv2-Profile/SWORDProfile.html).
+Supports the transport of the package stream using the [SWORD protocol version 2](http://swordapp.github.io/SWORDv2-Profile/SWORDProfile.html).
 
 #### InvenioRDM
 
