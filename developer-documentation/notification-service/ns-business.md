@@ -9,7 +9,7 @@ workflow integrity.
 ## SubmissionEventListener
 The `SubmissionEventListener` is the component responsible for connecting to a messaging source and reading 
 SubmissionEventMessage messages. Note the use of the Spring annotation `JmsListener` on the `processMessage` message. NS 
-uses Spring for messaging configuration, which is managed by the `JSMConfig` class.
+uses Spring for messaging configuration, which is managed by the `JmsConfig` class.
 
 The NS responds asynchronously to modification of `SubmissionEvent` resources. A `SubmissionEvent` represents the state
 of the `Submission` in a workflow. Each time a significant step in the submission workflow is taken, a `SubmissionEvent`
@@ -52,7 +52,7 @@ when this occurs.
 #### Link Security
 If a user's permissions change between the time a link was generated and the time a link was activated - for example, a 
 User was an Authorized Submitter at the time the link was generated, and they were removed from the Grant by the time 
-the link was activated, the user interface or link resolution components will respond in an appropriate way insuring the 
+the link was activated, the user interface or link resolution components will respond in an appropriate way ensuring the 
 user cannot approve something they don't have permission for.
 
 #### User Token Link
@@ -70,4 +70,4 @@ notification for the recipient to click on so a User object is created for them 
 The class `LinkValidator` will use `link-validators` in the notification configuration to validate that the correct URL 
 is present in the `Link` object for the `Notification` type. The `Link` objects are created in the `SubmissionLinkAnalyzer` 
 and then sent to `LinkValidator`. The `link-validators` field in the notification configuration file can be an array of
-`Notification` types or `*` which will be a link validation rule that applies to all.
+`Notification` types or `*`, which will be a link validation rule that applies to all.
