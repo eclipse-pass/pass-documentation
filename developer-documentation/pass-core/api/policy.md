@@ -8,14 +8,13 @@ Configuration is achieved via the following environment variables:
 
 * `PASS_POLICY_INSTITUTION`: This is the institution as it appears on User.affiliations for every user in the institution: e.g. "johnshopkins.edu"
 * `PASS_POLICY_INSTITUTIONAL_POLICY_TITLE`: The value of Policy.title on the institution's Policy object
-* `PASS_POLICT_INSTITUTIONAL_REPOSITORY_NAME`: The value of Repository.name on the intstitution's IR Repository object
-
+* `PASS_POLICY_INSTITUTIONAL_REPOSITORY_NAME`: The value of Repository.name on the intstitution's IR Repository object
 
 ## Policy Service
 
 The `/policy/policies` endpoint determines the set of policies that are applicable to
 a given submission.  Note:  The results may be dependent on _who_ submits the request.  For example, if
-somebody from JHU invokes the policies endpoint, a general "policy for JHU employees" may be included in the results.
+someone from JHU invokes the policies endpoint, a general "policy for JHU employees" may be included in the results.
 
 ### Policies Request
 
@@ -38,7 +37,6 @@ The response is a list of IDs to Policy resources, decorated with a `type` prope
 ]
 ```
 
-
 ## Repositories Service
 
 The `/policy/repositories` endpoint, for a given submission, calculates the repositories that may be
@@ -52,7 +50,6 @@ or, with urlencoded (with encoded submission=${SUBMISSION_ID}) as the body:
 ### Repositories Response
 
 The response is an application/json document that lists repositories sorted into required and optional buckets. Required repositories must be deposited to while optional repositories may be deposited to.
-
 
 ```JSON
 {
@@ -91,4 +88,3 @@ Repositories contained in the above list are JSON objects containing the followi
 
 * `url`: the URL to the repository resource in Fedora
 * `selected`: optional field.  Specifies if the repository should be selected by default in the UI or not.
-
