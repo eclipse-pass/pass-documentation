@@ -1,9 +1,14 @@
 # Notification Services - Model
 
-<figure><img src="../../.gitbook/assets/notifications-model.png" alt="PASS Notification Model"><figcaption><p>PASS Notification Model</p></figcaption></figure>
+<figure>
+  <img src="../../.gitbook/assets/notifications-model.png" alt="PASS Notification Model">
+  <figcaption>
+    <p>PASS Notification Model</p>
+  </figcaption>
+</figure>
 
-The `Notification` class is the central object in the model. It is used to capture the type of notification, for a given 
-submission, and to provide the data to the notification template.
+The `Notification` class is the central object in the model. It is used to capture the type of notification for a given 
+submission and to provide the data to the notification template.
 
 Let's review the important attributes of `Notification`:
 
@@ -11,10 +16,15 @@ Let's review the important attributes of `Notification`:
 
 `Notification.eventId`: The SubmissionEvent ID for the `Notification`.
 
-The SubmissionEvent is the object created capturing the submission workflow event that generates the `Notification`. The 
+The SubmissionEvent is the object that captures the submission workflow event, which generates the `Notification`. The 
 table below describes a submission workflow action, the submission event type created, and who receives the notification.
 
-<figure><img src="../../.gitbook/assets/submission-state.png" alt="Submission State Diagram"><figcaption><p>Submission State</p></figcaption></figure>
+<figure>
+  <img src="../../.gitbook/assets/submission-state.png" alt="Submission State Diagram">
+  <figcaption>
+    <p>Submission State</p>
+  </figcaption>
+</figure>
 
 | What happened to the Submission | SubmissionEvent Type                           | Notification Recipient List |
 |---------------------------------|------------------------------------------------|-----------------------------|
@@ -73,7 +83,7 @@ parameterizes the model at compile time. Initially NS provides the following mod
     - `performerRole`: the role the `performedBy` user held at the time the event was precipitated.
 - `link_metadata`: a JSON array of link objects associated with the `SubmissionEvent`.
     - Each link object has an `href` attribute containing the URL, and a `rel` attribute describing its relationship to
-    the `SubmissionEvent`
+    the `SubmissionEvent`.
     - Supported `rel` values are:
         - `submission-view`: a link to view the `Submission` resource in the Ember User Interface.
         - `submission-review`: a link to review and approve a `Submission` in the Ember User Interface.
