@@ -112,15 +112,15 @@ recipient list has been determined, it can be manipulated as discussed below.
 Each configuration mode may have an associated whitelist. If the whitelist is empty, _all_ recipients for a given
 notification will receive an email. If the whitelist is _not empty_, the recipients for a given notification will be
 filtered, and _only_ whitelisted recipients will receive the notification. Having a whitelist for the `DEMO` mode is
-useful to prevent accidental spamming of end users with test notifications.
+useful to prevent sending test notifications to unintended recipients.
 
 Production should use an empty whitelist (i.e. all potential notification recipients are whitelisted).
 
 ### Global Carbon Copy Support
 
 Each configuration mode may specify one or more "global carbon copy" addresses. These addresses will receive a copy of 
-each email sent by Notification Services (NS). Global carbon copy addresses are implicitly whitelisted; they do not need
-to be explicitly configured in a whitelist. Blind carbon copy is also supported.
+each email sent by Notification Services (NS). Global carbon copy addresses are automatically whitelisted and do not 
+need to be explicitly added to the whitelist. Blind carbon copy is also supported.
 
 Here is an example recipient configuration that specifies a global carbon copy and a global blind carbon copy:
 
@@ -190,10 +190,10 @@ must be set as Environment Variables (System Properties (-Dargs)):
 In order for NS to access to AWS SQS, standard AWS access management needs to be configured on the deployed NS. See 
 [AWS IAM Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) for more information.
 
-For testing purposes, you may set AWS access keys for access:
+For testing purposes, you may set AWS access keys to gain access:
 
 * `AWS_ACCESS_KEY_ID` (`aws.accessKeyId`): AWS Access Key to account with access to SQS queue
 * `AWS_SECRET_ACCESS_KEY` (`aws.secretKey`) : AWS Secret Access Key to account with access to SQS queue
   
-**NOTE:** The AWS ID and key should only be used for testing and in production access should be managed through IAM roles.
-
+**NOTE:** The AWS ID and key should only be used for testing, and in production access should be managed through IAM 
+roles.
