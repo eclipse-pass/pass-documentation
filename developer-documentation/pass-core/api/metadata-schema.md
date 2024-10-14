@@ -5,7 +5,8 @@ dereference, and place in the correct order all schemas relevant to a given set 
 
 ## Schemas
 
-The JSON schemas herein describe the JSON metadata payload of PASS [submission](/developer-documentation/pass-core/model/Submission.md) entities. They serve two purposes
+The JSON schemas herein describe the JSON metadata payload of PASS [submission](/developer-documentation/pass-core/model/Submission.md) entities. They serve two primary
+purposes
 
 1. Validation of submission metadata
 2. Generation of forms in the PASS user interface
@@ -62,9 +63,9 @@ entity IDs in a comma separated values String, in a GET request.  for example:
 For each repository, the schema service will retrieve the list of schemas relevant to the repository, place that list in the correct order (so
 that schemas that provide the most dependencies are displayed first), and resolves all `$ref` references that might appear in the schema.
 
-If a `merge` query parameter is provided (with any value, e.g. `?merge=true`), then all schemas will be merged into a single union schema. 
+If a `merge` query parameter is provided (e.g., `?merge=true`), then all schemas will be merged into a single union schema. 
 If the service is unable to merge schemas together, it will respond with `409 Conflict` status. 
-In this case, a client can issue a request without the `merge` query parameter to get the un-merged list of schemas.
+In this case, a client can issue a request without the `merge` query parameter to get the unmerged list of schemas.
 
 The result is an `application/json` response that contains a JSON list of schemas.
 
@@ -83,6 +84,8 @@ The service will return the following HTTP error responses:
 
 ### Retrieve schemas for a list of repositories
 
+This command retrieves schemas for repositories with IDs 1, 2, and 3, merging them into a single schema if possible.
+
 ```shell
 curl --location 'http://localhost:8080/schemaservice?entityIds=1,2,3&merge=true'
 ```
@@ -97,7 +100,7 @@ Alpaca js renders forms based upon the contents of a JSON schema. That being sai
 
 ### Global schema
 
-The global schema defines all properties allowed to be present in the metadata blob (e.g. their names and types), as well as Alpaca options for each field. The property definitions are used for validation, and the alpaca options for influencing display and custom validation characteristics in Alpaca. An example cut down global schema (defining only two fields) is as follows. The colors represent sections of different significance:
+The global schema defines all properties that can be present in the metadata blob, including their names, types, and Alpaca form options. These properties are used for both validation and display within the PASS user interface. Here's an example of a simplified global schema that defines two fields:
 
 ```JSON
 {
@@ -275,7 +278,6 @@ $.extend( true, metadataBlob, alpacaFormData )
 validationResults = validator.validate(metadataBlob, alpacaSchema)
 ```
 
-
 This takes the content of the javascript object alpacaFormData, and merges it into metadataBlob.  
 
 Schema validation should occur after relevant content has been merged in to the blob. It can occur immediately after entering in the form data, or as a final step prior to submission.  In the example above, alpacaSchema was the individual schema used to generate the form that produced alpacaFormData, and validation compared the resulting merged contents of metadataBlob with the individual schema.
@@ -332,7 +334,7 @@ Example of authors field:
   }]
 ```
 
-Example of issns field:
+Example of issn field:
 
 ```JSON
 [{
