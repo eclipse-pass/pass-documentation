@@ -54,7 +54,7 @@ notification type has a corresponding template, and the templates and their cont
 You can see that there is an object identifying each notification type, and for each notification type a `SUBJECT`, 
 `BODY`, and `FOOTER` template may be defined.
 
-The value associated with `SUBJECT`, `BODY`, and `FOOTER` may be in-line content as seen in the example, or it can be a 
+The value associated with `SUBJECT`, `BODY`, and `FOOTER` may be inline content as seen in the example, or it can be a 
 reference to a Spring Resource URI, e.g.:
 
 ```json
@@ -69,11 +69,11 @@ reference to a Spring Resource URI, e.g.:
 ```
 
 Using Spring Resource URIs to refer to the template location is a more flexible and maintainable way of managing 
-notification templates, because it allows the templates to be updated in place without having to edit the primary 
-configuration file (`notification.json`) any time a template needs updating. Using Spring Resource URIs also allows 
-template content to be shared across notification types. For example, each notification type could use the same 
-`FOOTER` content. The `CompositeResolver` is responsible for determining whether the value represents inline 
-content, or if it represents a Spring Resource URI to be resolved.
+notification templates. It allows the templates to be updated in place without having to edit the primary configuration
+file (`notification.json`) any time a template needs updating. Using Spring Resource URIs also allows template content
+to be shared across notification types. For example, each notification type could use the same`FOOTER` content. The
+`CompositeResolver` is responsible for determining whether the value represents inline content, or if it represents a
+Spring Resource URI to be resolved.
 
 Notification Services supports Mustache templates, specifically implemented using Handlebars. Each template is injected 
 with the `parameters` map from the `Notification`. See above for the documented fields of the `parameters` map. It is 
