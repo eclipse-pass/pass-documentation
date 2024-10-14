@@ -11,11 +11,11 @@ your institution’s environment and external services setup.
 details) and ensure the email service is fully operational and ready for integration with Notification Services.
 * Familiarity with Notification Services: Review the [Notification Services Knowledge Needed](./ns-know-need.md)
 * AWS SQS Queue: Notification Services require an SQS queue for message handling. For testing purposes, you can use 
-[LocalStack](https://www.localstack.cloud/) to simulate AWS services locally. 
+[LocalStack](https://www.localstack.cloud/) to simulate AWS services in a local environment. 
 
 ## Setup a Simple Configuration
 
-This configuration is a simplified version of the configuration. See the [configuration page](./ns-configuration.md) and
+This is a simplified version of the configuration. See the [configuration page](./ns-configuration.md) and
 [template page](./ns-templates.md) for a more in-depth explanation of configuring NS. Be sure to replace email addresses
 with those from your institution. Save this JSON file to a location that can be referenced by a Docker container or a 
 running JAR file.
@@ -72,15 +72,15 @@ There are other environment variables to initialize that are found on the [confi
 
 **NOTE:** The AWS ID and key should only be used for testing and in production this should be managed through IAM roles.
 
-You can also download the [Pass Support source code](https://github.com/eclipse-pass/pass-support/releases) and build NS
-module to get the NS JAR file that can be invoked by running:
+You can also download the [Pass Support source code](https://github.com/eclipse-pass/pass-support/releases) and build the NS module to get the NS JAR file that can be 
+invoked by running:
 
 ```shell
 java -Dpass.notification.configuration=file:/ns-config/ns-config-json.json -Daws.region=us-east-1 -Daws.accessKeyId={YOUR_ID} -Daws.secretKey={YOUR_KEY} -jar pass-notification-service-exec.jar
 ```
 
 The arguments `pass.notification.configuration`, `aws.region=us-east-1`, `aws.accessKeyId`, and `aws.secretKey` are the
-minimum set to run the JAR; however a fully functional NS will depend on the fulfillment of the [prerequisites](#prerequisites).
+minimum set to run the JAR; however, a fully functional NS will depend on the fulfillment of the [prerequisites](#prerequisites).
 
 ## Supporting Other Types of Queue Services
 
