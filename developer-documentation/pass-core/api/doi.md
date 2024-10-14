@@ -2,7 +2,7 @@
 
 The DOI API has two services. One service returns the corresponding PASS journal for the article identified by a DOI as well as the article's CrossRef metadata. The other service returns information about a manuscript from Unpaywall.
 
-Both services accept the DOI of a journal article as a query parameter with a name of `doi`. The DOI should be formatted like `10.1234/ ...`. If a DOI is of a longer URL form containing the string `doi.org/`, then we truncate the DOI to take everything after this substring. If the DOI is not valid, a 400 status code is returned. On success a 200 is returned. If there is an error the response will be a JSON object with an error key containing a message.
+Both services accept the DOI of a journal article as a query parameter with a name of `doi`. The DOI should be formatted like `10.1234/ ...`. If a DOI is of a longer URL form containing the string `doi.org/`, then we truncate the DOI to take everything after this substring. If the DOI is not valid, a `400 Bad Request` status code is returned. On success a `200 OK` is returned. If there is an error the response will be a JSON object with an error key containing a message.
 
 The services will look for an environment variable called `PASS_DOI_SERVICE_MAILTO` to specify a value on the User-Agent header on the Crossref and Unpaywall requests.
 
@@ -10,7 +10,7 @@ The services will look for an environment variable called `PASS_DOI_SERVICE_MAIL
 
 This service uses the Crossref API to get information about the article and its journal. We then check to see if there is a `Journal` object in PASS for this journal. If not we create one. The service then returns to the caller a JSON object containing the `journal-id` of the PASS journal, and a `crossref` object representing the data returned to the service as a result of the Crossref call. See the [Crossref docs](https://www.crossref.org/documentation/) for information on the Crossref metadata returned.
 
-If a request is already being processed for the given DOI, 429 is returned.
+If a request is already being processed for the given DOI, `429 Too Many Requests` is returned.
 
 ### Example
 
