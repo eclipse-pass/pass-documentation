@@ -1,6 +1,6 @@
 # Developer Documentation
 
-The PASS developer documentation encompasses all aspects of PASS required to understand and contribute to the PASS
+The PASS Developer Documentation encompasses all aspects of PASS required to understand and contribute to the PASS
 development. The main areas of PASS Development are PASS Core, PASS UI, Data Loaders, Deposit Services,
 Notification Services, and Acceptance Tests. All of these components work together to bring together a comprehensive
 system to disseminate research to their proper repositories. Each of these modules has a distinct role, such as managing
@@ -27,10 +27,10 @@ enhancing repository deposit capabilities across academic and research instituti
 
 1. [Use cases](use-cases.md)
 2. [PASS Core](pass-core/README.md)
-3. [PASS UI]()
-4. [Data Loaders](data-loaders)
-5. [Deposit Services](deposit-service)
-6. [Notification Services](notification-service)
-7. [Pass Acceptance Testing]()
-8. [PASS Docker]()
-9. [Release](release)
+3. [PASS UI](pass-ui/README.md)
+4. [Data Loaders](data-loaders/README.md)
+5. [Deposit Services](deposit-service/README.md)
+6. [Notification Services](notification-service/README.md)
+7. [Pass Acceptance Testing](pass-acceptance-testing/README.md)
+8. [PASS Docker](pass-docker/README.md)
+9. [Release](release/README.md)
