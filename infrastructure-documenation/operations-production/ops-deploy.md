@@ -50,7 +50,7 @@ workflows. The following GH workflows are part of the deployment:
    * The `deploy_deposit_services` job uses the `Deploy PASS Services and Data Loaders to ECS AWS` workflow to deploy the deposit
    services to AWS ECS. It specifies the Docker image name (`deposit-services-core`) and tag as the release version.
 4. **Deploy Notification Services**:
-   - The `deploy_notification_services` job also uses the `Deploy PASS Services and Data Loaders to ECS AWS` workflow to
+   * The `deploy_notification_services` job also uses the `Deploy PASS Services and Data Loaders to ECS AWS` workflow to
    deploy notification services. It sets the Docker image name to `pass-notification-service` and the tag to the release 
    version.
 5. **Deploy Grant Loader**:
