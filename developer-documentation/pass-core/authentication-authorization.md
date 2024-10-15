@@ -25,7 +25,12 @@ These Shibboleth attributes are used to locate a user in `pass-core` and set up 
 
 This series of interactions is depicted as follows:
 
-<figure><img src="/.gitbook/assets/pass_authn.png" alt="Authentication Interactions Diagram"><figcaption><p>Authentication Interactions Diagram</p></figcaption></figure>
+<figure>
+    <img src="/.gitbook/assets/pass_authn.png" alt="Authentication Interactions Diagram">
+    <figcaption>
+        <p>Authentication Interactions Diagram</p>
+    </figcaption>
+</figure>
 
 ### REST API Authentication
 
