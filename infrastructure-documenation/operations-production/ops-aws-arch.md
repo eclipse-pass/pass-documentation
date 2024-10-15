@@ -22,9 +22,19 @@ A quick review of the PASS design and application architecture from our [Deploym
 in the [PASS Welcome Guide](../../welcome-guide). Both the PASS Design diagram and Application Architecture diagram are below for a 
 quick reference:
 
-<figure><img src="../../.gitbook/assets/pass-architecture-simple-v2-wo-admin-ui.png" alt="PASS Design Diagram"><figcaption><p>PASS Design Diagram</p></figcaption></figure>
+<figure>
+    <img src="../../.gitbook/assets/pass-architecture-simple-v2-wo-admin-ui.png" alt="PASS Design Diagram">
+    <figcaption>
+        <p>PASS Design Diagram</p>
+    </figcaption>
+</figure>
 
-<figure><img src="../../.gitbook/assets/application_architecture_diagram.jpg" alt="PASS Application Diagram"><figcaption><p>PASS Application Diagram</p></figcaption></figure>
+<figure>
+    <img src="../../.gitbook/assets/application_architecture_diagram.jpg" alt="PASS Application Diagram">
+    <figcaption>
+        <p>PASS Application Diagram</p>
+    </figcaption>
+</figure>
 
 ## JHU PASS AWS Resources Details
 
