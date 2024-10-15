@@ -8,7 +8,12 @@ PASS UI contains the Submission UI which is responsible for the researcher workf
 
 PASS Core is the central back-bone to the application which is responsible for orchestrating the entire researcher workflow by communicating with external services, managing the data layer, applying policy and metadata rules. Data pertaining to journals, grants, and publications is funneled into PASS Core via Data Loaders, where it is then managed by the Java Persistence API (JPA). PASS Core also employs the Oxford Common File Layout (OCFL) for the storage of submission-related documents, offering options for disk or Amazon S3 bucket retention. When researchers are performing their submissions, it will flow through the PASS API. From there, a submission message is placed in a publication queue which the deposit services will pick up, assemble the deposit and transport it to their respective repository (DSpace, PubMed, etc).&#x20;
 
-<figure><img src="../.gitbook/assets/pass-architecture-simple-v2-wo-admin-ui.png" alt=""><figcaption><p>PASS Architecture</p></figcaption></figure>
+<figure>
+    <img src="../.gitbook/assets/pass-architecture-simple-v2-wo-admin-ui.png" alt="">
+    <figcaption>
+        <p>PASS Architecture</p>
+    </figcaption>
+</figure>
 
 ### Front-end Technologies
 
