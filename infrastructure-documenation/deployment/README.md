@@ -36,7 +36,7 @@ The current PASS infrastructure in AWS includes:
 1. Install dependencies:
    ```bash
    apt-get -y update
-   apt-get install -y gnupg2 pass docker-compose
+   apt-get install -y gnupg2 pass docker compose
    ```
 
 2. Clone the repository:
@@ -51,8 +51,8 @@ The current PASS infrastructure in AWS includes:
 3. Run PASS:
    ```bash
    cd /src/pass-docker && \
-     docker-compose pull && \
-     docker-compose up
+     docker compose pull && \
+     docker compose up
    ```
 
 ### PASS Release Process
