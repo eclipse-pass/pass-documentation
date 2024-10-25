@@ -107,7 +107,7 @@ Environment variables:
 | `PASS_CORE_FILE_SERVICE_TYPE`                    | FILE_SYSTEM                  | The type of File Service, FILE_SYSTEM or S3                                                                             |
 | `PASS_CORE_FILE_SERVICE_ROOT_DIR`                |                              | Path to File Service root directory                                                                                     |
 | `PASS_CORE_S3_BUCKET_NAME`                       | pass-core-file               | If File Service is S3, the S3 bucket name                                                                               |
-| `PASS_CORE_S3_REPO_PREFIX`                       | pass-core-file               | If File Service is S3, the S3 prefix                                                                                    |
+| `PASS_CORE_S3_REPO_PREFIX`                       | pass-core-file               | If File Service is S3, the prefix of S3 keys in the bucket                                                              |
 | `PASS_CORE_POLICY_INSTITUTION`                   |                              | Name of the institution                                                                                                 |
 | `PASS_CORE_POLICY_INSTITUTIONAL_POLICY_TITLE`    |                              | Title of the institutional policy                                                                                       |
 | `PASS_CORE_POLICY_INSTITUTIONAL_REPOSITORY_NAME` |                              | Name of institutional repository                                                                                        |
