@@ -73,8 +73,6 @@ Run `mvn clean install`. Then go to the [pass-docker](https://github.com/eclipse
 
 The application is configured by its `pass-core-main/src/main/resources/application.yaml` which in turn references a number of environment variables.
 
-The application is configured by its application.yaml which in turn references a number of environment variables.
-
 By default, pass-core-main will run with a typical production configuration. In order to run the default configuration, the environment variables below must be set with appropriate values for your environment.
 
 Environment variables:
