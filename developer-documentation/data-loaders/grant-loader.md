@@ -120,9 +120,9 @@ Once pass-docker is up and the loader container is done running, open a browser 
    ```text
    APP_HOME_ENV=/data/grantloader
    POLICY_PROP_PATH=file:/data/grantloader/policy.properties
-   PASS_CLIENT_URL=http://localhost:8080
-   PASS_CLIENT_USER=<value from .eclipse-pass.local_env in pass-docker PASS_CORE_USER>
-   PASS_CLIENT_PASSWORD=<value from .eclipse-pass.local_env in pass-docker PASS_CORE_PASSWORD>
+   PASS_CORE_URL=http://localhost:8080
+   PASS_CORE_USER=<value from .eclipse-pass.local_env in pass-docker PASS_CORE_USER>
+   PASS_CORE_PASSWORD=<value from .eclipse-pass.local_env in pass-docker PASS_CORE_PASSWORD>
    ```
 4. Copy your grant CSV file to the `grantloadertest` directory.
 5. Open a new terminal and cd to the pass-docker directory.
