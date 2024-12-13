@@ -16,8 +16,8 @@ These [.eclipsefdn](https://github.com/eclipse-pass/.eclipsefdn) repo / tools gi
 * Repositories and their settings
 * Branch protection rules
 
-If a setting is not supplied in the `eclipse-pass.jsonnet` file it will default to a value. The full set of default 
-values are on the Eclipse managed [otterdog-defaults.libsonnet](https://github.com/EclipseFdn/otterdog-defaults/blob/main/otterdog-defaults.libsonnet).
+If a setting is not supplied in the `eclipse-pass.jsonnet` file, it will default to a predefined value. The full set of
+default values is available in the Eclipse-managed [otterdog-defaults.libsonnet](https://github.com/EclipseFdn/otterdog-defaults/blob/main/otterdog-defaults.libsonnet).
 
 Learn more about [Otterdog here](https://otterdog.readthedocs.io/en/latest/).
 
