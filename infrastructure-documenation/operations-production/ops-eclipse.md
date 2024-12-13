@@ -29,8 +29,8 @@ repository, follow these steps:
 4. Create a pull request in the `.eclipsefdn` repository. 
 5. An automated workflow will run, displaying the changes to be applied and validating that the configuration is 
 correctly formatted and structured.
-6. Depending on the type of changes one or more Eclipse engineers will review the PR. Additionally, the project lead 
-must also sign off on it.
+6. Depending on the type of changes one or more Eclipse engineers will review the PR. Additionally, the project lead's 
+approval may also be required based on the nature of the changes.
 
 ## Eclipse Contributor Agreement and Eclipse Development Process
 
