@@ -16,7 +16,21 @@ These [.eclipsefdn](https://github.com/eclipse-pass/.eclipsefdn) repo / tools gi
 * Repositories and their settings
 * Branch protection rules
 
-Learn more about [Otterdog here](/docs/infra/otterdog.md).
+Learn more about [Otterdog here](https://otterdog.readthedocs.io/en/latest/).
+
+### Workflow for Updating the Otterdog Configuration 
+
+To make changes to the Otterdog configuration in the [.eclipsefdn](https://github.com/eclipse-pass/.eclipsefdn)
+repository, follow these steps:
+
+1. Fork the [.eclipsefdn](https://github.com/eclipse-pass/.eclipsefdn) repository into your own GitHub account.
+2. Make changes to the `eclipse-pass.jsonnet` file.
+3. Push those changes to the upstream repository.
+4. Create a pull request in the `.eclipsefdn` repository. 
+5. An automated workflow will run, displaying the changes to be applied and validating that the configuration is 
+correctly formatted and structured.
+6. Depending on the type of changes one or more Eclipse engineers will review the PR. Additionally, the project lead 
+must also sign off on it.
 
 ## Eclipse Contributor Agreement and Eclipse Development Process
 
@@ -32,4 +46,4 @@ ECA is not configured as a required check for merging in `pass-documentation`, t
 non-committer. In addition, the EDP explicitly states: "you can merge if you know that the user associated with the 
 commit has signed an ECA", therefore if a user with a different GitHub account with a different email address from their
 Eclipse committer account, is still able to merge PRs with those commits. This applies to GitBot (GitBook GitHub bot), 
-and Eclipse is aware of this account to make commits.
+and Eclipse recognizes this account for making commits.
