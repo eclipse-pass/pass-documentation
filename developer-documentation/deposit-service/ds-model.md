@@ -188,15 +188,15 @@ a `Transport` implementation.
 
 The `Assembler` and the `PackageProvider` create the package, and the `Transport` is the "how" of how a package is
 transferred to a downstream repository. Choosing the `Transport` to be used depends on the support of the downstream
-repository for things like S/FTP, SWORD, InvenioRDM (HTTP) or other protocols.
+repository for things like SFTP, SWORD, InvenioRDM (HTTP) or other protocols.
 
 For example, a BagIt `Assembler` and `PackageProvider` would produce BagIt packages. Those packages may be transported
-to downstream repositories using S/FTP, SWORDv2, or a custom Transport implementation. The `Transport` to be used is a
+to downstream repositories using SFTP, SWORDv2, or a custom Transport implementation. The `Transport` to be used is a
 matter of configuration in `repositories.json`.
 
-### S/FTP
+### SFTP
 
-Supports the transport of the package stream using S/FTP.
+Supports the transport of the package stream using SFTP.
 
 #### SWORDv2
 

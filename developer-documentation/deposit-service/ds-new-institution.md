@@ -19,7 +19,7 @@ Therefore, supporting new repositories or use cases requires novel code to be de
 In order to support a new downstream repository (e.g. Dataverse, Islandora), there are four high-level requirements to
 negotiate:
 
-1. Repository protocol: the protocol used to transmit the bytes to the repository (e.g., S/FTP, SWORD, HTTP).
+1. Repository protocol: the protocol used to transmit the bytes to the repository (e.g., SFTP, SWORD, HTTP).
 2. Custody transfer: mechanism used to determine whether a successful custody transfer took place.
 3. Package spec: governs physical characteristics of the package (structure, pathing, naming), and required or optional
    metadata (e.g., NIH bulk package spec, DSpace METS, BagIT).
@@ -79,11 +79,11 @@ interpret the response for success or failure. In some cases, the response carri
 persisted (e.g., Deposit.depositStatusRef is captured from a SWORD response for the DepositStatusProcessor to act on
 later).
 
-The transport implementation is also responsible for indicating the location of the package, e.g. the folder (S/FTP) or
+The transport implementation is also responsible for indicating the location of the package, e.g. the folder (SFTP) or
 collection (SWORD) the package will be transferred to within the downstream repository. These transport hints are
 supplied as key-value pairs to the underlying implementation.
 
-If the repository protocol is SWORDv2, S/FTP, or InvenioRDM the existing implementation may be reused, otherwise write 
+If the repository protocol is SWORDv2, SFTP, or InvenioRDM the existing implementation may be reused, otherwise write 
 your own.
 
 If the repository has a use case that is not handled by an existing implementation, it might be accommodated by

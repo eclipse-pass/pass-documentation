@@ -14,13 +14,13 @@ The `demo` yml file describes an early system meant to demonstrate new technolog
 In order to run a local test instance of the PASS project using Docker Compose you need to specify the correct `yml` file and the correct `env` file.
 
 #### Run Without Deposit Services
-In order to run a local instance **_without_** deposit-service, ftp, and dspace, you can run the following command:
+In order to run a local instance **_without_** deposit-service, SFTP, and dspace, you can run the following command:
 ```
 docker compose -f docker-compose.yml -f eclipse-pass.local.yml up -d --no-build --quiet-pull --pull always
 ```
 
 #### Run With Deposit Services and DSpace
-In order to run a local instance **_with_** deposit-service, ftp, dspace, you can run the following command:
+In order to run a local instance **_with_** deposit-service, SFTP, dspace, you can run the following command:
 ```
 docker compose -p pass-docker -f docker-compose.yml -f eclipse-pass.local.yml -f docker-compose-deposit.yml -f docker-compose-dspace.yml up -d --no-build --quiet-pull --pull always
 ```
@@ -37,7 +37,7 @@ docker compose -p pass-docker -f dspace-cli.yml -f dspace-cli.ingest.yml run --r
 ```
 
 #### Run With Deposit Services and InvenioRDM
-In order to run a local instance **_with_** deposit-service, ftp, InvenioRDM, you can run the following command:
+In order to run a local instance **_with_** deposit-service, SFTP, InvenioRDM, you can run the following command:
 
 Refer to [PASS Docker Testing InvenioRDM](./invenio-rdm.md) for instructions managing a local test InvenioRDM instance that will communicate with `pass-docker`.
 
