@@ -22,7 +22,7 @@ During our release the Java based component artifacts for PASS are published to 
 
 ### SBOM
 
-As of release `1.13.0`, a [CycloneDX Software Bill Of Materials (SBOM)](https://cyclonedx.org/specification/overview/) is created and published for each of the following artifacts:
+As of release `1.13.0`, a [CycloneDX Software Bill Of Materials (SBOM)](https://cyclonedx.org/specification/overview/) is created and published for the following artifacts:
 
 * [pass-core-main](https://repo1.maven.org/maven2/org/eclipse/pass/pass-core-main/)
 * [deposit-core](https://repo1.maven.org/maven2/org/eclipse/pass/deposit/deposit-core/)
