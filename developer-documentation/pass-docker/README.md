@@ -28,12 +28,12 @@ docker compose -p pass-docker -f docker-compose.yml -f eclipse-pass.local.yml -f
 ##### Testing DSpace Integration with a Local Test Instance of PASS
 Run the following to create a test admin user in dspace:
 ```
-docker compose -p pass-docker -f dspace-cli.yml run --rm dspace-cli create-administrator -e test@test.edu -f admin -l user -p admin -c en
+docker compose -p pass-docker -f docker-compose.yml -f eclipse-pass.local.yml -f docker-compose-deposit.yml -f dspace-cli.yml run --rm dspace-cli create-administrator -e test@test.edu -f admin -l user -p admin -c en
 ```
 
 Run the following to load sample data into dspace:
 ```
-docker compose -p pass-docker -f dspace-cli.yml -f dspace-cli.ingest.yml run --rm dspace-cli
+docker compose -p pass-docker -f docker-compose.yml -f eclipse-pass.local.yml -f docker-compose-deposit.yml -f dspace-cli.yml -f dspace-cli.ingest.yml run --rm dspace-cli
 ```
 
 #### Run With Deposit Services and InvenioRDM
