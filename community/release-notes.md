@@ -1,3 +1,21 @@
+## Release v1.14.0
+### Date: January 29, 2025
+
+Release Manager: Russ Poetker, JHU
+
+This release adds SonarQube Cloud for pass-core, pass-support, and pass-ui for Static Code Analysis to improve code quality and security. The pass-core and pass-support projects now produce JaCoCo code coverage metrics. In a near-term future release, code coverage reports will be generated on SonarQube Cloud. The failed deposit retry rule has changed so that a failed deposit is only automatically retried if the target repository was unreachable. Various code cleanups and dependency updates have been made to the project.
+
+Tickets Completed: https://github.com/eclipse-pass/main/milestone/29?closed=1
+
+Release Components:
+* main - https://github.com/eclipse-pass/main/releases/tag/1.14.0
+* pass-core - https://github.com/eclipse-pass/pass-core/releases/tag/1.14.0
+* pass-docker - https://github.com/eclipse-pass/pass-docker/releases/tag/1.14.0
+* pass-acceptance-testing - https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/1.14.0
+* pass-support - https://github.com/eclipse-pass/pass-support/releases/tag/1.14.0
+* pass-ui - https://github.com/eclipse-pass/pass-ui/releases/tag/1.14.0
+* pass-documentation - https://github.com/eclipse-pass/pass-documentation/releases/tag/1.14.0
+
 ## Release v1.13.0
 ### Date: December 9, 2024
 
