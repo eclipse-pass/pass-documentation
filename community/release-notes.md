@@ -3,7 +3,7 @@
 
 Release Manager: Russ Poetker, JHU
 
-This release adds SonarQube Cloud for pass-core, pass-support, and pass-ui for Static Code Analysis to improve code quality and security. The pass-core and pass-support projects now produce JaCoCo code coverage metrics. In a near-term future release, code coverage reports will be generated on SonarQube Cloud. The failed deposit retry rule has changed so that a failed deposit is only automatically retried if the target repository was unreachable. Various code cleanups and dependency updates have been made to the project.
+This release adds SonarQube Cloud for pass-core, pass-support, and pass-ui for Static Code Analysis to improve code quality and security (badges have been added to each project showing SonarQube Quality Gate status). The pass-core and pass-support projects now produce JaCoCo code coverage metrics. In a near-term future release, code coverage reports will be generated on SonarQube Cloud. The failed deposit retry rule has changed so that a failed deposit is only automatically retried if the target repository was unreachable. The release workflow has been updated to release the pass-documentation project. Various code cleanups and dependency updates have been made to the project.
 
 Tickets Completed: https://github.com/eclipse-pass/main/milestone/29?closed=1
 
