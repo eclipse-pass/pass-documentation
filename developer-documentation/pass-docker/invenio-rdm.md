@@ -31,7 +31,8 @@ The above commands starts by building the application docker image, once the doc
 * Click `New token` in the Personal access tokens
 * Enter a Name and click `Create`
 * Copy the Access token that was created
-* Paste the token value in the `pass-docker/.eclipse-pass.local_env` as the value for the `INVENIORDM_API_TOKEN` property
+* Paste the token value in the `pass-docker/invenio-rdm/pass-docker-invenio-rdm/.eclipse-pass.invenio.local_env` as the 
+value for the `INVENIORDM_API_TOKEN` property
 
 **Note**: The server is using a self-signed SSL certificate, so your browser
 will issue a warning that you will have to by-pass.
