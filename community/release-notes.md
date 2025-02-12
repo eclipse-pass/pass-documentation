@@ -1,3 +1,21 @@
+## Release v1.14.1
+### Date: February 12, 2025
+
+Release Manager: Russ Poetker, JHU
+
+This release is a patch release to fix a bug in notification services that was not allowing emails to be sent. This release also contains the new DSpace API transport in deposit services which is the new way to perform deposits into DSpace. The DSpace API transport will eventually replace the SWORD transport for DSpace deposits. Additionally, pass-docker was changed so that test PKI files are generated as needed on startup for the test IDP and InvenioRDM containers.
+
+Tickets Completed: https://github.com/eclipse-pass/main/milestone/31?closed=1
+
+Release Components:
+* main - https://github.com/eclipse-pass/main/releases/tag/1.14.1
+* pass-core - https://github.com/eclipse-pass/pass-core/releases/tag/1.14.1
+* pass-docker - https://github.com/eclipse-pass/pass-docker/releases/tag/1.14.1
+* pass-acceptance-testing - https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/1.14.1
+* pass-support - https://github.com/eclipse-pass/pass-support/releases/tag/1.14.1
+* pass-ui - https://github.com/eclipse-pass/pass-ui/releases/tag/1.14.1
+* pass-documentation - https://github.com/eclipse-pass/pass-documentation/releases/tag/1.14.1
+
 ## Release v1.14.0
 ### Date: January 29, 2025
 
