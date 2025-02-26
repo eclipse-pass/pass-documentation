@@ -1,3 +1,21 @@
+## Release v1.15.0
+### Date: February 26, 2025
+
+Release Manager: Mark Patton, JHU
+
+This release adds support for transforming JATS XML abstracts imported from a DOI to HTML for better display in a repository. Dependencies have been updated to address security problems found by an analysis of SBOMs. Fixes were made handling cleanup of test deposits which use the DSpace API.
+
+Tickets Completed: https://github.com/eclipse-pass/main/milestone/30?closed=1
+
+Release Components:
+* main - https://github.com/eclipse-pass/main/releases/tag/1.15.0
+* pass-core - https://github.com/eclipse-pass/pass-core/releases/tag/1.15.0
+* pass-docker - https://github.com/eclipse-pass/pass-docker/releases/tag/1.15.0
+* pass-acceptance-testing - https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/1.15.0
+* pass-support - https://github.com/eclipse-pass/pass-support/releases/tag/1.15.0
+* pass-ui - https://github.com/eclipse-pass/pass-ui/releases/tag/1.15.0
+* pass-documentation - https://github.com/eclipse-pass/pass-documentation/releases/tag/1.15.0
+
 ## Release v1.14.1
 ### Date: February 12, 2025
 
