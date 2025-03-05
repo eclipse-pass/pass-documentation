@@ -61,7 +61,7 @@ Builder.
 
 ### Configuration Model
 
-* `Packager`: encapsulates configuration of the `Assembler`, `Transport`, and `DepositStatusProcessor` for every
+* `Packager`: encapsulates configuration of the `Assembler` and `Transport` for every
   downstream repository in `repositories.json`. Each repository configured in `repositories.json` should to reference
   a `Repository` resource in the PASS repository.
 * `RepositoryConfig`: Java representation of a single repository configuration in `repositories.json`. The
@@ -91,8 +91,6 @@ Builder.
 
 ### Messaging Model
 
-* `DepositStatusProcessor`: responsible for updating the `Deposit.depositStatus` property of a `Deposit` resource,
-  typically by resolving the URL in the `Deposit.depositStatusRef` property and parsing its content.
 * `CriticalRepositoryInteraction`: CRI for short. Performs an optimistic locking (`If-Match` using an Etag) "critical"
   modification on a PASS resource, with a built-in retry mechanism when a modification fails. Each CRI has a
   pre-condition, critical section, and post-condition. The pre-condition must be met before the critical section is
@@ -188,19 +186,20 @@ a `Transport` implementation.
 
 The `Assembler` and the `PackageProvider` create the package, and the `Transport` is the "how" of how a package is
 transferred to a downstream repository. Choosing the `Transport` to be used depends on the support of the downstream
-repository for things like SFTP, SWORD, InvenioRDM (HTTP) or other protocols.
+repository for things like SFTP, DSpace API (HTTP), InvenioRDM (HTTP) or other protocols.
 
 For example, a BagIt `Assembler` and `PackageProvider` would produce BagIt packages. Those packages may be transported
-to downstream repositories using SFTP, SWORDv2, or a custom Transport implementation. The `Transport` to be used is a
+to downstream repositories using SFTP or a custom Transport implementation. The `Transport` to be used is a
 matter of configuration in `repositories.json`.
 
 ### SFTP
 
 Supports the transport of the package stream using SFTP.
 
-#### SWORDv2
+#### DSPACE API
 
-Supports the transport of the package stream using the [SWORD protocol version 2](http://swordapp.github.io/SWORDv2-Profile/SWORDProfile.html).
+Supports the transport of the package stream that will be sent to a DSpace repository. This implementation uses
+HTTP to call the DSpace REST API.
 
 #### InvenioRDM
 
