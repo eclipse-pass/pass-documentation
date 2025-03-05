@@ -52,7 +52,7 @@ The primary benefit of extending `AbstractAssembler` is that the logic for ident
 submission and creating their representation as `List<DepositSubmission>` is shared. Subclasses of `AbstractAssembler`
 must instantiate and return a `PackageStream`.
 
-Examples can be found at: `DspaceMetsAssembler`, `NihmsAssembler`, `InvenioRdmAssembler`, and `BagItAssembler`
+Examples can be found at: `DspaceAssembler`, `NihmsAssembler`, `InvenioRdmAssembler`, and `BagItAssembler`
 
 ### PackageStream API
 
@@ -109,7 +109,6 @@ _When developing your own `Assembler` that returns a `ArchivingPackageStream`, y
 
 Examples of implemented package providers:
 
-* `DspaceMetsPackageProvider`
 * `NihmsPackageProvider`
 * `BagItPackageProvider`
 
@@ -129,9 +128,7 @@ multiple threads, therefore all the code paths executed by an `Assembler` must b
 
 `AbstractAssembler` and `ArchivingPackageStream` are already thread-safe; your concrete implementation
 of `AbstractAssembler` and `PackageProvider` will need to maintain that thread safety. Streaming a package inherently
-involves maintaining state, including the updating of metadata for resources as they are streamed. Package Providers
-will often maintain state as they generate supplemental resources for a package; the `J10PMetadataDomWriter`
-, for example, builds a METS.xml file using a DOM.
+involves maintaining state, including the updating of metadata for resources as they are streamed.
 
 One strategy for maintaining thread safety is to scope any state maintained over the course of streaming a package to
 the executing thread. `Assembler` implementations are free to use whatever mechanisms they wish to ensure thread
@@ -143,7 +140,6 @@ kept on the Thread stack and not in the JVM heap). For example:
 * `AbstractAssembler` implementations instantiate a new `ArchivingPackageStream` each time.
 * `DefaultStreamWriterImpl` instantiates a new `ResourceBuilder` for each resource being streamed using a factory
   pattern.
-* The `DspaceMetsAssembler` uses a factory pattern to instantiate its state-maintaining objects.
 
 The factory objects may be kept in shared memory (i.e. as instance member variables), but the objects produced by the
 factories are maintained in the Thread stack (as method variables). After a `PackageStream` has been opened and
@@ -189,7 +185,6 @@ well written and test all aspects of a generated package.
 Examples of these ITs:
 
 * `BagItThreadedAssemblyIT`
-* `J10PMetsThreadedAssemblyIT`
 * `NihmsThreadedAssemblyIT`
 
 ### PackageVerifier
@@ -219,7 +214,6 @@ a `DepositFile` from the submission and maps it to its expected location in the 
 
 Examples: 
 
-* `DspaceMetsPackageVerifier`
 * `NihmsPackageVerifier`
 
 ## Runtime

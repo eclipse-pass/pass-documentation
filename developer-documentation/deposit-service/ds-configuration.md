@@ -73,53 +73,17 @@ A possible repository configuration is replicated below:
 ```json
 {
   "JScholarship": {
-    "deposit-config": {
-      "processing": {
-        "beanName": "org.eclipse.pass.deposit.messaging.status.DefaultDepositStatusProcessor"
-      },
-      "mapping": {
-        "http://dspace.org/state/archived": "accepted",
-        "http://dspace.org/state/withdrawn": "rejected",
-        "default-mapping": "submitted"
-      }
-    },
     "assembler": {
-      "specification": "http://purl.org/net/sword/package/METSDSpaceSIP"
+      "specification": "DSpace",
+      "beanName": "DSpaceAssembler"
     },
     "transport-config": {
-      "auth-realms": [
-        {
-          "mech": "basic",
-          "username": "fakeuser",
-          "password": "fakepass",
-          "url": "https://jscholarship.library.jhu.edu/"
-        }
-      ],
       "protocol-binding": {
-        "protocol": "SWORDv2",
-        "username": "${dspace.user}",
-        "password": "${dspace.password}",
-        "server-fqdn": null,
-        "server-port": null,
-        "service-doc": "https://${dspace.server}/server/swordv2/servicedocument",
-        "default-collection": "https://${dspace.server}/server/swordv2/collection/123456789/2",
-        "on-behalf-of": null,
-        "deposit-receipt": true,
-        "user-agent": "pass-deposit/x.y.z"
+        "protocol": "DSpace"
       }
     }
   },
   "PubMed Central": {
-    "deposit-config": {
-      "processing": {
-      },
-      "mapping": {
-        "INFO": "accepted",
-        "ERROR": "rejected",
-        "WARN": "rejected",
-        "default-mapping": "submitted"
-      }
-    },
     "assembler": {
       "specification": "nihms-native-2017-07"
     },
@@ -137,12 +101,6 @@ A possible repository configuration is replicated below:
 }
 ```
 ### Customizing Repository Configuration Elements
-
-The repository configuration above will not be suitable for production. A production deployment needs to provide
-updated authentication credentials and ensure the correct value for the default SWORD collection URL
-- `default-collection`. Each `transport-config` section should be reviewed for correctness, paying special attention
-  to `protocol-binding` and `auth-realm` blocks: update `username` and `password` elements, and ensure correct values
-  for URLs.
 
 Values may be parameterized by any property or environment variable.
 

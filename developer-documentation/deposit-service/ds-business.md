@@ -24,14 +24,12 @@ status of the `Deposit` resource associated with the `Submission` will be update
 ## Failure Handling
 
 A _failed_ `Deposit` or `Submission` is marked with `Deposit.DepositStatus = FAILED` or `Submission.AggregateDepositStatus = FAILED`.
-When a resource has been marked `FAILED`, Deposit Services will ignore any messages relating to the resource. Failed `Deposit`
-resources will be retried as part of the `DepositStatusUpdaterJob` job. Once all `Deposit` resource are successful, the
-failed `Submission.AggregateDepositStatus` will be updated.
+When a resource has been marked `FAILED`, Deposit Services will ignore any messages relating to the resource.
 
 A resource will be considered as failed when errors occur during the processing of `Submission` and `Deposit` resources.
 Some errors may be caused by transient network issues, or a server being rebooted. In the case of such failures,
-Deposit Services will retry for n number of days after the `Submission` is created. The number of days
-is set in an application property named `pass.status.update.window.days`.
+The `Deposit.depositStatus` will be set to `RETRY`, and Deposit Services will retry for n number of days after the 
+`Submission` is created. The number of days is set in an application property named `pass.status.update.window.days`.
 
 `Submission` resources are failed when:
 
