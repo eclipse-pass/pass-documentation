@@ -19,7 +19,6 @@ A package can be thought of as a zip file containing user submitted files plus m
 specifications govern the structure of the zip file and the kind of metadata provided:
 
 * BagIT
-* DSpace METS
 * NIHMS bulk submission spec
 
 In the context of documenting inputs and outputs, DS uses the public PASS model as input and output, and produces a

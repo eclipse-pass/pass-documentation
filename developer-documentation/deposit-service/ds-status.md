@@ -42,8 +42,9 @@ Deposit status is enumerated in the `DepositStatus` class. Deposit services cons
    , i.e. custody of the `Submission` has successfully been transferred to the downstream `Repository`.
 * `REJECTED` (_terminal_): the custodial content of the `Submission` has been rejected by the `Deposit`'s `Repository`,
   i.e. the downstream `Repository` has refused to accept custody of the `Submission` content.
-* `FAILED` (_intermediate_): the transfer of custodial content to the `Repository` failed, or there was some other error
+* `FAILED` (_terminal_): the transfer of custodial content to the `Repository` failed, or there was some other error
   updating the status of the `Deposit`.
+* `RETRY` (_intermediate_): the downstream repository was not reachable. The Deposit will be retried at a later time.
 
 ## RepositoryCopy Status
 

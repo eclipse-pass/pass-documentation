@@ -19,10 +19,10 @@ Therefore, supporting new repositories or use cases requires novel code to be de
 In order to support a new downstream repository (e.g. Dataverse, Islandora), there are four high-level requirements to
 negotiate:
 
-1. Repository protocol: the protocol used to transmit the bytes to the repository (e.g., SFTP, SWORD, HTTP).
+1. Repository protocol: the protocol used to transmit the bytes to the repository (e.g., SFTP, HTTP).
 2. Custody transfer: mechanism used to determine whether a successful custody transfer took place.
 3. Package spec: governs physical characteristics of the package (structure, pathing, naming), and required or optional
-   metadata (e.g., NIH bulk package spec, DSpace METS, BagIT).
+   metadata (e.g., NIH bulk package spec, BagIT).
 4. Metadata mapping: maps elements of the PASS model to package metadata elements.
 
 The philosophy of the Deposit Service is that these requirements are a negotiation. This is for a few reasons:
@@ -53,7 +53,6 @@ If implementing a new repository the following interfaces will need to be implem
 * Implementation of Assembler API
 * Implementation of PackageProvider API
 * Implementation of Transport API
-* If repository exposes custody status, implement DepositStatusProcessor
 
 ### Downstream Requirements
 
@@ -76,14 +75,13 @@ make the appropriate calls as the repository API specifies.
 The repository protocol is primarily implemented by the Deposit Service Transport API. The Transport API is responsible
 for using a given protocol to connect to the downstream repository, initiate a transfer of bytes (the package), and
 interpret the response for success or failure. In some cases, the response carries valuable information that must be
-persisted (e.g., Deposit.depositStatusRef is captured from a SWORD response for the DepositStatusProcessor to act on
-later).
+persisted.
 
 The transport implementation is also responsible for indicating the location of the package, e.g. the folder (SFTP) or
-collection (SWORD) the package will be transferred to within the downstream repository. These transport hints are
+collection the package will be transferred to within the downstream repository. These transport hints are
 supplied as key-value pairs to the underlying implementation.
 
-If the repository protocol is SWORDv2, SFTP, or InvenioRDM the existing implementation may be reused, otherwise write 
+If the repository protocol is DSpace API, SFTP, or InvenioRDM the existing implementation may be reused, otherwise write 
 your own.
 
 If the repository has a use case that is not handled by an existing implementation, it might be accommodated by
@@ -94,31 +92,21 @@ additional transport hint involves:
 * New logic to implement hint behavior.
 * Writing tests for the new behavior.
 
-The `Sword2TransportHints.SWORD_COLLECTION_HINTS` and the corresponding logic in
-`Sword2TransportSession.selectCollection(...)` are a good example of accommodating a new use case within an existing
-implementation for which there is no formal abstraction.
-
 ### Custody Transfer
 
-Determining the status of custody transfer is the responsibility of the `DepositStatusProcessor` interface.
+Determining the status of custody transfer depends on the transport.  For DSpace API and InvenioRDM transports, if the
+deposit logic completes successfully, the custody transfer is considered completed.  For NIHMS transport, the NIHMS 
+repository workflow is a long workflow taking several days to complete.  The `NihmsReceiveMailService` reads emails 
+from NIHMS with status updates for deposits made to NIHMS and updates the associated Deposit accordingly. 
+`NihmsReceiveMailService` is a job that runs on a periodic basis.
 
-* Determining the success or failure of transfer of custody is an async process.
-* The downstream repository may have a workflow for validating the content of the package before accepting it.
-* The Deposit Service makes no assumption about how long that process may take, or in what form, or if it will ever
-  complete.
-* A process must run periodically to process PASS Deposit resources that have an intermediate deposit status (i.e.
-  deposits for which custody transfer has not been confirmed)
-* The process is represented by the `DepositStatusProcessor` interface.
-
-If the repository protocol is SWORDv2, then the `DefaultDepositStatusProcessor` may be used. Otherwise a novel
-implementation is required.
-
-As an example, the `DefaultDepositStatusProcessor` consults the `Deposit.depositStatusRef` and assumes that reference is
-URI to a SWORD Statement, which provides the real-time status of the package in the repository.
+In the future, if the DSpace API or InvenioRDM transports require Deposit status updates after the initial deposit, it 
+is recommended to use a factory pattern to implement the needed logic to get the deposit status from the downstream
+repository. This logic could be added to the `DepositUpdater` that is already invoked from a job to retry failed
+Deposits.
 
 If the downstream repository rejects custody of the package, the only recourse is for the end user to perform another
-submission that addresses the reason(s) for the rejection. The reasons for rejecting a package are not communicated.
-PASS does not facilitate this.
+submission that addresses the reason(s) for the rejection. The reasons for rejecting a package may not be communicated.
 
 In practice, a faculty member would need to:
 1. understand that their submission has been rejected
@@ -182,6 +170,3 @@ resources include:
   * manifests: a required file in BagIt packages listing the contents and their checksum
   * bag-info.txt: an optional file in BagIt (though often required by institutional profiles) that provides descriptive
       metadata about the package; this is the volatile section of BagIt
-* DSpace METS
-  * METS.xml: a required file in DSpace METS packages that contains a variety of metadata; the `<dmdSec>` is the volatile
-      section of that document.
