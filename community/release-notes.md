@@ -359,7 +359,7 @@ Release Manager: Mark Patton, JHU
 
 This release introduces updated Java implementations of pass-deposit-services. All of the major functionality of PASS has now been ported to the new framework. In addition more testing was added to the pass-core file service and support for the file service was added to pass-data-client.
 
-[Tickets Completed](https://github.com/eclipse-pass/main/milestone/11)
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/11?closed=1)
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.8.0)
@@ -379,7 +379,7 @@ Release Managers: Christopher Shannon, JHU and Russell Poetker, JHU
 
 This release introduces updated java implementations of the pass-nihms-loader and pass-notification-services projects. This release also introduces support for sending submission and deposit JMS message from pass-core, adds access control to the file-service, removes pass-ui-public from pass-docker, and cleans up the SAML configuration in pass-auth.
 
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.7.0%22
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/10?closed=1)
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.7.0)
@@ -396,8 +396,6 @@ Release Components:
 Release Manager: Jared Galanis, JHU
 
 This release introduces java implementations of the pass-journal-loader, pass-grant-loader and submission status service. This release also introduces support for user token authentication, updates to use of Java 17 in several repositories, converts pass-auth to TypeScript, integrates the user interface with the API for the policy service, introduces a simplified branding strategy along with default branding fallbacks to enable organization specific look and feel, and provides an action for publishing to an AWS SNS (Simple Notification Service) topic to facilitate deploying to AWS infrastructure.
-
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.6.0%22
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.6.0)
@@ -417,8 +415,6 @@ Release Manager: Timothy Sanders, JHU
 This release introduces the Metadata Schema Service and the Policy Service API. The Metadata Schema Service provides JSON schemas for repository metadata requirements.
 The Policy Service API determines the policies applicable to a given Submission, as well as the repositories that a Submission must be deposited into.
 Release Automation has been expanded to include [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing) and [pass-docker](https://github.com/eclipse-pass/pass-docker).
-
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.5.0%22
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.5.0)
@@ -443,8 +439,6 @@ This release introduces a new user service and access control. The release also 
 * Introduces Access Control
 * Standardized the entrypoint of dockerfiles to point at an entrypoint.sh file
 
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.4.0%22
-
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.4.0)
 * [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/0.4.0)
@@ -465,8 +459,6 @@ This release introduces a new file handling service for dealing with file upload
 * Release automations using GitHub workflows. Snapshot versions are published automatically and releases can be triggered manually in the GitHub UI
 * Add file API to pass-core for handling file related create, read, and delete operations
 * Add service to pass-core to look for publicly available manuscripts for a given DOI
-
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.3.0%22
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.3.0)
@@ -493,8 +485,6 @@ such as replacing all uses of the Fedora API within PASS with calls to the new A
 this work is completed sufficiently to provide a demonstration of PASS application capabilities,
 but certain parts of the application are currently mocked. Full functionality
 will be restored in a future release.
-
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.2.0%22
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.2.0)
@@ -528,8 +518,6 @@ Adjustments to release process - updates to allow release of Java components to 
 Introduction of code style guide - ensuring code conforms to consistent guidelines
 Adjustments to testing methods - transitioning to the use of GitHub Actions for the execution of unit and integration testing
 Initial documentation - providing a starting point for development and deployment documentation
-
-Tickets Completed: https://github.com/eclipse-pass/main/issues?q=label%3A%22Release+0.1.0%22
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/0.1.0)
