@@ -198,8 +198,8 @@ Release Manager: Mark Patton, JHU
 This release fixes a bug which may prevent login and tweaks timeouts for monitoring NIHMS email.
 
 Tickets Completed:
-* https://github.com/eclipse-pass/main/issues/930
-* https://github.com/eclipse-pass/main/issues/974
+* [930](https://github.com/eclipse-pass/main/issues/930)
+* [974](https://github.com/eclipse-pass/main/issues/974)
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/1.6.1)
