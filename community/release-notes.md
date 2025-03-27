@@ -3,7 +3,7 @@
 
 Release Manager: Tim Sanders, JHU
 
-This is a major release of PASS, marking the transition from the 1.x series to 2.x. It includes important security updates, new tools for improving code quality, and deprecated SWORD deposits in DSpace. A research spike was also conducted to explore removing AlpacaJS. We had our first pull request from an external contributor with the [Pass-Docker InvenioRDM update](https://github.com/eclipse-pass/pass-docker/pull/389)! 
+This is a major release of PASS, marking the transition from the 1.x series to 2.x. It includes important security updates, new tools for improving code quality, and removed SWORD deposits. A research spike was also conducted to explore removing AlpacaJS. We had our first pull request from an external contributor with the [Pass-Docker InvenioRDM update](https://github.com/eclipse-pass/pass-docker/pull/389)! 
 
 Highlights
 
