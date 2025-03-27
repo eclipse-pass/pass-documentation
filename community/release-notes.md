@@ -1,3 +1,37 @@
+## Release v2.0.0
+### Date: March 27, 2025
+
+Release Manager: Tim Sanders, JHU
+
+This is a major release of PASS, marking the transition from the 1.x series to 2.x. It includes important security updates, new tools for improving code quality, and deprecated SWORD deposits in DSpace. A research spike was also conducted to explore removing AlpacaJS. We had our first pull request from an external contributor with the [Pass-Docker InvenioRDM update](https://github.com/eclipse-pass/pass-docker/pull/389)! 
+
+Highlights
+
+* Removed SWORD Support: SWORD deposit support has been removed.
+
+* Security Fixes: Updated dependencies identified with CVEs, improving the security posture of the PASS user interface. Strengthened Content Security Policy (CSP) headers to mitigate risks such as cross-site scripting (XSS) and content injection attacks.
+
+* Code Coverage Setup: Configured SonarQube to ingest JaCoCo reports, providing real-time code coverage status checks for pull requests.
+
+* Remove Alpaca Analysis: Investigated the feasibility of removing AlpacaJS from the metadata step, exploring potential improvements and simplifications for dynamic form generation.
+
+Additional Changes
+
+* Bug Fix: Addressed an issue with the proxy search dialog displaying at the top of the page rather than in its intended dialog.
+* Cleanup Documentation: Archived out-dated documentation.
+* Pass-Docker InvenioRDM: Update InvenioRDM to v12 in local docker environment.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/32?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.0.0)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.0.0)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.0.0)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.0.0)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.0.0)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.0.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.0.0)
+
 ## Release v1.15.0
 ### Date: February 27, 2025
 
