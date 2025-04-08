@@ -5,6 +5,7 @@ The PASS Developer Guidelines provide detailed instructions for contributing to 
 ## Getting Involved
 
 * Welcome to the PASS community! There are many ways to participate: trying out the PASS software, letting us know about bugs, suggesting documentation updates, or contributing code. After you’ve read this guide, if you have questions, please send us a message on our [Google Group](https://groups.google.com/g/pass-general), and we will be in touch shortly!
+* Looking for a place to start contributing? Our [SonarQube Cloud](https://sonarcloud.io/organizations/eclipse-pass) has a list of bugs/issues.
 * We primarily use Slack to communicate about PASS development. To be invited to our Slack workspace, please send us a message on our [Google Group](https://groups.google.com/g/pass-general).
 * Contributing to the project begins as a [contributor](https://www.eclipse.org/projects/handbook/#contributing-contributors) and may lead to being a [committer](https://www.eclipse.org/projects/handbook/#roles-cm). Whether you are a `contributor` or `committer`, you will need to sign up for an [Eclipse account](https://accounts.eclipse.org/user/login).
     * A `contributor` can add to and improve PASS by creating issues and submitting pull requests. You’ll find more information about both of these tasks below.
