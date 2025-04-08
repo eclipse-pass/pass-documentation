@@ -6,7 +6,7 @@ Whether you are interested in simply improving the existing code base, or maybe 
 
 ### Reporting a Bug
 
-If you've run across a bug in the Eclipse PASS application, letting us know about it is an important and an easy way to contribute. First, check to see if there's an existing issue for what you're observing by performing a search in the [issues list](https://github.com/eclipse-pass/main/issues). If you've discovered a new bug, create a new issue to tell us about it. You will need to create a [GitHub ](https://github.com/)account to do this, if you don't have one already.
+If you've run across a bug in the Eclipse PASS application, letting us know about it is an important and an easy way to contribute. First, check to see if there's an existing issue for what you're observing by performing a search in the [issues list](https://github.com/eclipse-pass/main/issues). If you've discovered a new bug, create a new issue to tell us about it. You will need to create a [GitHub ](https://github.com/)account to do this, if you don't have one already. Another good place to start contributing code is the list of issues on our [SonarQube Cloud](https://sonarcloud.io/organizations/eclipse-pass).
 
 When creating an issue, please provide a concise description of the potential problem, the steps needed to reproduce it, and a description of how the behavior differs from what you need or expect. Also, provide details about your environment like OS, Java version, and Maven version, etc.
 
