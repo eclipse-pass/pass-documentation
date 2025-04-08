@@ -102,6 +102,7 @@ PASS has three different types of tests that are run against the application, an
 * Update or add new documentation to the `pass-documentation` repository.
     * This would be a separate pull request, see the Documentation section for this process.
 * A pull request should not be merged unless all automated checks pass.
+  * The [SonarQube quality gates](../infrastructure-documenation/code-quality-analysis/sonar-qube.md) are optional, but it is encouraged to address these code quality checks. 
 * Merges should happen using the rebase strategy.
     * If there have been changes to the `main` code branch, you may want to rebase your branch on `main` for additional safety.
 * After a successful merge, delete the branch.
@@ -114,6 +115,7 @@ PASS has three different types of tests that are run against the application, an
   * Ensure code is adequately commented where necessary.
   * Verify that sensitive configurations are externalized and not hard-coded.
   * Ensure REST endpoints follow standard conventions (e.g., proper use of [HTTP methods](https://developer.mozilla.org/en-US/docs/Web/HTTP)).
+  * Review the [SonarQube quality gates](../infrastructure-documenation/code-quality-analysis/sonar-qube.md) and [JaCoCo code coverage](../infrastructure-documenation/code-quality-analysis/jacoco.md) reports.
 * Review any unit/integration tests and ensure that they provide proper coverage.
   * Ensure proper use of mocks and stubs to isolate components during testing.
 * Identify and suggest refactoring for any [code smells](https://linearb.io/blog/what-is-a-code-smell).
