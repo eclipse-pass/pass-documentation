@@ -7,10 +7,10 @@ Cloud, which integrates directly with our GitHub repositories.
 ## Summary
 
 SonarQube performs static analysis on the PASS codebase to detect bugs, vulnerabilities, code smells, and security 
-hotspots. By integrating SonarQube with our GitHub repositories, we are able to get code quality checks on our pull 
-requests and promote clean code. Analysis is triggered automatically on pull requests and merges to the main branch via
-GitHub Actions. In addition, a [plugin](https://docs.sonarsource.com/sonarqube-for-ide/intellij/) can be added to 
-various IDEs, catching code quality issues before submitting a pull request.
+hotspots. This integration provides automated code quality checks on pull requests, helping to promote and maintain 
+clean code. Analysis is triggered automatically on pull requests and merges to the main branch via GitHub Actions. In 
+addition, a [plugin](https://docs.sonarsource.com/sonarqube-for-ide/intellij/) can be added to various IDEs, catching 
+code quality issues before submitting a pull request.
 
 ### List of Repositories on SonarQube
 
@@ -37,46 +37,45 @@ The analysis tool that scans the code.
 
 ### SonarQube Configuration
 
-The full documentation to getting starting with SonarQube Cloud is available on their [documentation site](https://docs.sonarsource.com/sonarqube-cloud/getting-started/sign-up/).
+The full documentation for getting started with SonarQube Cloud is available on their [documentation site](https://docs.sonarsource.com/sonarqube-cloud/getting-started/sign-up/).
+On the pass project it is integrated into our CI/CD pipeline, providing status checks on our pull requests.
 
 ### Reading the Reports
 
-Access the SonarQube reports using the links in the [Summary](#list-of-repository-on-sonarqube) section. Analyzing the
-reports [documentation](https://docs.sonarsource.com/sonarqube-cloud/digging-deeper/overview/) is on the SonarQube Cloud
-documentation site.
+Access the SonarQube reports using the links in the [Summary](#list-of-repository-on-sonarqube) section. Detailed 
+guidance on analyzing reports is available on the[SonarQube Cloud Documentation site.](https://docs.sonarsource.com/sonarqube-cloud/digging-deeper/overview/)
 
 Key areas to examine include:
 
-* Project Overview: The main dashboard page shows:
+* Project Overview (Main Dashboard):
     * Quality Gate status (Passed/Failed) – this is the primary indicator of code health.
     * The main **Ratings** (A-E) for Reliability, Security, Maintainability, and the **Coverage** percentage for
     a quick code coverage assessment.
-* Pull Request Analysis (via GitHub):
+* Pull Request Analysis (Viewed in GitHub):
     * When analysis runs on a pull request, SonarCloud adds a status check to the PR in GitHub.
-* On a specific project:
-  * Issues Tab:
-      * Provides a detailed, filterable list of all identified issues.
-      * Filter by type (Bug, Vulnerability, Smell, Hotspot), severity (Blocker, Critical, Major, Minor, Info), 
-      status (Open, Confirmed, False Positive, Won't Fix), assignment, creation date, etc.
-  * Measures Tab:
-      * Explore metrics in more detail. View graphs showing trends over time for size, complexity, coverage, technical 
-      debt, and issue counts.
-      * Useful for understanding the overall health trends of the codebase.
-  * Code Tab:
-      * Browse the source code directly within SonarCloud.
-      * Issues are highlighted inline, making it easy to see problems in context.
+* Issues Tab (in SonarCloud Project):
+    * Provides a detailed, filterable list of all identified issues.
+    * Filter by type (Bug, Vulnerability, Smell, Hotspot), severity (Blocker, Critical, Major, Minor, Info), 
+    status (Open, Confirmed, False Positive, Won't Fix), assignment, creation date, etc.
+* Measures Tab (in SonarCloud Project):
+    * Explore metrics in more detail. View graphs showing trends over time for size, complexity, coverage, technical 
+    debt, and issue counts.
+    * Useful for understanding the overall health trends of the codebase.
+* Code Tab (in SonarCloud Project):
+    * Browse the source code directly within SonarCloud.
+    * Issues are highlighted inline, making it easy to see problems in context.
 
 ### Integration with JaCoCo
 
-SonarQube does not provide code coverage out-of-the-box, but does integrate with it. In a simple project, the [setup](https://docs.sonarsource.com/sonarqube-cloud/enriching/test-coverage/java-test-coverage/)
-is trivial, but with the PASS project there are a few extra configuration steps that are necessary in order for 
-SonarQube to be integrated with our CI/CD pipeline. Those extra steps are detailed in the [JaCoCo page](jacoco.md) of 
-the code quality analysis.
+SonarQube does not provide code coverage out-of-the-box, but it does integrate with coverage tools. In a simple project,
+the [setup](https://docs.sonarsource.com/sonarqube-cloud/enriching/test-coverage/java-test-coverage/)
+is trivial, but with the PASS project there are a few extra configuration steps for proper integration within our CI/CD
+pipeline. These extra steps are detailed on the [JaCoCo page](jacoco.md) of the code quality analysis.
 
 ### Known Limitations using Free Tier Subscription
 
 * Can only analyze the `main` branch and pull requests (only if `main` is the target branch) of a repository.
-* Can only use the default [Sonar way quality gate](https://docs.sonarsource.com/sonarqube-cloud/standards/managing-quality-gates/)
+* Can only use the default [Sonar Way quality gate](https://docs.sonarsource.com/sonarqube-cloud/standards/managing-quality-gates/)
 for code quality analysis
 * Maximum number of organization members is 5. 
 
