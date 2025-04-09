@@ -29,6 +29,8 @@ code quality issues before submitting a pull request.
 * [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/): The cloud-based platform hosting the analysis 
 engine and results dashboard.
 * [GitHub Actions](https://docs.github.com/en/actions): publishes results to SonarQube Cloud via workflows.
+* [SonarScanner for Maven](https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/ci-based-analysis/sonarscanner-for-maven/)
+* [SonarScanner for Maven GitHub](https://github.com/SonarSource/sonar-scanner-maven)
 
 ## Technical Deep Dive
 
