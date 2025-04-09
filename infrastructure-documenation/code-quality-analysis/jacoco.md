@@ -28,6 +28,8 @@ regressions.
 * Build Tool [Maven](https://maven.apache.org/)
 * [GitHub Actions](https://docs.github.com/en/actions)
 * [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/)
+* [SonarScanner for Maven](https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/ci-based-analysis/sonarscanner-for-maven/)
+* [SonarScanner for Maven GitHub](https://github.com/SonarSource/sonar-scanner-maven)
 
 ## Technical Deep Dive
 
