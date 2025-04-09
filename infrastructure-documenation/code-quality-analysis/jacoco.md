@@ -27,7 +27,7 @@ regressions.
 * [JaCoCo](https://www.jacoco.org/jacoco/)
 * Build Tool [Maven](https://maven.apache.org/)
 * [GitHub Actions](https://docs.github.com/en/actions)
-* [SonarQube Cloud](https://www.sonarsource.com/products/sonarqube/)
+* [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/)
 
 ## Technical Deep Dive
 
