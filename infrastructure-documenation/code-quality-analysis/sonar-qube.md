@@ -1,6 +1,6 @@
 # PASS Code Quality
 
-PASS uses the code quality and security tool [SonarQube Cloud](https://www.sonarsource.com/products/sonarqube/) to 
+PASS uses the code quality and security tool [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/) to 
 ensure a high-quality code base. SonarSource graciously allows open source projects to use a free tier of SonarQube 
 Cloud, which integrates directly with our GitHub repositories.
 
