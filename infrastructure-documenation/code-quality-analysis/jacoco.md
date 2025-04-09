@@ -1,7 +1,9 @@
 # Code Coverage
 
 This section details how PASS utilizes JaCoCo for measuring Java code coverage in [PASS Core](https://github.com/eclipse-pass/pass-core)
-and [PASS Support](https://github.com/eclipse-pass/pass-support).
+and [PASS Support](https://github.com/eclipse-pass/pass-support). Unit and Integration tests exist in PASS UI as well, but 
+at the moment do not have any code coverage analysis being performed. We anticipate adding code coverage reports to PASS
+UI in the future.
 
 ## Summary
 
@@ -66,7 +68,8 @@ analysis will be performed.
 
 ## Other Configurations to Note
 
-* Using GitHub Actions requires the `Automatic Analysis` to be turned off so that GitHub Actions can trigger analysis.
+* Using GitHub Actions requires the `Automatic Analysis` to be turned off on the project in SonarQube so that GitHub 
+Actions can trigger analysis.
 * A SonarQube project was created for `eclipse-pass-parent`. With 'Automatic Analysis' disabled in SonarCloud, all scans
 rely on GitHub Actions triggers. Since the primary workflows may focus only on pull request analysis, linking 
 `eclipse-pass-parent` is a necessary part of the configuration that enables analysis results for the `main` branch 

@@ -30,7 +30,7 @@ code quality issues before submitting a pull request.
 engine and results dashboard.
 * [GitHub Actions](https://docs.github.com/en/actions): publishes results to SonarQube Cloud via workflows.
 * [SonarScanner](https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/ci-based-analysis/sonarscanner-for-maven/):
-The analysis tool that scans the code.
+The analysis tool that scans the code for pass-core and pass-support.
   * [SonarScanner GitHub](https://github.com/SonarSource/sonar-scanner-cli)
 
 ## Technical Deep Dive
