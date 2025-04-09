@@ -26,7 +26,7 @@ code quality issues before submitting a pull request.
 
 ## Technologies Utilized
 
-* [SonarQube Cloud](https://www.sonarsource.com/products/sonarqube/): The cloud-based platform hosting the analysis 
+* [SonarQube Cloud](https://www.sonarsource.com/products/sonarcloud/): The cloud-based platform hosting the analysis 
 engine and results dashboard.
 * [GitHub Actions](https://docs.github.com/en/actions): publishes results to SonarQube Cloud via workflows.
 
