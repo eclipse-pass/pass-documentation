@@ -68,6 +68,8 @@
     * [Automated Release](developer-documentation/release/release-steps-with-automations.md)
 * [PASS Infrastructure](infrastructure-documenation/README.md)
   * [CI/CD](infrastructure-documenation/ci-cd/README.md)
+  * [Code Quality Analysis](infrastructure-documenation/code-quality-analysis/sonar-qube.md)
+    * [Code Coverage](infrastructure-documenation/code-quality-analysis/jacoco.md)
   * [Deployment](infrastructure-documenation/deployment/README.md)
     * [GitHub CI/CD](infrastructure-documenation/deployment/github-cicd.md)
   * [Operations/Production](infrastructure-documenation/operations-production/README.md)
