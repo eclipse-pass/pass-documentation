@@ -11,7 +11,6 @@ PASS communicates with an [Elide-based API](https://github.com/yahoo/elide), and
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/)
 
-
 ## Installation
 
 * Clone the repository using the following command: `git clone https://github.com/eclipse-pass/pass-ui`
@@ -66,9 +65,10 @@ You may also consider stopping the pass-ui container.
 Start ember on port 4200.
 
 ```
-ember s
+ember s --environment=production
 ```
 
+The ember server must be run in the production environment to avoid Content Security Policy violations when loading CSS in the browser.
 
 ## Test Users
 
