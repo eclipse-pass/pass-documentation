@@ -3,7 +3,7 @@
 
 Release Manager: Jared Galanis, JHU
 
-This release introduces support for Spring Cloud AWS with S3 in pass-core. It also addresses technical debt in pass-support, includes test cleanup, and removes the MD5 checksum option in deposit services. Additionally, it resolves a page reload bug and a submit confirmation bug in pass-ui, along with refactoring the logic for submission file state management. Finally, documentation for SonarQube and JaCoCo has been added in this release.
+This release introduces support in pass-core for Spring Cloud AWS to connect to S3 for reading config files. It also addresses technical debt in pass-support, includes test cleanup, and removes the MD5 checksum option in deposit services. Additionally, it resolves a page reload bug and a submit confirmation bug in pass-ui, along with refactoring the logic for submission file state management. Finally, documentation for SonarQube and JaCoCo has been added in this release.
 
 [Tickets Completed](https://github.com/eclipse-pass/main/milestone/34?closed=1)
 
