@@ -1,9 +1,27 @@
+## Release v2.1.0
+### Date: April 30, 2025
+
+Release Manager: Jared Galanis, JHU
+
+This release introduces support in pass-core for Spring Cloud AWS to connect to S3 for reading config files. It also addresses technical debt in pass-support, includes test cleanup, and removes the MD5 checksum option in deposit services. Additionally, it resolves a page reload bug and a submit confirmation bug in pass-ui, along with refactoring the logic for submission file state management. Finally, documentation for SonarQube and JaCoCo has been added in this release.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/34?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.1.0)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.1.0)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.1.0)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.1.0)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.1.0)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.1.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.1.0)
+
 ## Release v2.0.0
 ### Date: March 27, 2025
 
 Release Manager: Tim Sanders, JHU
 
-This is a major release of PASS, marking the transition from the 1.x series to 2.x. It includes important security updates, new tools for improving code quality, and removed SWORD deposits. A research spike was also conducted to explore removing AlpacaJS. We had our first pull request from an external contributor with the [Pass-Docker InvenioRDM update](https://github.com/eclipse-pass/pass-docker/pull/389)! 
+This is a major release of PASS, marking the transition from the 1.x series to 2.x. It includes important security updates, new tools for improving code quality, and removed SWORD deposits. A research spike was also conducted to explore removing AlpacaJS. We had our first pull request from an external contributor with the [Pass-Docker InvenioRDM update](https://github.com/eclipse-pass/pass-docker/pull/389)!
 
 Highlights
 
@@ -47,8 +65,8 @@ Release Components:
 * [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/1.15.0)
 * [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/1.15.0)
 * [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/1.15.0)
-* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/1.15.0) 
-* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/1.15.0) 
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/1.15.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/1.15.0)
 
 ## Release v1.14.1
 ### Date: February 12, 2025
