@@ -82,6 +82,5 @@
     * [Monitoring](infrastructure-documenation/operations-production/ops-monitor.md)
     * [Data Loaders](infrastructure-documenation/operations-production/ops-loaders.md)
     * [Data & Backups](infrastructure-documenation/operations-production/ops-data-backup.md)
-    * [Eclipse Demo Site](infrastructure-documenation/operations-production/ops-demo-eclipse.md)
     * [Eclipse Operations](infrastructure-documenation/operations-production/ops-eclipse.md)
     * [Next Steps / Institution Configuration](infrastructure-documenation/operations-production/ops-new-institution.md)

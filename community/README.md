@@ -12,12 +12,12 @@ PASS is an open-source community project, and there are many ways to contribute�
 bugs, or writing code. Community members are encouraged to:
 
 * Review the existing code base and documentation.
-* Test the [PASS demo](https://demo.eclipse-pass.org) instance to understand workflows and features.
+* Test the [PASS Docker](../developer-documentation/pass-docker/README.md) local test instance to understand workflows and features.
 * Join discussions on [Slack](https://eclipse-pass.slack.com/archives/C035MNLRD44) to ask questions or offer suggestions.
 * Follow the [pull request workflow](developer-guidelines.md#pull-request-workflow) to submit code contributions.
 
-If you’re new to the project, a great starting point is to try the PASS demo instance to explore the application and 
-understand its core functionality.
+If you’re new to the project, a great starting point is to try the [PASS Docker](../developer-documentation/pass-docker/README.md) 
+local test instance to explore the application and understand its core functionality.
 
 For more detailed developer information, visit the [PASS Developer Documentation](../developer-documentation) and read 
 over the [developer guidelines](developer-guidelines.md). To review the PASS roadmap and stay updated on future 
