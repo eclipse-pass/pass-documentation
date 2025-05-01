@@ -53,12 +53,6 @@ File handling for PASS submissions. Used for CRUD operations for the manuscript 
 * Fully mocked, not very nicely resulting in some errors in the JS console.
 * While the `File` entity will appear on the submission review page, none will appear on the submission's details page. For "proxy" submissions, this means that a user cannot directly submit a pre-prepared submission, but instead will have to edit the submission and (re)attach the file to the submission.
 
-#### Metdata schema service
-
-Returns the set of metadata requested for the set of target repositories for the in-progress submission as JSON schema to drive one or more forms.
-
-* Fully mocked to return a common schema, meaning it will not respond to different repository requirements.
-
 #### Repository service
 
 Gets a set of repositories that can or must receive the submission.
