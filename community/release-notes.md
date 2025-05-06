@@ -1,3 +1,21 @@
+## Release v2.1.1
+### Date: May 6, 2025
+
+Release Manager: Mark Patton, JHU
+
+This is a patch release to fix a bug viewing the submission details page and fix a bug that prevented submissions with an embargo to DSpace from working.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/35?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.1.1)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.1.1)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.1.1)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.1.1)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.1.1)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.1.1)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.1.1)
+
 ## Release v2.1.0
 ### Date: April 30, 2025
 
