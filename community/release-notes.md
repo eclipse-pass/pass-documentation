@@ -5,7 +5,7 @@ Release Manager: Mark Patton, JHU
 
 This is a patch release to fix a bug viewing the submission details page and fix a bug that prevented submissions with an embargo to DSpace from working.
 
-[Tickets Completed](https://github.com/eclipse-pass/main/milestone/35?closed=1)
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/37?closed=1)
 
 Release Components:
 * [main](https://github.com/eclipse-pass/main/releases/tag/2.1.1)
