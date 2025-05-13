@@ -178,10 +178,6 @@ The [file API](api/file.md) provides a mechanism to persist files.
 
 The [policy API](api/policy.md) indicates what repositories are publication should be pushed to.
 
-#### Metadata Schema
-
-The [metadata schema API](api/metadata-schema.md) provides JSON schemas to describe PASS submission metadata.
-
 #### JSON API
 
 JSON API is deployed at the `/data/` endpoint. All of our data model is available, just divided into attributes and relationships. Note that identifiers are now integers, not URIs.
@@ -342,6 +338,3 @@ If using a new PostgreSQL instance, ensure the schema is correctly initialized. 
 ## Custom Policy Configuration
 
 Institutions may have specific deposit and submission policies. Configure these by following the instructions in the [Policy API section](./api/policy.md). This will ensure that the appropriate rules and repositories are applied based on your institutional guidelines.
-
-## Institution-Specific Metadata Schema
-If your institution has specific metadata requirements for submissions, you may need to customize the metadata schema using the instructions in the [Metadata Schema API section](./api/policy.md). This section will introduce you to the metadata schema and will assist in creating a metadata schema to match your institutional standards.
