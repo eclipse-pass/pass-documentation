@@ -143,16 +143,9 @@ Push that image to GHCR. For example: `docker push ghcr.io/eclipse-pass/pass-ui:
 
 All that's required is to tag a new release in the GitHub UI.
 
-After pushing the images to GHCR, update the appropriate image lines in `docker-compose.yml` and `pass-docker` with the new sha returned by the pushes to GHCR. Open a pull request against `pass-docker` with these updates.
+After pushing the images to GHCR, update the appropriate image lines in `docker-compose.yml` and `pass-docker` with the new version. Open a pull request against `pass-docker` with these updates.
 
 Once acceptance-tests successfully run in CI in your `pass-docker` PR, and once you've done some additional manual spot checking while running `pass-docker` locally, go ahead and tag a new release in the GitHub UI for each of the following projects: `pass-ui` and `pass-acceptance-testing`.
-
-## Image Customization
-
-Here's what you need to change manually before building a new image version in order to bring in code changes. If the docker compose service is not mentioned here, you do not need to make any manual changes. All images must be built manually using docker compose, following the [docker compose rebuilding / updating](#docker compose-rebuilding--updating) steps except `pass-core` which is built by Maven.
-
-### Building `pass-ui` Image
-In `.env`, by default, `EMBER_GIT_BRANCH` should have a value of `main`. If you need to point to a specific branch update the value of `EMBER_GIT_BRANCH`. You can use the name of a tag or a specific commit hash.
 
 ## Testing
 
