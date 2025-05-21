@@ -11,7 +11,7 @@ Each release of PASS has its own version which is used by every component. PASS 
 * Assign a Release Manager, the person who will be responsible for the release process. The Release Manager must be a [PASS committer](https://www.eclipse.org/projects/handbook/#roles-cm).
 * Choose a release version that communicates the magnitude of the change.
 * Create a GitHub issue in the main repository using the `Release Checklist Issue` template from the [main repository create new issue page](https://github.com/eclipse-pass/main/issues/new/choose).
-* Follow the steps in the Release GitHub issue to complete the release.
+* Follow the steps in the created Release GitHub issue to complete the release.
   * See [these instructions](#triggering-the-release-all-github-workflow) for running the `Publish: Release All` GitHub Action workflow.
 
 ### Triggering the Release All GitHub workflow
