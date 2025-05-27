@@ -15,7 +15,7 @@ A schema specifies how metadata fields are shown to the user, saved in the metad
 
 PASS has a common schema with properties common to all the repositories and per repository schemas, each with properties unique to a particular repository. A particular repositories specifies the common schema along with its own schema.
 
-The metadata schema service uses [SurveyJS](https://surveyjs.io/). A SurveyJS specific configuration file describes all of the possible metadata fields. A separate configuration file maps PASS schema identifiers to a set the set of metadata fields. The service then dynamically produces a SurveyJS configuration file from a set of PASS schema identifiers.
+The metadata schema service uses [SurveyJS](https://surveyjs.io/). A SurveyJS specific configuration file describes all of the possible metadata fields. A separate configuration file maps PASS schema identifiers to a set of metadata fields. The service then dynamically produces a SurveyJS configuration file from a set of PASS schema identifiers.
 
 ## Metadata blob documentation
 
