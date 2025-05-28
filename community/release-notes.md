@@ -1,3 +1,21 @@
+## Release v2.2.0
+### Date: May 28, 2025
+
+Release Manager: Jared Galanis, JHU
+
+This release includes a refactoring of the way metadata schemas are processed and handled in pass-ui. This was a broad refactor that improved and simplified metadata state management and processing in pass-ui, replaced an outdated library (alpaca.js) in pass-ui that previously handled metadata forms with a more modern JavaScript library (survey.js), and moved the metadata schema service from pass-core into pass-ui. This release also removed support for the pass demo site, updating documentation and shutting down AWS resources that served the demo site. This release additionally resolved intermittent failures in  pass-acceptance-testing CI runs and improved the documentation around the release process itself. During this release cycle the team also investigated and supported the migration from Sonatype OSSRH (being deprecated at the end of June) to Central Portal for publishing artifacts to Maven central.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/35?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.2.0)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.2.0)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.2.0)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.2.0)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.2.0)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.2.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.2.0)
+
 ## Release v2.1.1
 ### Date: May 6, 2025
 
