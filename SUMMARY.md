@@ -22,7 +22,6 @@
     * API
       * [DOI API](developer-documentation/pass-core/api/doi.md)
       * [File API](developer-documentation/pass-core/api/file.md)
-      * [Metadata Schema API](developer-documentation/pass-core/api/metadata-schema.md)
       * [Policy API](developer-documentation/pass-core/api/policy.md)
       * [User API](developer-documentation/pass-core/api/user.md)
     * [Model](developer-documentation/pass-core/model/README.md)
