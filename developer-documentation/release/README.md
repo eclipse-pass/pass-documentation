@@ -48,5 +48,5 @@ The [Publish: Release All](https://github.com/eclipse-pass/main/actions/workflow
 However, it is possible to execute a PASS release with project automations one at a time or manually if needed. This is not recommended unless absolutely necessary since executing the
 release manually introduces the chance of making mistakes.
 
-* [Release Projects One At a Time](release-steps-project-one-at-a-time.md)
-* [Manual Release](release-steps-manual.md)
+* [Release Projects One At a Time](./release-steps-project-one-at-a-time.md)
+* [Manual Release](./release-steps-manual.md)
