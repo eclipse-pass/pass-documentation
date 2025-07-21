@@ -23,6 +23,7 @@ In this guide we step through various topics on JHU Operations and Production:
   * [Versioning](./ops-version.md)
   * [How to Deploy](./ops-deploy.md)
   * [Monitoring](./ops-monitor.md)
+  * [NIHMS Credentials Configuration](./ops-nihms.md)
   * [Data Loaders](./ops-loaders.md)
   * [Data & Backups](./ops-data-backup.md)
   * [Eclipse Operations](./ops-eclipse.md)

@@ -6,6 +6,12 @@ used in development and production infrastructure which rely on Docker and its a
 Secondary configuration is provided by Spring Boot `application.properties`. This configuration includes lower-level
 parameters such as message queues, the base URL of Pass Core, etc.
 
+## NIHMS Credentials Configuration
+
+In order for PASS to be able to make deposits into NIHMS and monitor for status updates, there are credentials that
+need to be created in NIHMS.  Please review [this page](../../infrastructure-documenation/operations-production/ops-nihms.md) 
+for the details.
+
 ## Production Configuration Variables
 
 | Environment Variable                     | Default Value                | Description                                                                                                                                                 |
