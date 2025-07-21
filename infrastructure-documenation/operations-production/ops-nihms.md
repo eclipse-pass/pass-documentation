@@ -19,8 +19,8 @@ the NIHMS workflow steps. If all goes well, a PASS deposit starts out at step 2.
 ### SFTP server credentials
 
 Review the information on this page about the [NIHMS Publisher Bulk-Upload](https://support.nlm.nih.gov/kbArticle/?pn=KA-05267) 
-protocol, and then contact the [NIHMS Help Desk](mailto:nihms-help@ncbi.nlm.nih.gov) to obtain the credentials.  
-This process will result in credentials to authenticate with the SFTP server as well as a set of credentials to log into
+protocol, and then contact the [NIHMS Help Desk](mailto:nihms-help@ncbi.nlm.nih.gov) to obtain the credentials. This 
+process will result in credentials to authenticate with the SFTP server as well as a set of credentials to log into
 NIHMS for monitoring deposits made with PASS.
 
 ## NIHMS Deposit Email Monitor
