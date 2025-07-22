@@ -41,7 +41,7 @@ requires an NIH Public Access Compliance Monitor (PACM) API token.
 
 ### NIHMS Data Loader API Token
 
-An NIH/ERA account must be created to obtain the PACM API token. See this page for instructions: [PACM API Token](./ops-loaders.md#pacm-api-token)
+An NIH/ERA account must be created to obtain the [PACM API Token](./ops-loaders.md#pacm-api-token).
 
 The API token can be manually retrieved from [PACM website](https://www.ncbi.nlm.nih.gov/pmc/utils/pacm).  The token is 
 valid for three months and there is currently no way to automatically refresh the token through PACM.  PASS does provide
