@@ -9,7 +9,7 @@ parameters such as message queues, the base URL of Pass Core, etc.
 ## NIHMS Credentials Configuration
 
 In order for PASS to be able to make deposits into NIHMS and monitor for status updates, there are credentials that
-need to be created in NIHMS.  Please review [this page](../../infrastructure-documenation/operations-production/ops-nihms.md) 
+need to be created in NIHMS.  Please review the [NIHMS Credentials Configuration](../../infrastructure-documenation/operations-production/ops-nihms.md) 
 for the details.
 
 ## Production Configuration Variables
