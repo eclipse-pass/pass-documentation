@@ -1,3 +1,21 @@
+## Release v2.3.0
+### Date: September 23, 2025
+
+Release Manager: Russ Poetker, JHU
+
+This release includes two areas of change. The first is a set of changes to improve messaging that describes what happens after a user completes a submission. Now an appropriate message will describe the next steps depending on the submission's target repositories. There were also several updates made to the grant selection tables with regard to improving UX and fixing a few bugs. The second area of change is in the grant loader where the JHU code has been updated to load grant data from a new grant management system. The PASS release workflow has migrated to Central Portal for publishing artifacts to Maven central.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/36?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.3.0)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.3.0)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.3.0)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.3.0)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.3.0)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.3.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.3.0)
+
 ## Release v2.2.0
 ### Date: May 28, 2025
 
