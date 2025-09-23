@@ -3,7 +3,7 @@
 
 Release Manager: Russ Poetker, JHU
 
-This release includes two areas of change. The first is a set of changes to improve messaging that describes what happens after a user completes a submission. Now an appropriate message will describe the next steps depending on the submission's target repositories. There were also several updates made to the grant selection tables with regard to improving UX and fixing a few bugs. The second area of change is in the grant loader where the JHU code has been updated to load grant data from a new grant management system. The PASS release workflow has migrated to Central Portal for publishing artifacts to Maven central.
+This release includes two areas of change. The first is a set of changes to improve messaging to users describing what happens after the completion of a submission. Now an appropriate message in the UI will describe the next steps depending on the submission's target repositories. There were also several updates made to the grant selection tables with regard to improving UX and fixing a few bugs. The second area of change is in the grant loader where a new integration with the Fibi Grant Management System has been added. The PASS release workflow has also migrated to Central Portal for publishing artifacts to Maven central.
 
 [Tickets Completed](https://github.com/eclipse-pass/main/milestone/36?closed=1)
 
