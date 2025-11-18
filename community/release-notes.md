@@ -1,3 +1,21 @@
+## Release v2.4.0
+### Date: November 18, 2025
+
+Release Manager: Russ Poetker, JHU
+
+This release includes a change to the Deposit Services DSpace integration to support DSpace 9.x. There is also a change in the UI messaging related to PMC submission terminology. Additionally, the children POMs were cleaned up to remove inherited attributes.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/38?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.4.0)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.4.0)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.4.0)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.4.0)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.4.0)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.4.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.4.0)
+
 ## Release v2.3.0
 ### Date: September 23, 2025
 
