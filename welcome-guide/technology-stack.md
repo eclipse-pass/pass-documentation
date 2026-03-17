@@ -19,7 +19,9 @@ PASS Core is the central back-bone to the application which is responsible for o
 
 To support the Submission UI the following technologies and frameworks are employed by PASS:
 
-* [Ember.js](https://emberjs.com/): Selected for its robustness and opinionated framework structure, the Submission UI uses Ember.js to provide a clear, consistent, and easily to use workflow.&#x20;
+* [Ember.js](https://emberjs.com/): Selected for its robustness and opinionated framework structure, the Submission UI uses Ember.js to provide a clear, consistent, and easy to use workflow. The UI is written in TypeScript using Glimmer Template Syntax (GTS) components.
+* [Vite](https://vite.dev/): The build tool and development server for pass-ui, providing fast hot module replacement (HMR) during development and optimized production builds.
+* [WarpDrive](https://warp-drive.io/): The data layer (formerly Ember Data) that manages communication with the JSON:API backend via a request handler chain.&#x20;
 
 ### Back-end Technologies
 
@@ -46,7 +48,7 @@ PASS is designed to be flexible and run on a variety of platforms; however at JH
 
 ### Development Tools and Practices
 
-* [Ember CLI](https://cli.emberjs.com/release/): Offers a suite of tools to automate tasks such as building assets, running tests, and scaffolding code. It supports our front-end development of the Submission UI.
+* [Vite](https://vite.dev/) / [Ember CLI](https://cli.emberjs.com/release/): Vite is used as the build tool and dev server for pass-ui. Ember CLI provides scaffolding and test runner support.
 * [Docker](https://www.docker.com/): Utilized for running and testing PASS locally.
 * [TestCafe](https://testcafe.io/): The main framework of our PASS acceptance tests. It is a free and open-source solution for running end-to-end tests.
 * [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven\_development) & [JUnit](https://junit.org/): The Eclipse PASS team follows test driven development (TDD) to ensure high code quality and build confidence. Additionally, we use JUnit for unit tests and [Spring Boot Test](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.testing)/[Testcontainers](https://testcontainers.com/) for integration tests.&#x20;

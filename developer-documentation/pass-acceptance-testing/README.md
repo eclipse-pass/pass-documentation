@@ -3,7 +3,7 @@ Acceptance / smoke tests for the [PASS application](https://github.com/eclipse-p
 This repository utilizes [TestCafe](https://testcafe.io/) to define smoke tests that can run against an instance of PASS.
 
 ## Technologies Utilized
-* [NodeJS](https://nodejs.org/en/) version 14+
+* [NodeJS](https://nodejs.org/en/) version 24+
 * [Yarn](https://yarnpkg.com/) v1.x - package manager, similar to NPM
 
 ## Defining Concepts 

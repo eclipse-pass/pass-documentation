@@ -10,6 +10,8 @@ PASS communicates with an [Elide-based API](https://github.com/yahoo/elide), and
 * [Git](https://git-scm.com/)
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/)
+* [Node.js](https://nodejs.org/) >= 24
+* [pnpm](https://pnpm.io/) 9
 
 ## Installation
 
@@ -29,13 +31,14 @@ This environment is not as conducive for active development of `pass-ui`, depend
 
 ### Building for the Docker Environment
 
-GitHub automations are in place to produce production builds during a release. If you want to develop a build for local testing, you can use the `build.sh` script, specifying a `.env` file:
+GitHub automations are in place to produce production builds during a release. If you want to build a Docker image for local testing:
 
 ```sh
-./build.sh ../pass-docker/.env
+pnpm build
+pnpm build:docker
 ```
 
-This script will remove any existing files in `dist/`, perform an Ember dev build, and create a new pass-ui Docker image with the `:latest` tag
+This will perform a Vite production build to `dist/` and create a new pass-ui Docker image tagged with the version from `package.json`.
 
 
 ## Running `pass-ui` Outside of the Docker Environment
@@ -62,15 +65,21 @@ You may also consider stopping the pass-ui container.
 
 ### Run pass-ui on a Host Machine
 
-Start ember on port 4200.
+Start the Vite development server on port 4200:
 
 ```
-ember s --environment=production
+pnpm start
 ```
 
-The ember server must be run in the production environment to avoid Content Security Policy violations when loading CSS in the browser.
+The development server includes API proxy configuration for `/data`, `/user`, `/schema`, `/doi`, `/policy`, and `/file` routes, forwarding them to `localhost:8080` (pass-core).
 
-To run ember in development mode instead, you can use `ember s` (without the environment flag) and set a permissive CSP in pass-docker. Edit `.env` to `PASS_CORE_APP_CSP` to ``"default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"``.
+To run a production build locally with the Vite preview server:
+
+```
+pnpm start:production
+```
+
+To run in development mode with pass-core, you may need to set a permissive CSP in pass-docker. Edit `.env` to set `PASS_CORE_APP_CSP` to `"default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"`.
 
 ## Test Users
 
@@ -108,14 +117,30 @@ The base theme styles can be found in `branding.css`. There are default fallback
 
 ## Testing
 
-To run the Ember.js unit/integration/acceptance tests in this repository you can run one of the scripts in the [package.json](https://github.com/eclipse-pass/pass-ui/blob/main/package.json) or simply run the Ember development server via `ember s` and visit `http://localhost:8080/app/tests`.
+To run the unit/integration/acceptance tests:
+
+```
+pnpm test:ember
+```
+
+To run a single test or module:
+
+```
+pnpm test:ember --filter="module name or test name"
+```
+
+To run linting and tests together:
+
+```
+pnpm test
+```
 
 
 ## Linting
 
-This project uses `es-lint`, `ember-template-lint` and `prettier` to enforce style decisions and code formatting. Consider installing [an integration tool](https://prettier.io/docs/en/editors.html).
+This project uses `eslint`, `ember-template-lint` and `prettier` to enforce style decisions and code formatting. Consider installing [an integration tool](https://prettier.io/docs/en/editors.html).
 
-This project uses (husky)[https://github.com/typicode/husky] to run a command from (lint-staged)[https://github.com/okonet/lint-staged] to run `es-lint --fix` and `prettier --write` over the staged files in a pre-commit hook. If issues arrise during a commit it might be because either one or both of these commands has failed. Check the output in the terminal for what failures have occurred.
+This project uses [husky](https://github.com/typicode/husky) to run a command from [lint-staged](https://github.com/okonet/lint-staged) to run `eslint --fix` and `prettier --write` over the staged files in a pre-commit hook. If issues arise during a commit it might be because either one or both of these commands has failed. Check the output in the terminal for what failures have occurred.
 
 There are also scripts defined in the [package.json](https://github.com/eclipse-pass/pass-ui/blob/main/package.json) that can manually lint check the project.
 
@@ -128,7 +153,8 @@ Testing and Linting utilizes the [ci.yml workflow](https://github.com/eclipse-pa
 ## Related Documentation:
 
 * [ember.js](https://emberjs.com/)
-* [ember-cli](https://cli.emberjs.com/release/)
+* [Vite](https://vite.dev/)
+* [WarpDrive](https://warp-drive.io/)
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
