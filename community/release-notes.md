@@ -3,7 +3,7 @@
 
 Release Manager: Russ Poetker, JHU
 
-This is a maintenance release for PASS. Frontend and Backend dependencies were upgraded. In the pass-ui project, ember was upgraded to the latest LTS and converted to Typescript. The Journal Data Loader was updated to support the new PMC file format. A bug related to DOI lookup error handling was fixed. Additionally, GitHub Actions workflows were updated to use immutable versions for third-party actions.
+This is a maintenance release for PASS. Frontend and Backend dependencies were upgraded. In the pass-ui project, Ember was upgraded to the latest LTS and converted to Typescript. The Journal Data Loader was updated to support the new PMC file format. A bug related to DOI lookup error handling was fixed. Additionally, GitHub Actions workflows were updated to use immutable versions for third-party actions.
 
 [Tickets Completed](https://github.com/eclipse-pass/main/milestone/39?closed=1)
 
