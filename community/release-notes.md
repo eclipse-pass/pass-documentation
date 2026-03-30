@@ -1,3 +1,21 @@
+## Release v2.5.0
+### Date: March 30, 2026
+
+Release Manager: Russ Poetker, JHU
+
+This is a maintenance release for PASS. Frontend and Backend dependencies were upgraded. In the pass-ui project, ember was upgraded to the latest LTS and converted to Typescript. The Journal Data Loader was updated to support the new PMC file format. A bug related to DOI lookup error handling was fixed. Additionally, GitHub Actions workflows were updated to use immutable versions for third-party actions.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/39?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.5.0)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.5.0)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.5.0)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.5.0)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.5.0)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.5.0)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.5.0)
+
 ## Release v2.4.0
 ### Date: November 18, 2025
 
