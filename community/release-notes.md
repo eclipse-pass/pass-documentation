@@ -1,3 +1,21 @@
+## Release v2.5.1
+### Date: April 13, 2026
+
+Release Manager: Russ Poetker, JHU
+
+This release includes updates to resolve Critical CVEs in third-party dependencies. Additionally, Ember was upgraded to the latest LTS.
+
+[Tickets Completed](https://github.com/eclipse-pass/main/milestone/40?closed=1)
+
+Release Components:
+* [main](https://github.com/eclipse-pass/main/releases/tag/2.5.1)
+* [pass-core](https://github.com/eclipse-pass/pass-core/releases/tag/2.5.1)
+* [pass-docker](https://github.com/eclipse-pass/pass-docker/releases/tag/2.5.1)
+* [pass-acceptance-testing](https://github.com/eclipse-pass/pass-acceptance-testing/releases/tag/2.5.1)
+* [pass-support](https://github.com/eclipse-pass/pass-support/releases/tag/2.5.1)
+* [pass-ui](https://github.com/eclipse-pass/pass-ui/releases/tag/2.5.1)
+* [pass-documentation](https://github.com/eclipse-pass/pass-documentation/releases/tag/2.5.1)
+
 ## Release v2.5.0
 ### Date: March 30, 2026
 
