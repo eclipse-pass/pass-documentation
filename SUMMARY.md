@@ -62,7 +62,6 @@
     * [Next Steps / Institution Configuration](developer-documentation/notification-service/ns-new-institution.md)
   * [PASS Acceptance Testing](developer-documentation/pass-acceptance-testing/README.md)
   * [PASS Docker](developer-documentation/pass-docker/README.md)
-    * [Testing InvenioRDM](developer-documentation/pass-docker/invenio-rdm.md)
   * [Release](developer-documentation/release/README.md)
     * [Release Projects One At a Time](developer-documentation/release/release-steps-project-one-at-a-time.md)
     * [Manual Release](developer-documentation/release/release-steps-manual.md)

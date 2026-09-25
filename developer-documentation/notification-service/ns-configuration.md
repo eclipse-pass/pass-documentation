@@ -170,7 +170,7 @@ address (for the `PRODUCTION` mode), then no notification will be dispatched.
 
 Supported environment variables (system property analogs) and default values are:
 
-* `PASS_NOTIFICATION_QUEUE_EVENT_NAME` (`pass.notification.queue.event.name`): `event`
+* `PASS_JMS_QUEUE_SUBMISSION_EVENT_NAME` (`pass.notification.queue.event.name`): `event`
 * `PASS_NOTIFICATION_MODE` (`pass.notification.mode`): `DEMO`
 * `PASS_CORE_URL` (`pass.client.url`): `{PASS_CORE_URL}`
 * `PASS_CORE_USER` (`pass.client.user`): `{PASS_CORE_USER}`
